@@ -17,7 +17,15 @@ const userReducer = (state = { name: "", password: "", inProgress: false }, acti
       return {
         ...state,
         inProgress: true
+    }
+
+    case 'LOG_OUT':
+      return {
+        ...state,
+        inProgress: false,
+        loggedIn: false
       }
+
 
     default:
       return state;

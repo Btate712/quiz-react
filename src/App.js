@@ -5,6 +5,7 @@ import LoginContainer from './containers/loginContainer';
 import Home from './components/home';
 import { connect } from 'react-redux';
 import checkToken from './actions/checkToken';
+import SiteTemplateHeader from './containers/siteTemplateHeader';
 
 class App extends React.Component {
 
@@ -20,6 +21,7 @@ class App extends React.Component {
     return (
       <Router>
         <div className="App">
+          <Route path="/"><SiteTemplateHeader /></Route>
           <Switch>
             <Route exact path="/"> { this.mainOrLogin() } </Route>
             <Route path="/login"><LoginContainer /></Route>
