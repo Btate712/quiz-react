@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends React.Component {
   render() {
@@ -10,7 +11,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/">
               {
-              // Route to home page or login 
+                <div>Hello World!</div>
               }
             </Route>
           </Switch>
