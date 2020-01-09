@@ -13,6 +13,9 @@ class SiteTemplateHeader extends React.Component {
               <a className="nav-link" href="/home">Home</a>
             </li>
             <li className="nav-item">
+              <a className="nav-link" href="/topics" >Topics</a>
+            </li>
+            <li className="nav-item">
               <a className="nav-link" href="/" onClick={this.props.logout}>Log Out</a>
             </li>
           </ul>
@@ -24,7 +27,7 @@ class SiteTemplateHeader extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return ({
-    logOut: () => dispatch(logout())
+    logout: () => dispatch(logout())
   })
 }
 

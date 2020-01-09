@@ -2,19 +2,17 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginContainer from './containers/loginContainer';
-import Home from './components/home';
+import HomeContainer from './containers/homeContainer';
+import TopicsContainer from './containers/topicsContainer';
 import { connect } from 'react-redux';
 import checkToken from './actions/checkToken';
 import SiteTemplateHeader from './containers/siteTemplateHeader';
 
 class App extends React.Component {
 
+
   componentDidMount() {
     this.props.checkToken(URL);
-  }
-
-  mainOrLogin() {
-    return this.props.user.loggedIn ? <Redirect to="/home" /> : <Redirect to="/login" />
   }
 
   render() {
@@ -23,14 +21,30 @@ class App extends React.Component {
         <div className="App">
           <Route path="/"><SiteTemplateHeader /></Route>
           <Switch>
-            <Route exact path="/"> { this.mainOrLogin() } </Route>
+            <PrivateRoute exact path="/"><HomeContainer /></PrivateRoute>
             <Route path="/login"><LoginContainer /></Route>
-            <Route path="/home"><Home /></Route>
+            <PrivateRoute path="/home"><HomeContainer /></PrivateRoute>
+            <PrivateRoute path="/topics"><TopicsContainer /></PrivateRoute>
           </Switch>
         </div>
       </Router>
     );
   }
+}
+
+function PrivateRoute({ children, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        sessionStorage.getItem("loggedIn") === "true" ? (
+          children
+        ) : (
+          <Redirect to="/login"  />
+        )
+      }
+    />
+  );
 }
 
 const mapStateToProps = state => {

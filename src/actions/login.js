@@ -10,8 +10,11 @@ function login(url, username, password) {
       .then(response => response.json())
       .then(json => {
         if (json.message === "Login Successful") {
-          dispatch({ type: 'LOGGED_IN' });
           sessionStorage.setItem('jwtToken', json.access_token);
+          sessionStorage.setItem("loggedIn", true);
+          dispatch({ type: 'LOGGED_IN' });
+        } else {
+          dispatch({ type: 'LOGIN_FAILED' });
         }
       });
   }

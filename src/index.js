@@ -6,9 +6,11 @@ import { Provider } from 'react-redux';
 import { applyMiddleware, createStore, combineReducers, compose } from 'redux';
 import thunk from 'redux-thunk';
 import userReducer from './reducers/userReducer';
+import topicsReducer from './reducers/topicsReducer';
 
 const rootReducer = combineReducers({
-  user: userReducer
+  user: userReducer,
+  topics: topicsReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

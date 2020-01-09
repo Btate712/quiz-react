@@ -11,7 +11,10 @@ function checkToken(url) {
       .then(response => response.json())
       .then(json => {
         if(json.status === "success") {
+          sessionStorage.setItem("loggedIn", true);
           dispatch({ type: 'LOGGED_IN' });
+        } else {
+          dispatch({ type: 'LOGIN_FAILED' });
         }
       });
   }
