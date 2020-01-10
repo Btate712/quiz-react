@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginContainer from './containers/loginContainer';
 import HomeContainer from './containers/homeContainer';
+import TopicContainer from './containers/topicContainer';
 import TopicsContainer from './containers/topicsContainer';
 import { connect } from 'react-redux';
 import checkToken from './actions/checkToken';
@@ -22,8 +23,23 @@ class App extends React.Component {
           <Route path="/"><SiteTemplateHeader /></Route>
           <Switch>
             <PrivateRoute exact path="/"><HomeContainer /></PrivateRoute>
+
             <Route path="/login"><LoginContainer /></Route>
+
             <PrivateRoute path="/home"><HomeContainer /></PrivateRoute>
+
+            {
+              /* 
+              Need to figure out how to make show route work with 
+              PrivateRoute.  The route below works as <Route />, but
+              not as <PrivateRoute /> 
+              */
+            }
+            <Route path="/topics/:id" render={({match}) => {
+              const id = match.params.id;
+              return (<TopicContainer topicId={id} />);
+            }} />
+
             <PrivateRoute path="/topics"><TopicsContainer /></PrivateRoute>
           </Switch>
         </div>

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 
-class Topic extends Component {
-    render() {
-        return (
-            
-        );
-    }
+class TopicContainer extends Component {
+  render() {
+    return (
+      <div>
+        <h1>Individual Topic #{this.props.topicId}...</h1>
+      </div>  
+    );
+  }
 }
 
-export default Topic;
+export default TopicContainer;

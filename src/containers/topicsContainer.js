@@ -13,7 +13,7 @@ class TopicsContainer extends React.Component {
     const topics = this.props.topics.topicList;
     console.log(topics);
     if(topics) {
-      return topics.map((topic, key) => <Topic key={key} id={`Topic${topic.id}`} name={topic.name} /> );
+      return topics.map((topic, key) => <Topic key={key} id={topic.id} name={topic.name} /> );
     }
   }
 
