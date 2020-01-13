@@ -8,11 +8,15 @@ import thunk from 'redux-thunk';
 import userReducer from './reducers/userReducer';
 import topicsReducer from './reducers/topicsReducer';
 import topicReducer from './reducers/topicReducer';
+import questionsReducer from './reducers/questionsReducer';
+import questionReducer from './reducers/questionReducer';
 
 const rootReducer = combineReducers({
   user: userReducer,
   topics: topicsReducer, 
-  topic: topicReducer
+  topic: topicReducer, 
+  questions: questionsReducer,
+  question: questionReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -4,12 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginContainer from './containers/loginContainer';
 import HomeContainer from './containers/homeContainer';
 import TopicsContainer from './containers/topicsContainer';
+import QuestionsContainer from './containers/questionsContainer';
 import { connect } from 'react-redux';
 import checkToken from './actions/checkToken';
 import SiteTemplateHeader from './containers/siteTemplateHeader';
 
 class App extends React.Component {
-
 
   componentDidMount() {
     this.props.checkToken(URL);
@@ -36,6 +36,8 @@ class App extends React.Component {
             }
             
             <PrivateRoute path="/topics"><TopicsContainer /></PrivateRoute>
+
+            <PrivateRoute path="/questions"><QuestionsContainer /></PrivateRoute>
           </Switch>
         </div>
       </Router>
