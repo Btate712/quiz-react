@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginContainer from './containers/loginContainer';
 import HomeContainer from './containers/homeContainer';
-import TopicContainer from './containers/topicContainer';
 import TopicsContainer from './containers/topicsContainer';
 import { connect } from 'react-redux';
 import checkToken from './actions/checkToken';
@@ -35,11 +34,7 @@ class App extends React.Component {
               not as <PrivateRoute /> 
               */
             }
-            <Route path="/topics/:id" render={({match}) => {
-              const id = match.params.id;
-              return (<TopicContainer topicId={id} />);
-            }} />
-
+            
             <PrivateRoute path="/topics"><TopicsContainer /></PrivateRoute>
           </Switch>
         </div>
@@ -53,7 +48,7 @@ function PrivateRoute({ children, ...rest }) {
     <Route
       {...rest}
       render={({ location }) =>
-        sessionStorage.getItem("loggedIn") === "true" ? (
+        sessionStorage.getItem("loggedIn") ? (
           children
         ) : (
           <Redirect to="/login"  />

@@ -3,6 +3,8 @@ import getTopics from '../actions/getTopics';
 import URL from '../appData/applicationConstants';
 import { connect } from 'react-redux';
 import Topic from '../components/topic';
+import TopicContainer from './topicContainer';
+import { Switch, Route } from 'react-router-dom';
 
 class TopicsContainer extends React.Component {
   componentDidMount() {
@@ -18,9 +20,16 @@ class TopicsContainer extends React.Component {
   }
 
   render() {
+
     return(
       <div>
-        {this.showTopicsWhenLoaded()}
+        <Switch>
+          <Route path={"/topics/:id"} render={({match}) => {
+            const id = match.params.id;
+            return (<TopicContainer topicId={id} />);
+          }} />
+          <Route path="/topics">{this.showTopicsWhenLoaded()}</Route>
+        </Switch>
       </div>
     );
   }
