@@ -19,8 +19,8 @@ const Topic = props => {
 
   return (
     <div className="Topic">
-      <h2>Topic Number: {props.topic.id}</h2>
-      <h2>Topic: {props.topic.name}</h2>
+      <h1>Topic: {props.topic.name}</h1>
+      <h2>Topic #: {props.topic.id}</h2>
       <h2>Questions:</h2>
       {showQuestions()}
     </div>
