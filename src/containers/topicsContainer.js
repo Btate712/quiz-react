@@ -2,9 +2,8 @@ import React from 'react';
 import getTopics from '../actions/getTopics';
 import URL from '../appData/applicationConstants';
 import { connect } from 'react-redux';
-import Topic from '../components/topic';
 import TopicContainer from './topicContainer';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 
 class TopicsContainer extends React.Component {
   componentDidMount() {
@@ -13,9 +12,10 @@ class TopicsContainer extends React.Component {
 
   showTopicsWhenLoaded() {
     const topics = this.props.topics.topicList;
-    console.log(topics);
     if(topics) {
-      return topics.map((topic, key) => <Topic key={key} id={topic.id} name={topic.name} /> );
+      return topics.map((topic, key) => {
+        return (<h3 key={key} ><Link to={`/topics/${topic.id}`}> {topic.name} </Link></h3>) 
+      })
     }
   }
 
