@@ -3,6 +3,7 @@ import getQuestions from '../actions/getQuestions';
 import URL from '../appData/applicationConstants';
 import { connect } from 'react-redux';
 import QuestionContainer from './questionContainer';
+import NewQuestionContainer from './newQuestionContainer';
 import { Switch, Route, Link } from 'react-router-dom';
 
 class QuestionsContainer extends React.Component {
@@ -24,6 +25,7 @@ class QuestionsContainer extends React.Component {
     return(
       <div>
         <Switch>
+          <Route path={"/questions/new"}><NewQuestionContainer /></Route>
           <Route path={"/questions/:id"} render={({match}) => {
             const id = match.params.id;
             return (<QuestionContainer questionId={id} />)
