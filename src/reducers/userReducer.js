@@ -3,6 +3,8 @@ const userReducer = (state = { name: "", password: "", inProgress: false, logged
     case 'LOGGING_IN':
       return {
         ...state,
+        name: action.action.username,
+        password: action.action.password,
         inProgress: true
       }
 
@@ -28,6 +30,7 @@ const userReducer = (state = { name: "", password: "", inProgress: false, logged
 
     case 'LOG_OUT':
       return {
+        ...state,
         name: "",
         password: "",
         inProgress: false,

@@ -14,6 +14,7 @@ function checkToken(url) {
           sessionStorage.setItem("loggedIn", true);
           dispatch({ type: 'LOGGED_IN' });
         } else {
+          sessionStorage.setItem("loggedIn", false);
           dispatch({ type: 'LOGIN_FAILED' });
         }
       });

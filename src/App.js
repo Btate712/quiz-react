@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginContainer from './containers/loginContainer';
+import RegisterContainer from './containers/registerContainer';
 import HomeContainer from './containers/homeContainer';
 import TopicsContainer from './containers/topicsContainer';
 import QuestionsContainer from './containers/questionsContainer';
@@ -11,33 +12,23 @@ import SiteTemplateHeader from './containers/siteTemplateHeader';
 
 class App extends React.Component {
 
-  componentDidMount() {
-    this.props.checkToken(URL);
-  }
-
   render() {
     return (
-      <Router>
+      <Router history={this.props.history}>
         <div className="App">
           <Route path="/"><SiteTemplateHeader /></Route>
           <Switch>
-            <PrivateRoute exact path="/"><HomeContainer /></PrivateRoute>
+            <PrivateRoute exact path="/" ><HomeContainer /></PrivateRoute>
 
             <Route path="/login"><LoginContainer /></Route>
 
-            <PrivateRoute path="/home"><HomeContainer /></PrivateRoute>
+            <Route path="/register"><RegisterContainer /></Route>
 
-            {
-              /* 
-              Need to figure out how to make show route work with 
-              PrivateRoute.  The route below works as <Route />, but
-              not as <PrivateRoute /> 
-              */
-            }
+            <PrivateRoute path="/home" ><HomeContainer /></PrivateRoute>
             
-            <PrivateRoute path="/topics"><TopicsContainer /></PrivateRoute>
+            <PrivateRoute path="/topics" ><TopicsContainer /></PrivateRoute>
 
-            <PrivateRoute path="/questions"><QuestionsContainer /></PrivateRoute>
+            <PrivateRoute path="/questions" ><QuestionsContainer /></PrivateRoute>
           </Switch>
         </div>
       </Router>
@@ -45,7 +36,7 @@ class App extends React.Component {
   }
 }
 
-function PrivateRoute({ children, ...rest }) {
+function PrivateRoute({ children, auth, ...rest }) {
   return (
     <Route
       {...rest}

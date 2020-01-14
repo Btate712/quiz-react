@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const Question = props => {
   const question = props.question;
@@ -27,7 +27,7 @@ const Question = props => {
       <h1 className="ml-5">C. {question.choice_3}</h1>
       <h1 className="ml-5">D. {question.choice_4}</h1>
       <br />
-  <h2>Correct Choice: {numberToLetter(question.correct_choice)}</h2>
+      <h2>Correct Choice: {numberToLetter(question.correct_choice)}</h2>
     </div>
   )
 }

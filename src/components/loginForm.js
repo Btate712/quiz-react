@@ -7,15 +7,9 @@ class LoginForm extends React.Component {
     password: "temp"
   }
 
-  handleUserNameChange = event => {
+  handleInputChange = event => {
     this.setState({
-      username: event.target.value
-    });
-  }
-
-  handlePasswordChange = event => {
-    this.setState({
-      password: event.target.value
+    [event.target.name]: event.target.value
     });
   }
 
@@ -39,11 +33,11 @@ class LoginForm extends React.Component {
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
                   <label>Username:</label>
-                  <input id="username" type="text" className="form-control" onChange={this.handleUserNameChange} value={this.state.username} />
+                  <input name="username" id="username" type="text" className="form-control" onChange={this.handleInputChange} value={this.state.username} />
                 </div>
                 <div className="form-group">
                   <label>Password:</label>
-                  <input id="password" type="password" className="form-control" onChange={this.handlePasswordChange} value={this.state.password} />
+                  <input name="password" id="password" type="password" className="form-control" onChange={this.handleInputChange} value={this.state.password} />
                 </div>
                 <input type="submit" className="btn btn-primary"/>
               </form>

@@ -3,28 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
-import { applyMiddleware, createStore, combineReducers, compose } from 'redux';
+import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
-import userReducer from './reducers/userReducer';
-import topicsReducer from './reducers/topicsReducer';
-import topicReducer from './reducers/topicReducer';
-import questionsReducer from './reducers/questionsReducer';
-import questionReducer from './reducers/questionReducer';
+import rootReducer from './reducers/rootReducer';
+import { ConnectedRouter, routerMiddleware } from 'connected-react-router';
+import { createBrowserHistory } from 'history'
 
-const rootReducer = combineReducers({
-  user: userReducer,
-  topics: topicsReducer, 
-  topic: topicReducer, 
-  questions: questionsReducer,
-  question: questionReducer
-});
-
+const history = createBrowserHistory();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
+const store = createStore(rootReducer(history), 
+  composeEnhancers(applyMiddleware(routerMiddleware(history), thunk)));
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ConnectedRouter history={history}>
+      <App store={store}/>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
 );

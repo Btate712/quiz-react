@@ -1,8 +1,9 @@
 function logout() {
-  console.log("Logging out...");
+  sessionStorage.setItem('jwtToken', "");
+  sessionStorage.setItem('loggedIn', false);
+  sessionStorage.setItem('username', "");
+  sessionStorage.setItem('password', "");
   return dispatch => {
-    sessionStorage.setItem('jwtToken', "");
-    sessionStorage.setItem("loggedIn", false);
     dispatch({ type: 'LOG_OUT' });
   }
 }
