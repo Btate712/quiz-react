@@ -15,11 +15,11 @@ class NewTopicForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.createTopic(this.state.name);
-  }
+   }
 
   render() {
     return(
-      <div>
+      <div className="container">
         <h1>New Topic:</h1>
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">

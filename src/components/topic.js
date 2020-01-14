@@ -23,7 +23,7 @@ const Topic = props => {
       <h2>Topic #: {props.topic.id}</h2>
       <h2>Questions:</h2>
       {showQuestions()}
-      <Link to="/questoins/new"><button className="btn btn-lg border">Create a New Question</button></Link>
+      <Link to="/questions/new"><button className="btn btn-lg border">Create a New Question</button></Link>
     </div>
   )
 }
