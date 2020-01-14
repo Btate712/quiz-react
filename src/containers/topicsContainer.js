@@ -3,6 +3,7 @@ import getTopics from '../actions/getTopics';
 import URL from '../appData/applicationConstants';
 import { connect } from 'react-redux';
 import TopicContainer from './topicContainer';
+import NewTopicContainer from './newTopicContainer';
 import { Switch, Route, Link } from 'react-router-dom';
 
 class TopicsContainer extends React.Component {
@@ -10,12 +11,27 @@ class TopicsContainer extends React.Component {
     this.props.getTopics(URL);
   }
 
+  listTopics() {
+    const topics = this.props.topics.topicList;
+    return(
+      topics.map((topic, key) => {
+        return (
+          <h3 key={key} >
+            <Link to={`/topics/${topic.id}`}> {topic.name} </Link>
+          </h3>
+        ) 
+      })
+    )
+  }
   showTopicsWhenLoaded() {
     const topics = this.props.topics.topicList;
     if(topics) {
-      return topics.map((topic, key) => {
-        return (<h3 key={key} ><Link to={`/topics/${topic.id}`}> {topic.name} </Link></h3>) 
-      })
+      return (
+        <div>
+          {this.listTopics()}
+          <Link to="/topics/new"><button className="btn btn-lg border">Create a New Topic</button></Link>
+        </div>
+      )
     }
   }
 
@@ -24,6 +40,7 @@ class TopicsContainer extends React.Component {
     return(
       <div>
         <Switch>
+          <Route path="/topics/new"><NewTopicContainer /></Route>
           <Route path={"/topics/:id"} render={({match}) => {
             const id = match.params.id;
             return (<TopicContainer topicId={id} />);
