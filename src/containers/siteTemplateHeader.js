@@ -16,10 +16,13 @@ class SiteTemplateHeader extends React.Component {
               <a className="nav-link" href="/topics" >Topics</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/" onClick={this.props.logout}>Log Out</a>
+              <a className="nav-link" href="/register">Register</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/register">Register</a>
+              <a className="nav-link" href="/login">Log In</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/" onClick={this.props.logout}>Log Out</a>
             </li>
           </ul>
         </nav>

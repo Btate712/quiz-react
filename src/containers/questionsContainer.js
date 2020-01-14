@@ -12,7 +12,6 @@ class QuestionsContainer extends React.Component {
 
   showQuestionsWhenLoaded() {
     const questions = this.props.questions.questionList;
-    console.log(questions);
     if(questions) {
       return questions.map((question, key) => {
         return (<h3 key={key} ><Link to={`/questions/${question.id}`}> {question.stem} </Link></h3>) 
