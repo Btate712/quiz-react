@@ -13,6 +13,13 @@ const topicReducer = (state = { topic: {}, inProgress: false }, action) => {
         inProgress: false
       }
 
+    case 'CREATING_TOPIC':
+      return {
+        ...state,
+        topic: action.topic,
+        inProgress: true
+      }
+      
     default:
       return state;
   }

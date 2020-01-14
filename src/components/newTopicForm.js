@@ -14,7 +14,7 @@ class NewTopicForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    alert(`New Topic: Name = ${this.state.name}`);
+    this.props.createTopic(this.state.name);
   }
 
   render() {

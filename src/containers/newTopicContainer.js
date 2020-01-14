@@ -1,12 +1,27 @@
 import React, { Component } from 'react';
 import NewTopicForm from '../components/newTopicForm';
+import { connect } from 'react-redux';
+import createTopic from '../actions/createTopic';
+import URL from '../appData/applicationConstants';
 
 class NewTopicContainer extends Component {
   render() {
     return (
-      <NewTopicForm />
+      <NewTopicForm createTopic={this.props.createTopic} />
     );
   }
 }
 
-export default NewTopicContainer;
+const mapStateToProps = state => {
+  return ({
+    topic: state.topic.topic
+  })
+}
+
+const mapDispatchToProps = dispatch => {
+  return ({
+    createTopic: (topicName) => dispatch(createTopic(URL, topicName))
+  })
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewTopicContainer);
