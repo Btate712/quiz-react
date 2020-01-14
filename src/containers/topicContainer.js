@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import getTopic from '../actions/getTopic';
+import deleteTopic from '../actions/deleteTopic';
 import { connect } from 'react-redux';
 import URL from '../appData/applicationConstants';
 import Topic from '../components/topic';
@@ -7,7 +8,7 @@ import Topic from '../components/topic';
 class TopicContainer extends Component {
 
   componentDidMount() {
-    this.props.getTopic(URL, this.props.topicId);
+    this.props.getTopic(this.props.topicId);
   }
 
   showTopicWhenLoaded() {
@@ -15,7 +16,7 @@ class TopicContainer extends Component {
     const questions = this.props.topic.questions;
     if(topic) {
       return(
-        <Topic topic={topic} questions={questions} />
+        <Topic deleteTopic={this.props.deleteTopic} topic={topic} questions={questions} />
       )
     }
   }
@@ -37,7 +38,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return({
-    getTopic: (url, topicId) => dispatch(getTopic(url, topicId))
+    getTopic: (topicId) => dispatch(getTopic(URL, topicId)),
+    deleteTopic: (topicId) => dispatch(deleteTopic(URL, topicId))
   })
 }
 

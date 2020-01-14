@@ -24,6 +24,7 @@ const Topic = props => {
       <h2>Questions:</h2>
       {showQuestions()}
       <Link to="/questions/new"><button className="btn btn-lg border">Create a New Question</button></Link>
+      <button className="btn btn-lg border" onClick={() => props.deleteTopic(props.topic.id)}>Delete Topic</button>
     </div>
   )
 }

@@ -12,16 +12,10 @@ class NewTopicContainer extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return ({
-    topic: state.topic.topic
-  })
-}
-
 const mapDispatchToProps = dispatch => {
   return ({
     createTopic: (topicName) => dispatch(createTopic(URL, topicName))
   })
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewTopicContainer);
+export default connect(null, mapDispatchToProps)(NewTopicContainer);
