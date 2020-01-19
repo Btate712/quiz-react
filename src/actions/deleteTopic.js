@@ -1,4 +1,4 @@
-function deleteTopic(url, topicId) {
+function deleteTopic(topicId) {
   return dispatch => {
     dispatch({ type: 'DELETING_TOPIC' });
     const configurationObject = {
