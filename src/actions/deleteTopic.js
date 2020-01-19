@@ -7,7 +7,7 @@ function deleteTopic(url, topicId) {
            authorization: sessionStorage.getItem("jwtToken")
         }
       }
-      fetch(`${url}/topics/${topicId}`, configurationObject)
+      fetch(`/topics/${topicId}`, configurationObject)
         .then(response => response.json())
         .then(json => {       
           alert(json.message);
