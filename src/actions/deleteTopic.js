@@ -10,7 +10,9 @@ function deleteTopic(topicId) {
       fetch(`/topics/${topicId}`, configurationObject)
         .then(response => response.json())
         .then(json => {       
-          alert(json.message);
+          if(json.status === "success") {
+            console.log("topic deleted");
+          }
         });
   }
 }

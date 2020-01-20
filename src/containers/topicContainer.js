@@ -39,7 +39,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return({
     getTopic: (topicId) => dispatch(getTopic(URL, topicId)),
-    deleteTopic: (topicId) => dispatch(deleteTopic(URL, topicId))
+    deleteTopic: (topicId) => dispatch(deleteTopic(topicId))
   })
 }
 
