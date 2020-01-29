@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import URL from '../appData/applicationConstants';
+import NewQuizForm from '../components/newQuizForm';
 
 class NewQuizContainer extends Component {
   render() {
     return (
-      <h1>New Quiz form goes here...</h1>
+      <NewQuizForm topics={this.props.topics} />
     );
   }
 }

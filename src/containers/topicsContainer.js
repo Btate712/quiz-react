@@ -23,6 +23,7 @@ class TopicsContainer extends React.Component {
       })
     )
   }
+  
   showTopicsWhenLoaded() {
     const topics = this.props.topics.topicList;
     if(topics) {
