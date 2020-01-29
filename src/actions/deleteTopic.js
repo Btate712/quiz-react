@@ -12,6 +12,7 @@ function deleteTopic(topicId) {
         .then(json => {       
           if(json.status === "success") {
             console.log("topic deleted");
+            document.location.href="/topics";
           }
         });
   }

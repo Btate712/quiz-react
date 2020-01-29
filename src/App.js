@@ -18,17 +18,17 @@ class App extends React.Component {
         <div className="App">
           <Route path="/"><SiteTemplateHeader /></Route>
           <Switch>
-            <PrivateRoute exact path="/" ><HomeContainer /></PrivateRoute>
+            <PrivateRoute exact path="/" component={HomeContainer} />
 
-            <Route path="/login"><LoginContainer /></Route>
+            <Route path="/login" component={LoginContainer} />
 
-            <Route path="/register"><RegisterContainer /></Route>
+            <Route path="/register" component={RegisterContainer} />
 
-            <PrivateRoute path="/home" ><HomeContainer /></PrivateRoute>
+            <PrivateRoute path="/home" component={HomeContainer} />
             
-            <PrivateRoute path="/topics" ><TopicsContainer /></PrivateRoute>
+            <PrivateRoute path="/topics" component={TopicsContainer} />
 
-            <PrivateRoute path="/questions" ><QuestionsContainer /></PrivateRoute>
+            <PrivateRoute path="/questions" component={QuestionsContainer} />
           </Switch>
         </div>
       </Router>

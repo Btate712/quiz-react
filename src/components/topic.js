@@ -17,6 +17,11 @@ const Topic = props => {
     );
   }
 
+  const handleDelete = () => {
+    props.deleteTopic(props.topic.id);
+    
+  }
+
   return (
     <div className="Topic">
       <h1>Topic: {props.topic.name}</h1>
@@ -24,7 +29,7 @@ const Topic = props => {
       <h2>Questions:</h2>
       {showQuestions()}
       <Link to="/questions/new"><button className="btn btn-lg border">Create a New Question</button></Link>
-      <button className="btn btn-lg border" onClick={() => props.deleteTopic(props.topic.id)}>Delete Topic</button>
+      <button className="btn btn-lg border" onClick={() => handleDelete()}>Delete Topic</button>
     </div>
   )
 }

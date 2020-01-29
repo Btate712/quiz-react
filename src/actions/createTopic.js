@@ -14,7 +14,8 @@ function createTopic(url, topicName) {
       fetch(`${url}/topics`, configurationObject)
         .then(response => response.json())
         .then(json => {       
-          dispatch({ type: 'ADD_TOPIC', topic: json.body })
+          dispatch({ type: 'ADD_TOPIC', topic: json.body });
+          document.location.href="/topics";
         });
   }
 }
