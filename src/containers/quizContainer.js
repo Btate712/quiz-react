@@ -12,10 +12,9 @@ class QuizContainer extends React.Component {
   }
 
   renderWhenLoaded() {
-    if(this.props.topics.length > 0) {
+    if(this.props.topics && this.props.topics.length > 0) {
       return(
         <div>
-          <h1>Quiz Container</h1>
           <Switch>
             <Route path="/quiz/new"><NewQuizContainer topics={this.props.topics} /></Route>
           </Switch>
@@ -27,8 +26,6 @@ class QuizContainer extends React.Component {
   render() {
     return (
       <div>
-        {console.log(this.props.topics)}
-        {console.log(this.props.topics.length)}
         {this.renderWhenLoaded()}
       </div>
     )
