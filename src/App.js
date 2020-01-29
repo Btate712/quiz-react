@@ -6,9 +6,11 @@ import RegisterContainer from './containers/registerContainer';
 import HomeContainer from './containers/homeContainer';
 import TopicsContainer from './containers/topicsContainer';
 import QuestionsContainer from './containers/questionsContainer';
+import QuizContainer from './containers/quizContainer';
 import { connect } from 'react-redux';
 import checkToken from './actions/checkToken';
 import SiteTemplateHeader from './containers/siteTemplateHeader';
+
 
 class App extends React.Component {
 
@@ -29,6 +31,8 @@ class App extends React.Component {
             <PrivateRoute path="/topics" component={TopicsContainer} />
 
             <PrivateRoute path="/questions" component={QuestionsContainer} />
+            
+            <PrivateRoute path="/quiz" component={QuizContainer} />
           </Switch>
         </div>
       </Router>
