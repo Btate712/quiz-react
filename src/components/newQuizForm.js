@@ -3,7 +3,7 @@ import React from 'react';
 class NewQuizForm extends React.Component {
 
   state = {
-    numberOfTopics: "",
+    numberOfQuestions: "",
     topicsList: []
   }
 
@@ -36,17 +36,17 @@ class NewQuizForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.createQuiz(this.state.numberOfTopics, this.state.topicsList);
+    this.props.createQuiz(this.state.numberOfQuestions, this.state.topicsList);
    }
 
   listTopics() {
     return (
       this.props.topics.map((topic, key) => {
         return (
-          <h5 key={key}>
+          <div key={key}>
             <input className="checkbox form-check-input" type="checkbox" id={topic.id} name={topic.name} checked={this.isChecked(topic.id)} onChange={this.handleInputChange} />
             <label className="form-check-label">{topic.name}</label>
-          </h5>
+          </div>
         )
       })
     )
@@ -56,14 +56,19 @@ class NewQuizForm extends React.Component {
     return(
       <div className="container">
         <h1>New Quiz:</h1>
-          <form onSubmit={this.handleSubmit}>
-            <div className="form-group">
-              <h3>Topics:</h3>
-              {this.listTopics()}
-            </div>
-            <input type="submit" className="btn btn-primary"/>
-          </form>
-          {console.log(this.state.topicsList)}
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <h3>Topics:</h3>
+            {this.listTopics()}
+          </div>
+          <div className="form-group">
+            <label >Number of Questions:</label>
+            <input name="numberOfQuestions" type="text" value={this.state.numberOfTopics} onChange={this.handleInputChange} />
+          </div>
+          <input type="submit" className="btn btn-primary"/>
+        </form>
+        {console.log("#Questions: ", this.state.numberOfQuestions)}
+        {console.log("Topics: ", this.state.topicsList)}
       </div>
     )
   }
