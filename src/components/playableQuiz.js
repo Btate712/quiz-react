@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PlayableQuestion from './playableQuestion';
 
 
 class PlayableQuiz extends React.Component {
   render() {
     return (
       <div>
-        Playable Quiz...
+        <PlayableQuestion question={this.props.quiz.questions[0]} />
         {console.log(this.props.quiz)}
       </div>
     );
