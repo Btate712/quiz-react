@@ -1,7 +1,7 @@
 import React from 'react';
 import RegisterForm from '../components/registerForm';
 import { connect } from 'react-redux';
-import register from '../actions/register';
+import { register } from '../actions/userActions';
 import { Redirect } from 'react-router-dom';
 
 class RegisterContainer extends React.Component {

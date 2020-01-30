@@ -1,9 +1,9 @@
 import React from 'react';
 import NewQuizForm from '../components/newQuizForm';
 import { connect } from 'react-redux';
-import getTopics from '../actions/getTopics';
+import { getTopics } from '../actions/topicActions';
 import URL from '../appData/applicationConstants';
-import createQuiz from '../actions/createQuiz';
+import { createQuiz } from '../actions/quizActions';
 import PlayableQuiz from '../components/playableQuiz';
 
 

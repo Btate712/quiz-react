@@ -1,7 +1,7 @@
 import React from 'react';
 import LoginForm from '../components/loginForm';
 import { connect } from 'react-redux';
-import login from '../actions/login';
+import { login } from '../actions/userActions';
 import { Redirect } from 'react-router-dom';
 
 class LoginContainer extends React.Component {

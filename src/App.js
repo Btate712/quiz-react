@@ -8,7 +8,7 @@ import TopicsContainer from './containers/topicsContainer';
 import QuestionsContainer from './containers/questionsContainer';
 import QuizContainer from './containers/quizContainer';
 import { connect } from 'react-redux';
-import checkToken from './actions/checkToken';
+import { checkToken } from './actions/userActions';
 import SiteTemplateHeader from './containers/siteTemplateHeader';
 
 

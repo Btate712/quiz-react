@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import getTopic from '../actions/getTopic';
-import deleteTopic from '../actions/deleteTopic';
+import { getTopic, deleteTopic } from '../actions/topicActions';
 import { connect } from 'react-redux';
 import URL from '../appData/applicationConstants';
 import Topic from '../components/topic';

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NewTopicForm from '../components/newTopicForm';
 import { connect } from 'react-redux';
-import createTopic from '../actions/createTopic';
+import { createTopic } from '../actions/topicActions';
 import URL from '../appData/applicationConstants';
 
 class NewTopicContainer extends Component {

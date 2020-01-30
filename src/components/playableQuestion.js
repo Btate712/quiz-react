@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import storeQuestionResponse from '../actions/storeQuestionResponse';
+import { storeQuestionResponse } from '../actions/quizActions';
 
 class PlaybleQuestion extends React.Component {
   state = {

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PlayableQuestion from './playableQuestion';
 import Question from './question';
-import storeQuizResults from '../actions/storeQuizResults';
+import { storeQuizResults } from '../actions/quizActions';
 import URL from '../appData/applicationConstants';
 
 

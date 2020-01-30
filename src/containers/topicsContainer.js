@@ -1,5 +1,5 @@
 import React from 'react';
-import getTopics from '../actions/getTopics';
+import { getTopics } from '../actions/topicActions';
 import URL from '../appData/applicationConstants';
 import { connect } from 'react-redux';
 import TopicContainer from './topicContainer';
