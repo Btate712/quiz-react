@@ -1,5 +1,6 @@
 import React from 'react';
-import { URL } from '../appData/applicationConstants.js'
+import { URL } from '../appData/applicationConstants.js';
+import { Link } from 'react-router-dom';
 
 class LoginForm extends React.Component {
   state = {
@@ -40,6 +41,7 @@ class LoginForm extends React.Component {
                   <input name="password" id="password" type="password" className="form-control" onChange={this.handleInputChange} value={this.state.password} />
                 </div>
                 <input type="submit" className="btn btn-primary"/>
+                <Link to="/register"><button className="btn btn-primary pull-right">Register New User</button></Link>
               </form>
               <br />
             </div>

@@ -16,10 +16,7 @@ class SiteTemplateHeader extends React.Component {
               <a className="nav-link" href="/quiz">Quiz</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/register">Register</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/login">Log In</a>
+              <a className="nav-link" href="/login">Log In / Register</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/" onClick={this.props.logout}>Log Out</a>
