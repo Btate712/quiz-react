@@ -16,9 +16,6 @@ class SiteTemplateHeader extends React.Component {
               <a className="nav-link" href="/quiz">Quiz</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/topics" >Topics</a>
-            </li>
-            <li className="nav-item">
               <a className="nav-link" href="/register">Register</a>
             </li>
             <li className="nav-item">
