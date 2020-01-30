@@ -4,11 +4,27 @@ import PlayableQuestion from './playableQuestion';
 
 
 class PlayableQuiz extends React.Component {
+  askQuestionOrGiveSummary = () => {
+    console.log("current question: ", this.props.quiz.currentQuestion);
+    if(this.props.quiz.currentQuestion <= this.props.quiz.questions.length - 1) {
+      return(
+        <div>
+          <h1>Question #{this.props.quiz.currentQuestion + 1}:</h1>
+          <PlayableQuestion question={this.props.quiz.questions[this.props.quiz.currentQuestion]} />
+        </div>
+      )
+    } else {
+      return (
+        <h1>
+          Quiz Complete!
+        </h1>
+      )
+    }
+  }
   render() {
     return (
       <div>
-        <PlayableQuestion question={this.props.quiz.questions[0]} />
-        {console.log(this.props.quiz)}
+        {this.askQuestionOrGiveSummary()}
       </div>
     );
   }
