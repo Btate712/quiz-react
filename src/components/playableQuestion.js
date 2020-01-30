@@ -52,7 +52,7 @@ class PlaybleQuestion extends React.Component {
         )
       }
     }
-    {setTimeout(() => this.storeResult(), 3000)}
+    setTimeout(() => this.storeResult(), 3000)
   }
 
   storeResult = () => {
@@ -93,7 +93,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return({
-    storeQuestionResponse: (question, response) => dispatch(storeQuestionResponse(question, response))
+    storeQuestionResponse: (question, choice) => dispatch(storeQuestionResponse(question, choice))
   })
 }
 

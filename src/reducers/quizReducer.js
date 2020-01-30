@@ -15,7 +15,7 @@ const quizReducer = (state = { questions: [], currentQuestion: 0, inProgress: fa
 
     case 'STORE_RESPONSE':
       const updatedQuestion = Object.assign({}, action.question);
-      updatedQuestion.response = action.response;
+      updatedQuestion.choice = action.choice;
       const newQuestions = [...state.questions];
       newQuestions[state.currentQuestion] = updatedQuestion;
       console.log(newQuestions);

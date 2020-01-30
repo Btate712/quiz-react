@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PlayableQuestion from './playableQuestion';
 import Question from './question';
+import storeQuizResults from '../actions/storeQuizResults';
+import URL from '../appData/applicationConstants';
 
 
 class PlayableQuiz extends React.Component {
@@ -17,6 +19,7 @@ class PlayableQuiz extends React.Component {
       return (
         <>
           {this.showSummary()}
+          <button onClick={() => this.props.storeQuizResults(this.props.quiz.questions)}>Done - Store Results</button>
         </>
       )
     }
@@ -40,12 +43,12 @@ class PlayableQuiz extends React.Component {
   showSummary = () => {
     const output = this.props.quiz.questions.map((question, index) => {
       return(
-        <>
+        <div key={index}>
           <h1>Question #{index + 1}</h1>
           <Question question={question} />
-          <h2>You answered: {this.numberToLetter(question.response)}</h2>
+          <h2>You answered: {this.numberToLetter(question.choice)}</h2>
           <hr />
-        </>
+        </div>
       )
     })
     return(
@@ -67,7 +70,13 @@ class PlayableQuiz extends React.Component {
 const mapStateToProps = state => {
   return ({
     quiz: state.quiz
-  })
+  });
 }
 
-export default connect(mapStateToProps)(PlayableQuiz);
+const mapDispatchToProps = dispatch => {
+  return ({
+    storeQuizResults: questions => dispatch(storeQuizResults(URL, questions))
+  });
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlayableQuiz);
