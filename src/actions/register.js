@@ -5,7 +5,11 @@ function register(url, username, email, password) {
     dispatch({ type: 'CREATING_NEW_USER', action: { username: username, password: password, email: email } });
     const configurationObject = {
       method: "POST",
-      headers: { "Content-type": "application/json" },
+      mode: "cors",
+      headers: { 
+        "Content-type": "application/json",
+        "Accept": "application/json"
+     },
       body: JSON.stringify({ 
         name: username, 
         email: email, 

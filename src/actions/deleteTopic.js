@@ -3,7 +3,9 @@ function deleteTopic(topicId) {
     dispatch({ type: 'DELETING_TOPIC' });
     const configurationObject = {
         method: "DELETE",
+        mode: "cors",
         headers: { 
+          "Accept": "application/json",
            authorization: sessionStorage.getItem("jwtToken")
         }
       }

@@ -3,8 +3,10 @@ function createTopic(url, topicName) {
     dispatch({ type: 'CREATING_TOPIC' });
     const configurationObject = {
         method: "POST",
+        mode: "cors",
         headers: { 
           "Content-type": "application/json",
+          "Accept": "application/json",
           authorization: sessionStorage.getItem("jwtToken")
         },
         body: JSON.stringify({

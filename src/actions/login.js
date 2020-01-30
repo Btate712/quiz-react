@@ -3,8 +3,15 @@ function login(url, username, password) {
     dispatch({ type: 'LOGGING_IN', action: { username: username, password: password } });
     const configurationObject = {
       method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify({ username: username, password: password })
+      mode: "cors",
+      headers: 
+        { 
+          "Content-type": "application/json" ,
+          "Accept": "application/json" 
+        },
+      body: JSON.stringify({ 
+        username: username, 
+        password: password })
     }
     fetch(`${url}/auth/login`, configurationObject)
       .then(response => response.json())

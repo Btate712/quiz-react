@@ -19,7 +19,7 @@ class PlayableQuiz extends React.Component {
       return (
         <>
           {this.showSummary()}
-          <button onClick={() => this.props.storeQuizResults(this.props.quiz.questions)}>Done - Store Results</button>
+          <button className="btn btn-lg border" onClick={() => this.props.storeQuizResults(this.props.quiz.questions)}>Done - Store Results</button>
         </>
       )
     }

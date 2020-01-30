@@ -3,8 +3,10 @@ function storeQuizResults(url, questions) {
     dispatch({ type: 'STORING_RESULTS' });
     const configurationObject = {
         method: "POST",
+        mode: "cors",
         headers: { 
           "Content-type": "application/json",
+          "Accept": "application/json",
           authorization: sessionStorage.getItem("jwtToken")
         },
         body: JSON.stringify({
@@ -17,7 +19,7 @@ function storeQuizResults(url, questions) {
         .then((json) => {
           console.log(json);       
           dispatch({ type: 'RESULTS_STORED' });
-          // document.location.href="/home";
+          document.location.href="/home";
         });
   }
 }
