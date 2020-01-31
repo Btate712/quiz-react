@@ -44,17 +44,20 @@ class PlaybleQuestion extends React.Component {
     if(this.state.questionAnswered) {
       if(this.state.questionAnsweredCorrectly) {
         return (
-          <h1>Correct!</h1>
+          <>
+            { setTimeout(() => this.storeResult(), 1000) }
+            <h1>Correct!</h1>
+          </>
         )
       } else {
         return (
-          <h1>Incorrect. The correct answer is {this.numberToLetter(this.props.question.correct_choice)}</h1>
+          <>
+            { setTimeout(() => this.storeResult(), 4000) }
+            <h1>Incorrect. The correct answer is {this.numberToLetter(this.props.question.correct_choice)}</h1>
+          </>
         )
       }
     }
-    setTimeout(() => {
-      console.log("timed out");
-      this.storeResult()}, 2000)
   }
 
   storeResult = () => {
