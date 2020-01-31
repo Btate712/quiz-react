@@ -45,6 +45,7 @@ class PlayableQuiz extends React.Component {
     const output = this.props.quiz.questions.map((question, index) => {
       return(
         <div key={index}>
+          <h3>Question Id: {question.id}</h3>
           <h1>Question #{index + 1}: </h1>
           <Question question={question} />
           <h2>You answered: {this.numberToLetter(question.choice)}</h2>
