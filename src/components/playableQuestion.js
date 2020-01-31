@@ -52,7 +52,9 @@ class PlaybleQuestion extends React.Component {
         )
       }
     }
-    setTimeout(() => this.storeResult(), 3000)
+    setTimeout(() => {
+      console.log("timed out");
+      this.storeResult()}, 2000)
   }
 
   storeResult = () => {
@@ -72,6 +74,7 @@ class PlaybleQuestion extends React.Component {
     const question = this.props.question;
     return (
       <div className="Question">
+        <h3>Question Id: {question.id}</h3>
         <h1>{question.stem}</h1>
         <br />
         <h1 id="1" className="ml-5 question-choice" onClick={this.handleSelection}>A. {question.choice_1}</h1>
