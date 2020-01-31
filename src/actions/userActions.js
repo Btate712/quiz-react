@@ -29,6 +29,7 @@ export function login(url, username, password) {
       mode: "cors",
       headers: 
         { 
+          'Access-Control-Allow-Origin': "*",
           "Content-type": "application/json" ,
           "Accept": "application/json" 
         },
