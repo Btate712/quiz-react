@@ -12,6 +12,7 @@ class PlayableQuiz extends React.Component {
       return(
         <>
           <h1>Question #{this.props.quiz.currentQuestion + 1}:</h1>
+          {console.log("Made it here...")}
           <PlayableQuestion question={this.props.quiz.questions[this.props.quiz.currentQuestion]} />
         </>
       )
