@@ -11,16 +11,19 @@ class SiteTemplateHeader extends React.Component {
         <nav className="navbar navbar-expand-sm">
           <ul className="navbar-nav">
             <li className="nav-item">
-              <Link className="nav-link" href="/home">Home</Link>
+              <Link className="nav-link" to="/home">Home</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" href="/quiz">Quiz</Link>
+              <Link className="nav-link" to="/topics">Topics</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" href="/login">Log In / Register</Link>
+              <Link className="nav-link" to="/quiz">Quiz</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" href="/" onClick={this.props.logout}>Log Out</Link>
+              <Link className="nav-link" to="/login">Log In / Register</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/" onClick={this.props.logout}>Log Out</Link>
             </li>
           </ul>
         </nav>
