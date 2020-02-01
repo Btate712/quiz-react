@@ -8,9 +8,7 @@ const Topic = props => {
       questions.map((question, key) => {
         return(
           <h3 key={key} className="ml-4">
-            <Link to={`/questions/${question.id}`} >
-              { question.stem }
-            </Link>
+            <Link to={`/questions/${question.id}`} dangerouslySetInnerHTML={{__html: `${question.id}: ${question.stem}`}} />
           </h3>
         );
       })
@@ -23,9 +21,9 @@ const Topic = props => {
   }
 
   return (
-    <div className="Topic">
+    <div className="Topic container">
       <h1>Topic: {props.topic.name}</h1>
-      <h2>Topic #: {props.topic.id}</h2>
+      <h2>Topic Id#: {props.topic.id}</h2>
       <h2>Questions:</h2>
       {showQuestions()}
       <Link to="/questions/new"><button className="btn btn-lg border">Create a New Question</button></Link>

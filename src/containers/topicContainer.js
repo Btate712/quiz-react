@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { getTopic, deleteTopic } from '../actions/topicActions';
 import { connect } from 'react-redux';
-import URL from '../appData/applicationConstants';
+import { URL } from '../appData/applicationConstants';
 import Topic from '../components/topic';
 
 class TopicContainer extends Component {

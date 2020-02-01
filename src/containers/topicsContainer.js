@@ -1,7 +1,7 @@
 import React from 'react';
 import { getTopics } from '../actions/topicActions';
-import URL from '../appData/applicationConstants';
 import { connect } from 'react-redux';
+import { URL } from '../appData/applicationConstants';
 import TopicContainer from './topicContainer';
 import NewTopicContainer from './newTopicContainer';
 import { Switch, Route, Link } from 'react-router-dom';
@@ -28,7 +28,7 @@ class TopicsContainer extends React.Component {
     const topics = this.props.topics.topicList;
     if(topics) {
       return (
-        <div>
+        <div className="container">
           {this.listTopics()}
           <Link to="/topics/new"><button className="btn btn-lg border">Create a New Topic</button></Link>
         </div>
@@ -44,7 +44,7 @@ class TopicsContainer extends React.Component {
           <Route path="/topics/new"><NewTopicContainer /></Route>
           <Route path={"/topics/:id"} render={({match}) => {
             const id = match.params.id;
-            return (<TopicContainer topicId={id} />);
+            return (<TopicContainer  topicId={id} />);
           }} />
           <Route path="/topics">{this.showTopicsWhenLoaded()}</Route>
         </Switch>

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PlayableQuestion from './playableQuestion';
 import Question from './question';
 import { storeQuizResults } from '../actions/quizActions';
-import URL from '../appData/applicationConstants';
+import { URL } from '../appData/applicationConstants';
 
 
 class PlayableQuiz extends React.Component {
@@ -62,7 +62,7 @@ class PlayableQuiz extends React.Component {
 
   render() {
     return (
-      <div>
+      <div container>
         {this.askQuestionOrGiveSummary()}
       </div>
     );

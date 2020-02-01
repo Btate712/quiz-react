@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import URL from '../appData/applicationConstants';
+import { URL } from '../appData/applicationConstants';
 import { getQuestion } from '../actions/questionActions';
 import { connect } from 'react-redux';
 import Question from '../components/question';
