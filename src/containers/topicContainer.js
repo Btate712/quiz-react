@@ -7,7 +7,7 @@ import Topic from '../components/topic';
 class TopicContainer extends Component {
 
   componentDidMount() {
-    this.props.getTopic(this.props.topicId);
+    this.props.getTopic(this.props.topicId, this.props.user.token);
   }
 
   showTopicWhenLoaded() {
@@ -15,7 +15,7 @@ class TopicContainer extends Component {
     const questions = this.props.topic.questions;
     if(topic) {
       return(
-        <Topic deleteTopic={this.props.deleteTopic} topic={topic} questions={questions} />
+        <Topic deleteTopic={this.props.deleteTopic} token={this.props.user.token} topic={topic} questions={questions} />
       )
     }
   }
@@ -31,14 +31,15 @@ class TopicContainer extends Component {
 
 const mapStateToProps = state => {
   return({
-    topic: state.topic.topic
+    topic: state.topic.topic,
+    user: state.user
   })
 }
 
 const mapDispatchToProps = dispatch => {
   return({
-    getTopic: (topicId) => dispatch(getTopic(URL, topicId)),
-    deleteTopic: (topicId) => dispatch(deleteTopic(topicId))
+    getTopic: (topicId, token) => dispatch(getTopic(URL, topicId, token)),
+    deleteTopic: (topicId, token) => dispatch(deleteTopic(topicId, token))
   })
 }
 

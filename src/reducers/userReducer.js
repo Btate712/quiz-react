@@ -1,10 +1,9 @@
-const userReducer = (state = { name: "", password: "", inProgress: false, loggedIn: false, token: "" }, action) => {
+const userReducer = (state = { name: "", inProgress: false, loggedIn: false, token: "" }, action) => {
   switch(action.type) {
     case 'LOGGING_IN':
       return {
         ...state,
         name: action.action.username,
-        password: action.action.password,
         inProgress: true
       }
 
@@ -33,7 +32,6 @@ const userReducer = (state = { name: "", password: "", inProgress: false, logged
       return {
         ...state,
         name: "",
-        password: "",
         inProgress: false,
         loggedIn: false
       }

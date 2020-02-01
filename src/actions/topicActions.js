@@ -17,7 +17,6 @@ export function createTopic(url, topicName, token) {
         .then(response => response.json())
         .then(json => {       
           dispatch({ type: 'ADD_TOPIC', topic: json.body });
-          document.location.href="/topics";
         });
   }
 }
@@ -61,6 +60,7 @@ export function getTopic(url, topicId, token) {
 }
 
 export function getTopics(url, token) {
+  console.log("token in getTopics: ", token);
   return dispatch => {
     dispatch({ type: 'LOADING_TOPICS' });
     const configurationObject = {

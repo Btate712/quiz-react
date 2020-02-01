@@ -7,15 +7,20 @@ import { URL } from '../appData/applicationConstants';
 class NewTopicContainer extends Component {
   render() {
     return (
-      <NewTopicForm createTopic={this.props.createTopic} />
+      <NewTopicForm token={this.props.token} createTopic={this.props.createTopic} />
     );
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return ({
-    createTopic: (topicName) => dispatch(createTopic(URL, topicName))
+    createTopic: (topicName, token) => dispatch(createTopic(URL, topicName, token))
   })
 }
 
-export default connect(null, mapDispatchToProps)(NewTopicContainer);
+const mapStateToProps = state => {
+  return ({
+    token: state.user.token
+  })
+}
+export default connect(mapStateToProps, mapDispatchToProps)(NewTopicContainer);

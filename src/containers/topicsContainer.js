@@ -8,7 +8,7 @@ import { Switch, Route, Link } from 'react-router-dom';
 
 class TopicsContainer extends React.Component {
   componentDidMount() {
-    this.props.getTopics(URL);
+    this.props.getTopics(this.props.user.token);
   }
 
   listTopics() {
@@ -55,13 +55,14 @@ class TopicsContainer extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return ({
-    getTopics: (url) => dispatch(getTopics(url))
+    getTopics: (token) => dispatch(getTopics(URL, token))
   });
 }
 
 const mapStateToProps = state => {
   return ({
-    topics: state.topics
+    topics: state.topics,
+    user: state.user
   })
 }
 

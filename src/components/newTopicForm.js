@@ -1,9 +1,11 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 class NewTopicForm extends React.Component {
 
   state = {
-    name: ""
+    name: "",
+    complete: false
   }
 
   handleInputChange = event => {
@@ -14,12 +16,19 @@ class NewTopicForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.createTopic(this.state.name);
+    this.props.createTopic(this.state.name, this.props.token);
+    this.setState({complete: true});
    }
 
+  redirectWhenComplete = () => {
+    // this isn't working
+    if (this.state.complete === true) {
+      return (<Redirect to="/topics" />);
+    }
+  }
   render() {
     return(
-      <div className="container">
+      <div className="container" >
         <h1>New Topic:</h1>
           <form onSubmit={this.handleSubmit}>
             <div className="form-group">
@@ -28,6 +37,9 @@ class NewTopicForm extends React.Component {
             </div>
             <input type="submit" className="btn btn-primary"/>
           </form>
+          <div className={this.state.complete}>
+            {this.redirectWhenComplete()}
+          </div>
       </div>
     )
   }

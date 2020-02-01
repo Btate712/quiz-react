@@ -16,7 +16,7 @@ const Topic = props => {
   }
 
   const handleDelete = () => {
-    props.deleteTopic(props.topic.id);
+    props.deleteTopic(props.topic.id, props.token);
     
   }
 
