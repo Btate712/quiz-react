@@ -17,7 +17,6 @@ export function createQuiz(url, numberOfQuestions, topics, token) {
       fetch(`${url}/quiz`, configurationObject)
         .then(response => response.json())
         .then(json => {       
-          console.log(json);
           dispatch({ type: 'ADD_QUIZ', quiz: json.quiz });
         });
   }
@@ -44,11 +43,9 @@ export function storeQuizResults(url, questions, token) {
           questions: questions
         })
       }
-      console.log(configurationObject);
       fetch(`${url}/encounters`, configurationObject)
         .then(response => response.json())
         .then((json) => {
-          console.log(json);       
           dispatch({ type: 'RESULTS_STORED' });
           document.location.href="/home";
         });

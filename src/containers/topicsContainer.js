@@ -46,7 +46,7 @@ class TopicsContainer extends React.Component {
             const id = match.params.id;
             return (<TopicContainer  topicId={id} />);
           }} />
-          <Route path="/topics">{this.showTopicsWhenLoaded()}</Route>
+          <Route path="/topics" count={this.props.topics.topicList.length}>{this.showTopicsWhenLoaded()}</Route>
         </Switch>
       </div>
     );

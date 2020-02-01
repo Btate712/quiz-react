@@ -1,9 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
-const Topic = props => {
-  const showQuestions = () => {
-    const questions = props.questions;
+class Topic extends React.Component {
+  state = {
+    complete: false
+  }
+  
+  showQuestions = () => {
+    const questions = this.props.questions;
     return (
       questions.map((question, key) => {
         return(
@@ -15,21 +19,31 @@ const Topic = props => {
     );
   }
 
-  const handleDelete = () => {
-    props.deleteTopic(props.topic.id, props.token);
-    
+  handleDelete = () => {
+    this.props.deleteTopic(this.props.topic.id, this.props.token); 
+    this.setState ({
+      complete: true
+    })  
   }
 
-  return (
-    <div className="Topic container">
-      <h1>Topic: {props.topic.name}</h1>
-      <h2>Topic Id#: {props.topic.id}</h2>
-      <h2>Questions:</h2>
-      {showQuestions()}
-      <Link to="/questions/new"><button className="btn btn-lg border">Create a New Question</button></Link>
-      <button className="btn btn-lg border" onClick={() => handleDelete()}>Delete Topic</button>
-    </div>
-  )
+  redirectWhenComplete = () => {
+    if (this.state.complete === true) {
+      return (<Redirect to="/topics" />);
+    }
+  }
+  render() {
+    return (
+      <div className="Topic container">
+        <h1>Topic: {this.props.topic.name}</h1>
+        <h2>Topic Id#: {this.props.topic.id}</h2>
+        <h2>Questions:</h2>
+        {this.showQuestions()}
+        <Link to="/questions/new"><button className="btn btn-lg border">Create a New Question</button></Link>
+        <button className="btn btn-lg border" onClick={() => this.handleDelete()}>Delete Topic</button>
+        {this.redirectWhenComplete()}
+      </div>
+    )
+  }
 }
 
 export default Topic

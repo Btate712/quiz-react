@@ -21,25 +21,23 @@ export function createTopic(url, topicName, token) {
   }
 }
 
-export function deleteTopic(topicId, token) {
+export function deleteTopic(url, topicId, token) {
   return dispatch => {
-    dispatch({ type: 'DELETING_TOPIC' });
     const configurationObject = {
-        method: "DELETE",
-        mode: "cors",
-        headers: { 
-          "Accept": "application/json",
-           authorization: token
-        }
+      method: "DELETE",
+      mode: "cors",
+      headers: { 
+        "Accept": "application/json",
+        authorization: token
       }
-      fetch(`/topics/${topicId}`, configurationObject)
-        .then(response => response.json())
-        .then(json => {       
-          if(json.status === "success") {
-            console.log("topic deleted");
-            document.location.href="/topics";
-          }
-        });
+    }
+    fetch(`${url}/topics/${topicId}`, configurationObject)
+    .then(response => response.json())
+    .then(json => {       
+      if(json.status === "success") {
+        dispatch({ type: 'DELETE_TOPIC', topicId: topicId });
+      }
+    });
   }
 }
 
@@ -60,7 +58,6 @@ export function getTopic(url, topicId, token) {
 }
 
 export function getTopics(url, token) {
-  console.log("token in getTopics: ", token);
   return dispatch => {
     dispatch({ type: 'LOADING_TOPICS' });
     const configurationObject = {

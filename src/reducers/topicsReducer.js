@@ -12,6 +12,16 @@ const topicsReducer = (state = { topicList: [], inProgress: false }, action) => 
         inProgress: false
       }
 
+    case 'DELETE_TOPIC':
+      const newTopicList = [].concat(state.topicList);
+      const index = newTopicList.findIndex(topic => topic.id === action.topicId);
+      newTopicList.splice(index, 1);
+      return {
+        ...state,
+        topicList: newTopicList,
+        inProgress: false
+      }
+
     default:
       return state;
   }

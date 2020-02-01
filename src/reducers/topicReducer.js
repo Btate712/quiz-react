@@ -19,7 +19,7 @@ const topicReducer = (state = { topic: {}, inProgress: false }, action) => {
         topic: action.topic,
         inProgress: true
       }
-      
+
     default:
       return state;
   }

@@ -18,7 +18,6 @@ const quizReducer = (state = { questions: [], currentQuestion: 0, inProgress: fa
       updatedQuestion.choice = action.choice;
       const newQuestions = [...state.questions];
       newQuestions[state.currentQuestion] = updatedQuestion;
-      console.log(newQuestions);
       return ({
         ...state,
         questions: newQuestions,

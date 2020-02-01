@@ -61,10 +61,8 @@ class PlaybleQuestion extends React.Component {
   }
 
   storeResult = () => {
-    console.log("in storeResult - state: ", this.state);
     if(this.state.questionAnswered) {
       this.props.storeQuestionResponse(this.props.question, parseInt(this.state.selection));
-      console.log(this.state)
       this.setState({
         questionAnswered: false,
         questionAnsweredCorrectly: false,

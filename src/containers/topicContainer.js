@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getTopic, deleteTopic } from '../actions/topicActions';
+import { getTopic, getTopics, deleteTopic } from '../actions/topicActions';
 import { connect } from 'react-redux';
 import { URL } from '../appData/applicationConstants';
 import Topic from '../components/topic';
@@ -15,7 +15,13 @@ class TopicContainer extends Component {
     const questions = this.props.topic.questions;
     if(topic) {
       return(
-        <Topic deleteTopic={this.props.deleteTopic} token={this.props.user.token} topic={topic} questions={questions} />
+        <Topic 
+          deleteTopic={this.props.deleteTopic} 
+          token={this.props.user.token} 
+          topic={topic} 
+          questions={questions} 
+          getTopics={this.props.getTopics}
+        />
       )
     }
   }
@@ -38,8 +44,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return({
+    getTopics: (token) => dispatch(getTopics(URL, token)),
     getTopic: (topicId, token) => dispatch(getTopic(URL, topicId, token)),
-    deleteTopic: (topicId, token) => dispatch(deleteTopic(topicId, token))
+    deleteTopic: (topicId, token) => dispatch(deleteTopic(URL, topicId, token))
   })
 }
 
