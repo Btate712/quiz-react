@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Question = props => {
   const question = props.question;
@@ -28,6 +29,8 @@ const Question = props => {
         <h1 id="4" className="ml-5 question-choice" dangerouslySetInnerHTML={{__html: `D. ${question.choice_4}`}} />
       <br />
       <h2>Correct Choice: {numberToLetter(question.correct_choice)}</h2>
+      <br />
+    <Link to={`/topics/${props.topic.id}`} ><button className="btn btn-lg border">Back to topic: {props.topic.name}</button></Link>
     </div>
   )
 }
