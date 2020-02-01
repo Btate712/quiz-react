@@ -20,19 +20,19 @@ class App extends Component {
         <div className="App">
           <Route path="/"><SiteTemplateHeader /></Route>
           <Switch>
-            <PrivateRoute exact path="/" component={HomeContainer} />
+            <PrivateRoute exact path="/" component={HomeContainer} loginStatus={this.props.user.loggedIn} />
 
             <Route path="/login" component={LoginContainer} />
 
             <Route path="/register" component={RegisterContainer} />
 
-            <PrivateRoute path="/home" component={HomeContainer} />
+            <PrivateRoute path="/home" component={HomeContainer} loginStatus={this.props.user.loggedIn} />
             
-            <PrivateRoute path="/topics" component={TopicsContainer} />
+            <PrivateRoute path="/topics" component={TopicsContainer} loginStatus={this.props.user.loggedIn} />
 
-            <PrivateRoute path="/questions" component={QuestionsContainer} />
+            <PrivateRoute path="/questions" component={QuestionsContainer} loginStatus={this.props.user.loggedIn} />
             
-            <PrivateRoute path="/quiz" component={QuizContainer} />
+            <PrivateRoute path="/quiz" component={QuizContainer} loginStatus={this.props.user.loggedIn} />
           </Switch>
         </div>
       </Router>
@@ -40,10 +40,12 @@ class App extends Component {
   }
 }
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
+const PrivateRoute = ({ component: Component, loginStatus: loginStatus, ...rest }) => {
+  return (
     <Route {...rest} 
-    render={ props => ( sessionStorage.getItem("loggedIn") === "true" ? <Component { ...props } /> : <Redirect to="/login"  />)} />
+    render={ props => ( loginStatus === true ? <Component { ...props } /> : <Redirect to="/login"  />)} />
   )
+}
 
 const mapStateToProps = state => {
   return({

@@ -3,10 +3,12 @@ import LoginForm from '../components/loginForm';
 import { connect } from 'react-redux';
 import { login } from '../actions/userActions';
 import { Redirect } from 'react-router-dom';
+import { URL } from '../appData/applicationConstants';
 
 class LoginContainer extends React.Component {
 
   homeOrLogin() {
+    console.log("user:", this.props.user)
     if (this.props.user.loggedIn) {
       return(<Redirect to="/home" />);
     } else {
@@ -29,9 +31,9 @@ const mapStateToProps = (state) => {
   })
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return ({
-    login: (url, name, password) => dispatch(login(url, name, password))
+    login: (name, password) => dispatch(login(URL, name, password))
   })
 }
 

@@ -34,33 +34,23 @@ export function login(url, username, password) {
         },
       body: JSON.stringify({ 
         username: username, 
-        password: password })
+        password: password 
+      })
     }
-    fetch(`${url}/auth/login`, configurationObject)
-      .then(response => response.json())
-      .then(json => {
-        if (json.message === "Login Successful") {
-          sessionStorage.setItem('jwtToken', json.access_token);
-          sessionStorage.setItem('loggedIn', true);
-          sessionStorage.setItem('username', username);
-          sessionStorage.setItem('password', password);
-          sessionStorage.setItem('lastLogin', new Date().getMinutes());
-          dispatch({ type: 'LOGGED_IN' });
-        } else {
-          dispatch({ type: 'LOGIN_FAILED' });
-        }
-      });
+  fetch(`${url}/auth/login`, configurationObject)
+    .then(response => response.json())
+    .then(json => {
+      if (json.message === "Login Successful") {
+        dispatch({ type: 'LOGGED_IN', token: json.access_token });
+      } else {
+        dispatch({ type: 'LOGIN_FAILED' });
+      }
+    });
   }
 }
 
 export function logout() {
-  sessionStorage.setItem('jwtToken', "");
-  sessionStorage.setItem('loggedIn', false);
-  sessionStorage.setItem('username', "");
-  sessionStorage.setItem('password', "");
-  return dispatch => {
-    dispatch({ type: 'LOG_OUT' });
-  }
+  return dispatch => dispatch({ type: 'LOG_OUT' });
 }
 
 export function register(url, username, email, password) {

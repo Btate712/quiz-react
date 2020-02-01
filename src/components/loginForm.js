@@ -1,5 +1,4 @@
 import React from 'react';
-import { URL } from '../appData/applicationConstants.js';
 import { Link } from 'react-router-dom';
 
 class LoginForm extends React.Component {
@@ -16,7 +15,7 @@ class LoginForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.login(URL, this.state.username, this.state.password);
+    this.props.login(this.state.username, this.state.password);
     this.setState({
       username: "",
       password: ""
