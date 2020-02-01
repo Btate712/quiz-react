@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginContainer from './containers/loginContainer';
@@ -12,7 +12,7 @@ import { checkToken } from './actions/userActions';
 import SiteTemplateHeader from './containers/siteTemplateHeader';
 
 
-class App extends React.Component {
+class App extends Component {
 
   render() {
     return (
@@ -40,20 +40,10 @@ class App extends React.Component {
   }
 }
 
-function PrivateRoute({ children, auth, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        sessionStorage.getItem("loggedIn") ? (
-          children
-        ) : (
-          <Redirect to="/login"  />
-        )
-      }
-    />
-  );
-}
+const PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest} 
+    render={ props => ( sessionStorage.getItem("loggedIn") === "true" ? <Component { ...props } /> : <Redirect to="/login"  />)} />
+  )
 
 const mapStateToProps = state => {
   return({
