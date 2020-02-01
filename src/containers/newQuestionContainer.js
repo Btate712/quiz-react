@@ -1,9 +1,12 @@
 import React from 'react';
+import NewQuestionForm from '../components/newQuestionForm';
 
 class newQuestionContainer extends React.Component {
   render() {
     return(
-      <h1>New Question...</h1>
+      <div className="container">
+        <NewQuestionForm />
+      </div>
     )
   }
 }

@@ -38,10 +38,10 @@ class Topic extends React.Component {
         <h2>Topic Id#: {this.props.topic.id}</h2>
         <h2>Questions:</h2>
         {this.showQuestions()}
-        {
-        //<Link to="/questions/new"><button className="btn btn-lg border">Create a New Question</button></Link>
-        // <button className="btn btn-lg border" onClick={() => this.handleDelete()}>Delete Topic</button>
-        }
+        
+        <Link to="/questions/new"><button className="btn btn-lg border">Create a New Question</button></Link>
+        <button className="btn btn-lg border" onClick={() => this.handleDelete()}>Delete Topic</button>
+
         {this.redirectWhenComplete()}
       </div>
     )
