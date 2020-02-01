@@ -17,14 +17,15 @@ class NewTopicForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     this.props.createTopic(this.state.name, this.props.token);
+    this.props.getTopics(this.props.token);
     this.setState({complete: true});
    }
 
   redirectWhenComplete = () => {
-    // this isn't working
     if (this.state.complete === true) {
       return (<Redirect to="/topics" />);
     }
+    // need to update topics list in store
   }
   render() {
     return(
