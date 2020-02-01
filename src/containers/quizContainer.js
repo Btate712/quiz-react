@@ -9,7 +9,7 @@ import PlayableQuiz from '../components/playableQuiz';
 
 class QuizContainer extends React.Component {
   componentDidMount() {
-    this.props.getTopics(URL);
+    this.props.getTopics(this.props.user.token);
   }
 
   renderWhenLoaded() {
@@ -22,7 +22,7 @@ class QuizContainer extends React.Component {
     } else if(this.props.topics && this.props.topics.length > 0) {
       return(
         <div>
-          <NewQuizForm createQuiz={this.props.createQuiz} topics={this.props.topics} />
+          <NewQuizForm createQuiz={this.props.createQuiz} token={this.props.user.token} topics={this.props.topics} />
         </div>
       )
     }
@@ -39,15 +39,16 @@ class QuizContainer extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return ({
-    getTopics: (url) => dispatch(getTopics(url)),
-    createQuiz: (numberOfQuestions, topics) => dispatch(createQuiz(URL, numberOfQuestions, topics))
+    getTopics: (token) => dispatch(getTopics(URL, token)),
+    createQuiz: (numberOfQuestions, topics, token) => dispatch(createQuiz(URL, numberOfQuestions, topics, token))
   });
 }
 
 const mapStateToProps = state => {
   return ({
     topics: state.topics.topicList,
-    quiz: state.quiz
+    quiz: state.quiz,
+    user: state.user
   })
 }
 

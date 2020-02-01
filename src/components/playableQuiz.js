@@ -4,9 +4,14 @@ import PlayableQuestion from './playableQuestion';
 import Question from './question';
 import { storeQuizResults } from '../actions/quizActions';
 import { URL } from '../appData/applicationConstants';
+import { Redirect } from 'react-router-dom';
 
 
 class PlayableQuiz extends React.Component {
+  state = {
+    complete: false
+  }
+
   askQuestionOrGiveSummary = () => {
     if(this.props.quiz.currentQuestion <= this.props.quiz.questions.length - 1) {
       return(
@@ -19,9 +24,20 @@ class PlayableQuiz extends React.Component {
       return (
         <>
           {this.showSummary()}
-          <button className="btn btn-lg border" onClick={() => this.props.storeQuizResults(this.props.quiz.questions)}>Done - Store Results</button>
+          <button className="btn btn-lg border" onClick={() => this.storeResults()}>Done - Store Results</button>
         </>
       )
+    }
+  }
+
+  storeResults = () => {
+    this.props.storeQuizResults(this.props.quiz.questions, this.props.user.token);
+    this.setState({ complete: true })
+  }
+
+  redirectWhenComplete = () => {
+    if (this.state.complete === true) {
+      return <Redirect to="/home" />
     }
   }
 
@@ -61,8 +77,9 @@ class PlayableQuiz extends React.Component {
 
   render() {
     return (
-      <div container>
+      <div className="container" complete={this.state.complete}>
         {this.askQuestionOrGiveSummary()}
+        {this.redirectWhenComplete()}
       </div>
     );
   }
@@ -70,13 +87,14 @@ class PlayableQuiz extends React.Component {
 
 const mapStateToProps = state => {
   return ({
-    quiz: state.quiz
+    quiz: state.quiz,
+    user: state.user
   });
 }
 
 const mapDispatchToProps = dispatch => {
   return ({
-    storeQuizResults: questions => dispatch(storeQuizResults(URL, questions))
+    storeQuizResults: (questions, token) => dispatch(storeQuizResults(URL, questions, token))
   });
 }
 

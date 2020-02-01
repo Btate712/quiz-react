@@ -29,7 +29,7 @@ export function storeQuestionResponse(question, response) {
 }
 
 export function storeQuizResults(url, questions, token) {
-  return dispatch => {
+  return (dispatch => {
     dispatch({ type: 'STORING_RESULTS' });
     const configurationObject = {
         method: "POST",
@@ -43,11 +43,6 @@ export function storeQuizResults(url, questions, token) {
           questions: questions
         })
       }
-      fetch(`${url}/encounters`, configurationObject)
-        .then(response => response.json())
-        .then((json) => {
-          dispatch({ type: 'RESULTS_STORED' });
-          document.location.href="/home";
-        });
-  }
+    fetch(`${url}/encounters`, configurationObject);
+  })
 }

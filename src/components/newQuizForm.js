@@ -36,7 +36,7 @@ class NewQuizForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.createQuiz(this.state.numberOfQuestions, this.state.topicsList);
+    this.props.createQuiz(this.state.numberOfQuestions, this.state.topicsList, this.props.token);
    }
 
   listTopics() {
