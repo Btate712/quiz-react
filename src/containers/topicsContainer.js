@@ -30,7 +30,9 @@ class TopicsContainer extends React.Component {
       return (
         <div className="container">
           {this.listTopics()}
-          <Link to="/topics/new"><button className="btn btn-lg border">Create a New Topic</button></Link>
+          {
+          //<Link to="/topics/new"><button className="btn btn-lg border">Create a New Topic</button></Link>
+          }   
         </div>
       )
     }

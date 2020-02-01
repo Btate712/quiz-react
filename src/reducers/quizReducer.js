@@ -24,6 +24,12 @@ const quizReducer = (state = { questions: [], currentQuestion: 0, inProgress: fa
         currentQuestion: state.currentQuestion + 1,
       })
 
+    case 'RESET_QUIZ':
+      return ({
+        questions: [],
+        currentQuestion: 0,
+        inProgress: false
+      })
     default:
       return state;
   }

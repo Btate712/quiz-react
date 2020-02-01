@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 const Question = props => {
   const question = props.question;
@@ -30,7 +29,6 @@ const Question = props => {
       <br />
       <h2>Correct Choice: {numberToLetter(question.correct_choice)}</h2>
       <br />
-    <Link to={`/topics/${props.topic.id}`} ><button className="btn btn-lg border">Back to topic: {props.topic.name}</button></Link>
     </div>
   )
 }

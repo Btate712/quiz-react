@@ -25,6 +25,8 @@ class PlayableQuiz extends React.Component {
         <>
           {this.showSummary()}
           <button className="btn btn-lg border" onClick={() => this.storeResults()}>Done - Store Results</button>
+          <br />
+          <br />
         </>
       )
     }

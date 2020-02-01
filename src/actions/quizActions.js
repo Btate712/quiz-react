@@ -43,6 +43,7 @@ export function storeQuizResults(url, questions, token) {
           questions: questions
         })
       }
-    fetch(`${url}/encounters`, configurationObject);
+    fetch(`${url}/encounters`, configurationObject)
+      .then(() => dispatch({ type: 'RESET_QUIZ' }))
   })
 }

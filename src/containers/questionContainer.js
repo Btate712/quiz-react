@@ -3,6 +3,7 @@ import { URL } from '../appData/applicationConstants';
 import { getQuestion } from '../actions/questionActions';
 import { connect } from 'react-redux';
 import Question from '../components/question';
+import { Link } from 'react-router-dom';
 
 class QuestionContainer extends Component {
 
@@ -14,7 +15,16 @@ class QuestionContainer extends Component {
     const question = this.props.question.question;
     if(question) {
       return (
-        <Question topic={this.props.topic.topic_info} question={question} />
+        <>
+          <Question topic={this.props.topic.topic_info} question={question} />
+          <div className="container">
+            <Link to={`/topics/${this.props.topic.topic_info.id}`}>
+              <button className="btn btn-lg border">
+                Back to topic: {this.props.topic.topic_info.name}
+              </button>
+            </Link>
+          </div>
+        </>
       )
     }
   }
