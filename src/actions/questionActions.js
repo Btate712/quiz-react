@@ -1,9 +1,9 @@
-export function getQuestion(url, questionId) {
+export function getQuestion(url, questionId, token) {
   return dispatch => {
     dispatch({ type: 'LOADING_QUESTION' });
     const configurationObject = {
       headers: {
-        "Authorization": sessionStorage.getItem("jwtToken")
+        "Authorization": token
       }
     }
     fetch(`${url}/questions/${questionId}`, configurationObject)
@@ -14,12 +14,12 @@ export function getQuestion(url, questionId) {
   }
 }
 
-export function getQuestions(url) {
+export function getQuestions(url, token) {
   return dispatch => {
     dispatch({ type: 'LOADING_QUESTIONS' });
     const configurationObject = {
       headers: {
-        "Authorization": sessionStorage.getItem("jwtToken")
+        "Authorization": token
       }
     }
     fetch(`${url}/questions`, configurationObject)

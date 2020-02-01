@@ -1,20 +1,18 @@
-export function checkToken(url) {
+export function checkToken(url, token) {
   return dispatch => {
     dispatch({ type: 'CHECKING_TOKEN' });
     const configurationObject = {
       headers: {
         "Content-type": "application/json",
-        "Authorization": sessionStorage.getItem('jwtToken')
+        "Authorization": token
      },
     }
     fetch(`${url}/test`, configurationObject)
       .then(response => response.json())
       .then(json => {
         if(json.status === "success") {
-          sessionStorage.setItem("loggedIn", true);
           dispatch({ type: 'LOGGED_IN' });
         } else {
-          sessionStorage.setItem("loggedIn", false);
           dispatch({ type: 'LOGIN_FAILED' });
         }
       });
@@ -72,13 +70,8 @@ export function register(url, username, email, password) {
       .then(response => response.json())
       .then(json => {
         if (json.message === "User created successfully") {
-          sessionStorage.setItem('loggedIn', true);
-          sessionStorage.setItem('username', username);
-          sessionStorage.setItem('password', password);
-          sessionStorage.setItem('lastLogin', new Date().getMinutes());
+          dispatch(login(url, username, password));
         } 
       })
-      .then(() => { login(url, username, password); });
-    
   }
 }

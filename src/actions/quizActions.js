@@ -1,4 +1,4 @@
-export function createQuiz(url, numberOfQuestions, topics) {
+export function createQuiz(url, numberOfQuestions, topics, token) {
   return dispatch => {
     dispatch({ type: 'CREATING_QUIZ' });
     const configurationObject = {
@@ -7,7 +7,7 @@ export function createQuiz(url, numberOfQuestions, topics) {
         headers: { 
           "Content-type": "application/json",
           "Accept": "application/json",
-          authorization: sessionStorage.getItem("jwtToken")
+          authorization: token
         },
         body: JSON.stringify({
           'topicIds': topics.toString(),
@@ -29,7 +29,7 @@ export function storeQuestionResponse(question, response) {
   }
 }
 
-export function storeQuizResults(url, questions) {
+export function storeQuizResults(url, questions, token) {
   return dispatch => {
     dispatch({ type: 'STORING_RESULTS' });
     const configurationObject = {
@@ -38,7 +38,7 @@ export function storeQuizResults(url, questions) {
         headers: { 
           "Content-type": "application/json",
           "Accept": "application/json",
-          authorization: sessionStorage.getItem("jwtToken")
+          authorization: token
         },
         body: JSON.stringify({
           questions: questions

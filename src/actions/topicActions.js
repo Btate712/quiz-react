@@ -1,4 +1,4 @@
-export function createTopic(url, topicName) {
+export function createTopic(url, topicName, token) {
   return dispatch => {
     dispatch({ type: 'CREATING_TOPIC' });
     const configurationObject = {
@@ -7,7 +7,7 @@ export function createTopic(url, topicName) {
         headers: { 
           "Content-type": "application/json",
           "Accept": "application/json",
-          authorization: sessionStorage.getItem("jwtToken")
+          authorization: token
         },
         body: JSON.stringify({
           name: topicName
@@ -22,7 +22,7 @@ export function createTopic(url, topicName) {
   }
 }
 
-export function deleteTopic(topicId) {
+export function deleteTopic(topicId, token) {
   return dispatch => {
     dispatch({ type: 'DELETING_TOPIC' });
     const configurationObject = {
@@ -30,7 +30,7 @@ export function deleteTopic(topicId) {
         mode: "cors",
         headers: { 
           "Accept": "application/json",
-           authorization: sessionStorage.getItem("jwtToken")
+           authorization: token
         }
       }
       fetch(`/topics/${topicId}`, configurationObject)
@@ -44,12 +44,12 @@ export function deleteTopic(topicId) {
   }
 }
 
-export function getTopic(url, topicId) {
+export function getTopic(url, topicId, token) {
   return dispatch => {
     dispatch({ type: 'LOADING_TOPIC' });
     const configurationObject = {
       headers: {
-        "Authorization": sessionStorage.getItem("jwtToken")
+        "Authorization": token
       }
     }
     fetch(`${url}/topics/${topicId}`, configurationObject)
@@ -60,12 +60,12 @@ export function getTopic(url, topicId) {
   }
 }
 
-export function getTopics(url) {
+export function getTopics(url, token) {
   return dispatch => {
     dispatch({ type: 'LOADING_TOPICS' });
     const configurationObject = {
       headers: {
-        "Authorization": sessionStorage.getItem("jwtToken")
+        "Authorization": token
       }
     }
     fetch(`${url}/topics`, configurationObject)
