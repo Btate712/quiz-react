@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createQuestion } from '../actions/questionActions';
+import { createQuestion, updateQuestion } from '../actions/questionActions';
 import { URL } from '../appData/applicationConstants';
 import { Redirect } from 'react-router-dom';
 import Question from './question';
@@ -14,8 +14,26 @@ class NewQuestionForm extends Component {
     choice_3: " ",
     choice_4: " ",
     correct_choice: "1",
-    complete: false
+    complete: false,
+    mode: "new"
   }
+
+  componentDidMount = () => {
+    const question = this.props.question.question
+    if(this.props.mode === "edit") {
+      this.setState({
+        topic_id: question.topic_id,
+        stem: question.stem,
+        choice_1: question.choice_1,
+        choice_2: question.choice_2,
+        choice_3: question.choice_3,
+        choice_4: question.choice_4,
+        correct_choice: question.correct_choice,
+        complete: false,
+        mode: "edit"
+      })
+    }
+  } 
 
   handleInputChange = event => {
     this.setState({
@@ -23,12 +41,19 @@ class NewQuestionForm extends Component {
     })
   }
 
+  newOrEdit = (question) => {
+    if (this.state.mode === "new") {
+      this.props.createQuestion(question, this.props.user.token);
+    } else {
+      this.props.updateQuestion(question, this.props.question.question.id, this.props.user.token);
+    }
+  } 
+  
   handleSubmit = event => {
     event.preventDefault();
     const question = this.state;
-    this.props.createQuestion(question, this.props.user.token);
+    this.newOrEdit(question)
     this.setState({ complete: true })
-
   }
 
   topicOptions = () => {
@@ -50,7 +75,7 @@ class NewQuestionForm extends Component {
   render() {
     return (
       <div className={`${this.state.complete}`}>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} className="container" >
           <div className="form-group">
             <label>Topic: </label>
             <select name="topic_id" onChange={this.handleInputChange} value={this.state.topic_id} >
@@ -100,13 +125,15 @@ const mapStateToProps = state => {
   return({
     user: state.user,
     topics: state.topics.topicList,
-    topic: state.topic.topic.topic_info
+    topic: state.topic.topic.topic_info,
+    question: state.question.question
   })
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    createQuestion: (question, token) => dispatch(createQuestion(URL, question, token))
+    createQuestion: (question, token) => dispatch(createQuestion(URL, question, token)),
+    updateQuestion: (question, id, token) => dispatch(updateQuestion(URL, question, id, token))
   }
 }
 

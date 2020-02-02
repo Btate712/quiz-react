@@ -5,7 +5,7 @@ class newQuestionContainer extends React.Component {
   render() {
     return(
       <div className="container">
-        <NewQuestionForm />
+        <NewQuestionForm mode="new" />
       </div>
     )
   }
