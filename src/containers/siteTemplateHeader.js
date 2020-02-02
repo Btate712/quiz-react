@@ -5,6 +5,16 @@ import { Link } from 'react-router-dom';
 
 class SiteTemplateHeader extends React.Component {
 
+  adminLinks = () => {
+    if (this.props.user.admin === true) {
+      return (
+        <li className="nav-item">
+          <Link className="nav-link" to="/project-access">Assign Project Access</Link>
+        </li>
+      )
+    }
+  } 
+
   render() {
     return(
       <div>
@@ -13,6 +23,7 @@ class SiteTemplateHeader extends React.Component {
             <li className="nav-item">
               <Link className="nav-link" to="/home">Home</Link>
             </li>
+            {this.adminLinks()}
             <li className="nav-item">
               <Link className="nav-link" to="/topics">Topics</Link>
             </li>
@@ -23,7 +34,7 @@ class SiteTemplateHeader extends React.Component {
               <Link className="nav-link" to="/login">Log In / Register</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/" onClick={this.props.logout}>Log Out</Link>
+              <Link className="nav-link" to="/" onClick={this.props.logout}>Log Out {this.props.user.name}</Link>
             </li>
           </ul>
         </nav>
@@ -38,4 +49,10 @@ const mapDispatchToProps = (dispatch) => {
   })
 }
 
-export default connect(null, mapDispatchToProps)(SiteTemplateHeader);
+const mapStateToProps = state => {
+  return ({
+    user: state.user
+  })
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SiteTemplateHeader);
