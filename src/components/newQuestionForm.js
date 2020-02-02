@@ -3,16 +3,17 @@ import { connect } from 'react-redux';
 import { createQuestion } from '../actions/questionActions';
 import { URL } from '../appData/applicationConstants';
 import { Redirect } from 'react-router-dom';
+import Question from './question';
 
 class NewQuestionForm extends Component {
   state = {
-    topicId: this.props.topic.id,
-    stem: "",
-    choice1: "",
-    choice2: "",
-    choice3: "",
-    choice4: "",
-    correctChoice: 1,
+    topic_id: this.props.topic.id,
+    stem: " ",
+    choice_1: " ",
+    choice_2: " ",
+    choice_3: " ",
+    choice_4: " ",
+    correct_choice: "1",
     complete: false
   }
 
@@ -52,7 +53,7 @@ class NewQuestionForm extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label>Topic: </label>
-            <select name="topicId" onChange={this.handleInputChange} value={this.state.topicId} >
+            <select name="topic_id" onChange={this.handleInputChange} value={this.state.topic_id} >
               {this.topicOptions()}
             </select>
           </div>
@@ -62,23 +63,23 @@ class NewQuestionForm extends Component {
           </div>
           <div className="form-group">
             <label>Choice 1:</label>
-            <input name="choice1" id="choice1" type="text" className="form-control" onChange={this.handleInputChange} value={this.state.choice1} />
+            <input name="choice_1" id="choice1" type="text" className="form-control" onChange={this.handleInputChange} value={this.state.choice_1} />
           </div>
           <div className="form-group">
             <label>Choice 2:</label>
-            <input name="choice2" id="choice2" type="text" className="form-control" onChange={this.handleInputChange} value={this.state.choice2} />
+            <input name="choice_2" id="choice2" type="text" className="form-control" onChange={this.handleInputChange} value={this.state.choice_2} />
           </div>
           <div className="form-group">
             <label>Choice 3:</label>
-            <input name="choice3" id="choice3" type="text" className="form-control" onChange={this.handleInputChange} value={this.state.choice3} />
+            <input name="choice_3" id="choice3" type="text" className="form-control" onChange={this.handleInputChange} value={this.state.choice_3} />
           </div>
           <div className="form-group">
             <label>Choice 4:</label>
-            <input name="choice4" id="choice4" type="text" className="form-control" onChange={this.handleInputChange} value={this.state.choice4} />
+            <input name="choice_4" id="choice4" type="text" className="form-control" onChange={this.handleInputChange} value={this.state.choice_4} />
           </div>
           <div className="form-group">
             <label>Correct Choice: </label>
-            <select name="correctChoice" onChange={this.handleInputChange} value={this.state.correctChoice} >
+            <select name="correct_choice" onChange={this.handleInputChange} value={this.state.correct_choice} >
               <option value="1">A</option>
               <option value="2">B</option>
               <option value="3">C</option>
@@ -87,6 +88,8 @@ class NewQuestionForm extends Component {
           </div>
           <input type="submit" className="btn btn-primary"/>
         </form>
+        <h1>Question Preview:</h1>
+        <Question question={this.state} />
         {this.redirectWhenComplete()}
       </div>
     );
