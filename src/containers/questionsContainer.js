@@ -8,7 +8,7 @@ import { Switch, Route, Link } from 'react-router-dom';
 
 class QuestionsContainer extends React.Component {
   componentDidMount() {
-    this.props.getQuestions(URL);
+    this.props.getQuestions(this.props.user.token);
   }
 
   showQuestionsWhenLoaded() {
@@ -39,13 +39,14 @@ class QuestionsContainer extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return ({
-    getQuestions: (url) => dispatch(getQuestions(url))
+    getQuestions: (token) => dispatch(getQuestions(URL, token))
   });
 }
 
 const mapStateToProps = state => {
   return ({
-    questions: state.questions
+    questions: state.questions,
+    user: state.user
   })
 }
 

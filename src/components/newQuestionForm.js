@@ -9,7 +9,7 @@ class NewQuestionForm extends Component {
     choice2: "",
     choice3: "",
     choice4: "",
-    correctChoice: "A"
+    correctChoice: 1
   }
 
   handleInputChange = event => {
@@ -20,14 +20,23 @@ class NewQuestionForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log("Creating new question: ", this.state);
+    const question = {
+      topic_id: this.state.topicId,
+      stem: this.state.stem,
+      choice_1: this.state.choice1,
+      choice_2: this.state.choice2,
+      choice_3: this.state.choice3,
+      choice_4: this.state.choice4,
+      correct_choice: this.state.correctChoice
+    }
+    console.log("Creating new question: ", question);
   }
 
   topicOptions = () => {
     return(
       this.props.topics.map(topic => {
         return(
-          <option value={topic.id}>{topic.name}</option>
+          <option key={topic.id} value={topic.id}>{topic.name}</option>
         )
       })
     )
