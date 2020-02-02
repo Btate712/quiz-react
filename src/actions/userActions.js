@@ -22,7 +22,7 @@ export function checkToken(url, token) {
 export function login(url, username, password) {
   return dispatch => {
     dispatch({ type: 'LOGGING_IN', action: { username: username, password: password } });
-    const configurationObject = {
+    let configurationObject = {
       method: "POST",
       mode: "cors",
       headers: 
@@ -39,7 +39,21 @@ export function login(url, username, password) {
     .then(response => response.json())
     .then(json => {
       if (json.message === "Login Successful") {
-        dispatch({ type: 'LOGGED_IN', token: json.access_token });
+        const token = json.access_token;
+        configurationObject = {
+          method: "GET",
+          headers: {
+            "Content-type": "application/json",
+            "Accept": "application/json",
+            authorization: token
+          }
+        } 
+        fetch(`${url}/users/me`, configurationObject)
+        .then(response => response.json())
+        .then(user => {
+          console.log(user);
+          dispatch({ type: 'LOGGED_IN', token: token, admin: user.user.is_admin });
+        })
       } else {
         dispatch({ type: 'LOGIN_FAILED' });
       }

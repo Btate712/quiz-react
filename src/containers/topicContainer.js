@@ -3,6 +3,7 @@ import { getTopic, getTopics, deleteTopic } from '../actions/topicActions';
 import { connect } from 'react-redux';
 import { URL } from '../appData/applicationConstants';
 import Topic from '../components/topic';
+import { Link } from 'react-router-dom';
 
 class TopicContainer extends Component {
 
@@ -15,13 +16,18 @@ class TopicContainer extends Component {
     const questions = this.props.topic.questions;
     if(topic) {
       return(
-        <Topic 
-          deleteTopic={this.props.deleteTopic} 
-          token={this.props.user.token} 
-          topic={topic} 
-          questions={questions} 
-          getTopics={this.props.getTopics}
-        />
+        <>
+          <Topic 
+            deleteTopic={this.props.deleteTopic} 
+            user={this.props.user} 
+            topic={topic} 
+            questions={questions} 
+            getTopics={this.props.getTopics}
+          />
+          <div className="container">
+            <Link to="/topics"><button className="btn btn-lg border">Back to Topics</button></Link>
+          </div>
+        </>
       )
     }
   }

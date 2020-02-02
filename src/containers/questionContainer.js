@@ -12,6 +12,25 @@ class QuestionContainer extends Component {
     this.props.getQuestion(URL, this.props.questionId, this.props.user.token);
   }
 
+  adminButtons() {
+    if(this.props.user.admin === true) {
+      return (
+        <>
+          <Link to={`/questions/${this.props.question.id}/edit`}>
+            <button className="btn btn-lg border">
+              Edit Question
+            </button>
+          </Link>
+          <Link>
+            <button className="btn btn-lg border pull-right">
+                Delete Question
+            </button>
+          </Link>
+        </>
+      )
+    }
+  }
+
   showQuestionWhenLoaded() {
     const question = this.props.question.question;
     if(question) {
@@ -28,11 +47,7 @@ class QuestionContainer extends Component {
                   Back to topic: {this.props.topic.topic_info.name}
                 </button>
               </Link>
-              <Link to={`/questions/${this.props.question.id}/edit`}>
-                <button className="btn btn-lg border">
-                  Edit Question
-                </button>
-              </Link>
+              {this.adminButtons()}
             </div>
           </Route>
         </Switch>

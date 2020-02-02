@@ -29,11 +29,18 @@ class TopicsContainer extends React.Component {
     if(topics) {
       return (
         <div className="container">
+          <h1><u>Topics:</u></h1>
           {this.listTopics()}
-          {
-          //<Link to="/topics/new"><button className="btn btn-lg border">Create a New Topic</button></Link>
-          }   
+          {this.adminButtons()}
         </div>
+      )
+    }
+  }
+  
+  adminButtons = () => {
+    if (this.props.user.admin === true) {
+      return (
+        <Link to="/topics/new"><button className="btn btn-lg border">Create a New Topic</button></Link>
       )
     }
   }

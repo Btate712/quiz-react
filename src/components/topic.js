@@ -20,7 +20,7 @@ class Topic extends React.Component {
   }
 
   handleDelete = () => {
-    this.props.deleteTopic(this.props.topic.id, this.props.token); 
+    this.props.deleteTopic(this.props.topic.id, this.props.user.token); 
     this.setState ({
       complete: true
     })  
@@ -31,6 +31,18 @@ class Topic extends React.Component {
       return (<Redirect to="/topics" />);
     }
   }
+
+  adminButtons = () => {
+    if(this.props.user.admin === true) {
+      return (
+        <>
+          <Link to="/questions/new"><button className="btn btn-lg border">Create a New Question</button></Link>
+          <button className="btn btn-lg border" onClick={() => this.handleDelete()}>Delete Topic</button>
+        </>
+      )
+    }
+  }
+
   render() {
     return (
       <div className="Topic container">
@@ -38,9 +50,7 @@ class Topic extends React.Component {
         <h2>Topic Id#: {this.props.topic.id}</h2>
         <h2>Questions:</h2>
         {this.showQuestions()}
-        
-        <Link to="/questions/new"><button className="btn btn-lg border">Create a New Question</button></Link>
-        <button className="btn btn-lg border" onClick={() => this.handleDelete()}>Delete Topic</button>
+        {this.adminButtons()}
 
         {this.redirectWhenComplete()}
       </div>
