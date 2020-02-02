@@ -113,7 +113,9 @@ class NewQuestionForm extends Component {
           </div>
           <input type="submit" className="btn btn-primary"/>
         </form>
-        <h1>Question Preview:</h1>
+        <br />
+        <h1 className="container"><u>Question Preview:</u></h1>
+        <br />
         <Question question={this.state} />
         {this.redirectWhenComplete()}
       </div>
