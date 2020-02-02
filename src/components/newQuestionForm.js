@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { createQuestion } from '../actions/questionActions';
+import { URL } from '../appData/applicationConstants';
 
 class NewQuestionForm extends Component {
   state = {
@@ -20,16 +22,8 @@ class NewQuestionForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const question = {
-      topic_id: this.state.topicId,
-      stem: this.state.stem,
-      choice_1: this.state.choice1,
-      choice_2: this.state.choice2,
-      choice_3: this.state.choice3,
-      choice_4: this.state.choice4,
-      correct_choice: this.state.correctChoice
-    }
-    console.log("Creating new question: ", question);
+    const question = this.state
+    this.props.createQuestion(question, this.props.user.token)
   }
 
   topicOptions = () => {
@@ -73,7 +67,7 @@ class NewQuestionForm extends Component {
         </div>
         <div className="form-group">
           <label>Correct Choice: </label>
-          <select name="correct_choice" onChange={this.handleInputChange} value={this.state.correctChoice} >
+          <select name="correctChoice" onChange={this.handleInputChange} value={this.state.correctChoice} >
             <option value="1">A</option>
             <option value="2">B</option>
             <option value="3">C</option>
@@ -96,7 +90,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createQuestion: () => dispatch(() => console.log("Hi"))
+    createQuestion: (question, token) => dispatch(createQuestion(URL, question, token))
   }
 }
 
