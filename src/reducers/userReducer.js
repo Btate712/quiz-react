@@ -8,7 +8,6 @@ const userReducer = (state = { name: "", admin: false, inProgress: false, logged
       }
 
     case 'LOGGED_IN':
-      console.log(action)
       return {
         ...state,
         inProgress: false,

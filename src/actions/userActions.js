@@ -89,3 +89,20 @@ export function register(url, username, email, password) {
       })
   }
 }
+
+export function getUsers(url, token) {
+  return dispatch => {
+    dispatch({ type: 'LOADING_USERS' });
+    const configurationObject = {
+      headers: {
+        authorization: token
+      }
+    }
+    fetch(`${url}/users`, configurationObject)
+      .then(response => response.json())
+      .then(json => {
+        console.log("in action, json is: ", json)
+        dispatch({ type: 'ADD_USERS', users: json.users })
+      });
+  }
+}
