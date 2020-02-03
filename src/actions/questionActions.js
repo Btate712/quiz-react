@@ -52,7 +52,6 @@ export function createQuestion(url, question, token) {
     }
     fetch(`${url}/questions`, configurationObject)
     .then(response => response.json)
-    .then(json => console.log(json))
   }
 }
 
@@ -78,6 +77,5 @@ export function updateQuestion(url, question, id, token) {
     }
     fetch(`${url}/questions/${id}`, configurationObject)
     .then(response => response.json)
-    .then(json => console.log(json))
   }
 }

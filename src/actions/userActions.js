@@ -51,7 +51,6 @@ export function login(url, username, password) {
         fetch(`${url}/users/me`, configurationObject)
         .then(response => response.json())
         .then(user => {
-          console.log(user);
           dispatch({ type: 'LOGGED_IN', token: token, admin: user.user.is_admin });
         })
       } else {
@@ -101,7 +100,6 @@ export function getUsers(url, token) {
     fetch(`${url}/users`, configurationObject)
       .then(response => response.json())
       .then(json => {
-        console.log("in action, json is: ", json)
         dispatch({ type: 'ADD_USERS', users: json.users })
       });
   }

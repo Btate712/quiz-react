@@ -79,7 +79,7 @@ class PlayableQuiz extends React.Component {
 
   render() {
     return (
-      <div className="container" complete={this.state.complete}>
+      <div className="container" complete={this.state.complete.toString()}>
         {this.askQuestionOrGiveSummary()}
         {this.redirectWhenComplete()}
       </div>

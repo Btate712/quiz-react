@@ -7,7 +7,6 @@ const projectsReducer = (state = { projectList: [], inProgress: false }, action)
       }
 
     case 'ADD_PROJECTS':
-      console.log(action);
       return {
         projectList: action.projects,
         inProgress: false

@@ -7,7 +7,6 @@ const usersReducer = (state = { userList: [], inProgress: false }, action) => {
       }
 
     case 'ADD_USERS':
-      console.log(action);
       return {
         userList: action.users,
         inProgress: false

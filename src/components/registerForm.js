@@ -7,7 +7,8 @@ class RegisterForm extends React.Component {
     username: "",
     email: "",
     password: "",
-    passwordConfirmation: ""
+    passwordConfirmation: "",
+    fail: false
   }
 
   handleInputChange = event => {
@@ -18,15 +19,28 @@ class RegisterForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.register(URL, this.state.username, this.state.email, this.state.password);
-    this.setState({
-      username: "",
-      email: "",
-      password: "",
-      passwordConfirmation: ""
-    });
+    if (this.state.password !== this.state.passwordConfirmation) {
+      this.setState({ fail: true })
+    } else {
+      this.props.register(URL, this.state.username, this.state.email, this.state.password);
+      this.setState({
+        username: "",
+        email: "",
+        password: "",
+        passwordConfirmation: ""
+      });
+    }
   }
 
+  errorMessage = () => {
+    if (this.state.password !== this.state.passwordConfirmation && this.state.fail === true) {
+      return <h1>Password and Confirmation Must Match!</h1>
+    } else {
+      if (this.state.fail === true) {
+        this.setState({fail: false})
+      }
+    }
+  }
   render() {
     return (
       <div className="container">
@@ -56,6 +70,7 @@ class RegisterForm extends React.Component {
                 <Link to="/login"><button className="btn btn-primary pull-right">Login Existing User</button></Link>
               </form>
               <br />
+              {this.errorMessage()}
             </div>
           </div>
           <div className="col-lg-4 col-md-3 col-sm-1"></div>

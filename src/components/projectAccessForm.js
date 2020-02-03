@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { assignProject } from '../actions/projectActions';
+import { URL } from '../appData/applicationConstants';
 
 class projectAccessForm extends React.Component {
   state = {
@@ -9,13 +11,13 @@ class projectAccessForm extends React.Component {
 
   listProjectOptions = () => {
     return this.props.projects.projectList.map(project => {
-      return (<option value={project.id}>{project.name}</option>)
+      return (<option key={project.id} value={project.id}>{project.name}</option>)
     })
   }
 
   listUserOptions = () => {
     return this.props.users.userList.map(user => {
-      return ( <option value={user.id}>{user.name}</option> )
+      return ( <option key={user.id} value={user.id}>{user.name}</option> )
     })
   }
 
@@ -26,7 +28,7 @@ class projectAccessForm extends React.Component {
   }
 
   assign = () => {
-    alert(`Assigning user #${this.state.userId} access to project #${this.state.projectId}`);
+    assignProject(URL, parseInt(this.state.userId), this.state.projectId, this.props.user.token);
   }
 
   render() {
@@ -58,7 +60,6 @@ const mapStateToProps = state => {
     projects: state.projects,
     users: state.users
   })
-
 }
 
 export default connect(mapStateToProps)(projectAccessForm);
