@@ -12,6 +12,11 @@ const projectsReducer = (state = { projectList: [], inProgress: false }, action)
         inProgress: false
       }
 
+      case 'CLEAR_PROJECTS':
+        return {
+          ...state,
+          projectList: []
+        }
     default:
       return state;
   }

@@ -12,6 +12,12 @@ const usersReducer = (state = { userList: [], inProgress: false }, action) => {
         inProgress: false
       }
 
+    case 'CLEAR_USERS':
+      return {
+        ...state,
+        userList: []
+      }
+      
     default:
       return state;
   }

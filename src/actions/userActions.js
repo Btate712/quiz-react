@@ -61,7 +61,16 @@ export function login(url, username, password) {
 }
 
 export function logout() {
-  return dispatch => dispatch({ type: 'LOG_OUT' });
+  return dispatch => {
+    dispatch({ type: 'LOG_OUT' });
+    dispatch({ type: 'CLEAR_USERS' });
+    dispatch({ type: 'CLEAR_TOPICS' });
+    dispatch({ type: 'CLEAR_TOPIC' });
+    dispatch({ type: 'RESET_QUIZ' });
+    dispatch({ type: 'CLEAR_QUESTIONS' });
+    dispatch({ type: 'CLEAR_QUESTION' });
+    dispatch({ type: 'CLEAR_PROJECTS' });
+  }
 }
 
 export function register(url, username, email, password) {

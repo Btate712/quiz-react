@@ -35,7 +35,8 @@ const userReducer = (state = { name: "", admin: false, inProgress: false, logged
         name: "",
         inProgress: false,
         loggedIn: false,
-        admin: false
+        admin: false,
+        token: ""
       }
 
     default:
