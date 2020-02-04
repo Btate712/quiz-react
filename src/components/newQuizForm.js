@@ -44,7 +44,6 @@ class NewQuizForm extends React.Component {
       this.props.topics.map((topic, key) => {
         return (
           <div key={key}>
-            
             <label className="form-check-label">
               <input className="" type="checkbox" id={topic.id} name={topic.name} checked={this.isChecked(topic.id)} onChange={this.handleInputChange} />
               {topic.name}

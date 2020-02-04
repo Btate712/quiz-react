@@ -30,6 +30,7 @@ const quizReducer = (state = { questions: [], currentQuestion: 0, inProgress: fa
         currentQuestion: 0,
         inProgress: false
       })
+      
     default:
       return state;
   }
