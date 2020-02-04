@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.playable-question-choice:hover {
+  background-color: #e6f9ff;
+  cursor: default;
+}

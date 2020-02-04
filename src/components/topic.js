@@ -51,7 +51,6 @@ class Topic extends React.Component {
         <h2>Questions:</h2>
         {this.showQuestions()}
         {this.adminButtons()}
-
         {this.redirectWhenComplete()}
       </div>
     )

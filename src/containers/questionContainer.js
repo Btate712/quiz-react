@@ -21,11 +21,9 @@ class QuestionContainer extends Component {
               Edit Question
             </button>
           </Link>
-          <Link>
-            <button className="btn btn-lg border pull-right">
-                Delete Question
-            </button>
-          </Link>
+           <button className="btn btn-lg border pull-right">
+               Delete Question
+           </button>
         </>
       )
     }
