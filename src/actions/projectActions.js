@@ -49,10 +49,10 @@ export function addTopicToProject(url, topicId, projectId, token) {
       topic_id: topicId,
       project_id: projectId,
     })
-}
-fetch(`${url}/project_topics`, configurationObject)
-  .then(response => response.json())
-  .then(json => {
-    alert(json.message);
-  })
+  }
+  fetch(`${url}/project_topics`, configurationObject)
+    .then(response => response.json())
+    .then(json => {
+      alert(json.message);
+    })
 }
