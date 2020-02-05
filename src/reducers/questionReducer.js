@@ -15,7 +15,7 @@ const questionReducer = (state = { question: {}, inProgress: false }, action) =>
     case 'CLEAR_QUESTION':
       return {
         ...state,
-        question: []
+        question: {}
       }
       
     default:

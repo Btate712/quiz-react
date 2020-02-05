@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import { URL } from '../appData/applicationConstants';
-import { getQuestion } from '../actions/questionActions';
+import { getQuestion, deleteQuestion } from '../actions/questionActions';
 import { connect } from 'react-redux';
 import Question from '../components/question';
-import { Link, Switch, Route } from 'react-router-dom';
+import { Link, Switch, Route, Redirect } from 'react-router-dom';
 import NewQuestionForm from '../components/newQuestionForm';
 
 class QuestionContainer extends Component {
+  state = {
+    questionDeleted: false
+  }
 
   componentDidMount() {
-    this.props.getQuestion(URL, this.props.questionId, this.props.user.token);
+    this.props.getQuestion(this.props.questionId, this.props.user.token);
   }
 
   adminButtons() {
@@ -21,10 +24,32 @@ class QuestionContainer extends Component {
               Edit Question
             </button>
           </Link>
-           <button className="btn btn-lg border pull-right">
-               Delete Question
+            <button className="btn btn-lg border pull-right" onClick={() => this.deleteQuestion()} >
+              Delete Question
            </button>
         </>
+      )
+    }
+  }
+
+  deleteQuestion = () => {
+    const confirmation = window.confirm("Delete this question?");
+    if (confirmation === true) {
+      this.props.deleteQuestion(this.props.questionId, this.props.user.token);
+      this.setState({
+        questionDeleted: true
+      })
+    }
+  }
+
+  redirectOnDelete = () => {
+    if (this.state.questionDeleted === true) {
+      console.log("redirecting...")
+      this.setState({
+        questionDeleted: false
+      })
+      return (
+        <Redirect to={`/topics/${this.props.topic.topic_info.id}`} />
       )
     }
   }
@@ -38,6 +63,10 @@ class QuestionContainer extends Component {
           <NewQuestionForm mode="edit" />
           </Route>
           <Route path="/questions/:id">
+            <div className={this.state.questionDeleted.toString()} >
+              {console.log("redirecting? ", this.state.questionDeleted)}
+              {this.redirectOnDelete()}
+            </div>
             <Question topic={this.props.topic.topic_info} question={question} />
             <div className="container">
               <Link to={`/topics/${this.props.topic.topic_info.id}`}>
@@ -72,7 +101,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return({
-    getQuestion: (url, questionId, token) => dispatch(getQuestion(url, questionId, token))
+    getQuestion: (questionId, token) => dispatch(getQuestion(URL, questionId, token)),
+    deleteQuestion: (questionId, token) => dispatch(deleteQuestion(URL, questionId, token))
   })
 }
 
