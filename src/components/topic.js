@@ -1,5 +1,8 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addTopicToProject } from '../actions/projectActions';
+import { URL } from '../appData/applicationConstants';
 
 class Topic extends React.Component {
   state = {
@@ -35,12 +38,17 @@ class Topic extends React.Component {
     }
   }
 
+  handleAddToProject = () => {
+    addTopicToProject(URL, this.props.topic.id, 1, this.props.user.token);
+  }
+
   adminButtons = () => {
     if(this.props.user.admin === true) {
       return (
         <>
           <Link to="/questions/new"><button className="btn btn-lg border">Create a New Question</button></Link>
           <button className="btn btn-lg border" onClick={() => this.handleDelete()}>Delete Topic</button>
+          <button className="btn btn-lg border" onClick={() => this.handleAddToProject()}>Add Topic to Project</button>
         </>
       )
     }
@@ -60,4 +68,10 @@ class Topic extends React.Component {
   }
 }
 
-export default Topic
+const mapStateToProps = state => {
+  return({
+    user: state.user
+  })
+}
+
+export default connect(mapStateToProps)(Topic)

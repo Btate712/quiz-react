@@ -35,3 +35,24 @@ fetch(`${url}/user_projects`, configurationObject)
     alert(json.message);
   })
 }
+
+export function addTopicToProject(url, topicId, projectId, token) {
+  const configurationObject = {
+    method: "POST",
+    mode: "cors",
+    headers: { 
+      "Content-type": "application/json",
+      "Accept": "application/json",
+      authorization: token
+    },
+    body: JSON.stringify({
+      topic_id: topicId,
+      project_id: projectId,
+    })
+}
+fetch(`${url}/project_topics`, configurationObject)
+  .then(response => response.json())
+  .then(json => {
+    alert(json.message);
+  })
+}
