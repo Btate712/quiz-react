@@ -59,7 +59,7 @@ class Topic extends React.Component {
       <div className="Topic container">
         <h1>Topic: {this.props.topic.name}</h1>
         <h2>Topic Id#: {this.props.topic.id}</h2>
-        <h2>Questions:</h2>
+        <h2>Questions: ({this.props.questions.length} in bank)</h2>
         {this.showQuestions()}
         {this.adminButtons()}
         {this.redirectWhenComplete()}
