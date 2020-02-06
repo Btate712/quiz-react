@@ -4,7 +4,7 @@ class NewQuizForm extends React.Component {
 
   state = {
     numberOfQuestions: "",
-    topicsList: []
+    topicsList: [],
   }
 
   handleInputChange = event => {
@@ -39,18 +39,29 @@ class NewQuizForm extends React.Component {
     this.props.createQuiz(this.state.numberOfQuestions, this.state.topicsList, this.props.token);
    }
 
+  selectAll = event => {
+    event.preventDefault();
+    const newTopicsList = this.props.topics.map(topic => topic.id);
+    this.setState({ topicsList: newTopicsList });
+  }
+
+  deSelectAll = event => {
+    event.preventDefault();
+    this.setState({ topicsList: [] })
+  }
+
   listTopics() {
     return (
-      this.props.topics.map((topic, key) => {
-        return (
-          <div key={key}>
-            <label className="form-check-label">
-              <input className="" type="checkbox" id={topic.id} name={topic.name} checked={this.isChecked(topic.id)} onChange={this.handleInputChange} />
-              {topic.name}
-            </label>
-          </div>
-        )
-      })
+        this.props.topics.map((topic, key) => {
+          return (
+            <div key={key}>
+              <label className="form-check-label">
+                <input className="checkbox" type="checkbox" id={topic.id} name={topic.name} checked={this.isChecked(topic.id)} onChange={this.handleInputChange} />
+                {topic.name}
+              </label>
+            </div>
+          )
+        })
     )
   }
 
@@ -62,10 +73,16 @@ class NewQuizForm extends React.Component {
           <div className="form-group">
             <h3>Topics:</h3>
             {this.listTopics()}
+            <button className="btn btn-primary" onClick={this.selectAll}>
+              Select All
+            </button>
+            <button className="btn btn-primary" onClick={this.deSelectAll}>
+              De-Select All
+            </button>
           </div>
           <div className="form-group">
             <label >Number of Questions:</label>
-            <input name="numberOfQuestions" type="text" value={this.state.numberOfTopics} onChange={this.handleInputChange} />
+            <input name="numberOfQuestions" type="text" value={this.state.numberOfQuestions} onChange={this.handleInputChange} />
           </div>
           <input type="submit" className="btn btn-primary"/>
         </form>
