@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { isValidElement } from 'react';
 import { connect } from 'react-redux';
 import { storeQuestionResponse } from '../actions/quizActions';
 
@@ -9,19 +9,63 @@ class PlaybleQuestion extends React.Component {
     selection: ""
   }
   
+  componentDidMount = () => {
+    document.addEventListener("keydown", this.handleSelection);
+  }
+
+  componentWillUnmount = () => {
+    document.removeEventListener("keydown", this.handleSelection);
+  }
+
+  getSelection(event) {
+    if(event.type === "keydown") {
+      switch(event.key) {
+        case "a":
+          return 1
+        case "b":
+          return 2
+        case "c":
+          return 3
+        case "d": 
+          return 4
+        case "1":
+          return 1
+        case "2":
+          return 2
+        case "3":
+          return 3
+        case "4":
+          return 4
+        default:
+          return "invalid selection"
+      }
+    } else {
+      return parseInt(event.target.id);
+    }
+  }
+
+  isValidSelection(selection) {
+    console.log(selection);
+    return selection === "invalid selection" ? false : true;
+  }
+
   handleSelection = (event) => {
     if(this.state.questionAnswered === false)
     {
-      const selection = parseInt(event.target.id);
-      this.setState({
-        questionAnswered: true,
-        selection: parseInt(event.target.id) 
-      })
-      if (selection === this.props.question.correct_choice) {
+      const selection = this.getSelection(event);
+      console.log(this.isValidSelection(selection));
+      if (this.isValidSelection(selection) === true) {
         this.setState({
-          questionAnsweredCorrectly: true 
+          questionAnswered: true,
+          selection: selection 
         })
+        if (selection === this.props.question.correct_choice) {
+          this.setState({
+            questionAnsweredCorrectly: true 
+          })
+        }
       }
+      console.log(this.state);
     }
   }
 
@@ -74,7 +118,7 @@ class PlaybleQuestion extends React.Component {
   render() {
     const question = this.props.question;
     return (
-      <div className="Question container">
+      <div className="Question container" >
         <h3>Question Id: {question.id}</h3>
         <h1 dangerouslySetInnerHTML={{__html: question.stem}} />
         <br />
