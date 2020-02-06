@@ -90,6 +90,7 @@ class PlayableQuiz extends React.Component {
     return(
       <>
         <h1>{score.numberRight} out of {score.outOf} correct:  {(score.numberRight * 100 / score.outOf).toFixed(2)}%.</h1>
+        <button className="btn btn-lg border" onClick={() => this.storeResults()}>Done - Store Results</button>
         <hr />
         {output}
       </>
