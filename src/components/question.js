@@ -20,6 +20,7 @@ const Question = props => {
 
   return (
     <div className="Question container">
+        <h3>ID: {question.id}</h3>
         <h1 dangerouslySetInnerHTML={{__html: question.stem}} />
         <br />
         <h1 id="1" className="ml-5 question-choice" dangerouslySetInnerHTML={{__html: `A. ${question.choice_1}`}} />
