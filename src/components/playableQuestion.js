@@ -45,7 +45,6 @@ class PlaybleQuestion extends React.Component {
   }
 
   isValidSelection(selection) {
-    console.log(selection);
     return selection === "invalid selection" ? false : true;
   }
 
@@ -53,7 +52,6 @@ class PlaybleQuestion extends React.Component {
     if(this.state.questionAnswered === false)
     {
       const selection = this.getSelection(event);
-      console.log(this.isValidSelection(selection));
       if (this.isValidSelection(selection) === true) {
         this.setState({
           questionAnswered: true,
@@ -65,7 +63,6 @@ class PlaybleQuestion extends React.Component {
           })
         }
       }
-      console.log(this.state);
     }
   }
 

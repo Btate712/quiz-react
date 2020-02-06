@@ -44,7 +44,6 @@ class QuestionContainer extends Component {
 
   redirectOnDelete = () => {
     if (this.state.questionDeleted === true) {
-      console.log("redirecting...")
       this.setState({
         questionDeleted: false
       })
@@ -64,7 +63,6 @@ class QuestionContainer extends Component {
           </Route>
           <Route path="/questions/:id">
             <div className={this.state.questionDeleted.toString()} >
-              {console.log("redirecting? ", this.state.questionDeleted)}
               {this.redirectOnDelete()}
             </div>
             <Question topic={this.props.topic.topic_info} question={question} />
