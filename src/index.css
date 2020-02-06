@@ -16,3 +16,7 @@ code {
   background-color: #e6f9ff;
   cursor: default;
 }
+
+.incorrect {
+  color: red;
+}
