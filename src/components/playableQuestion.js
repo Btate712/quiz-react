@@ -10,11 +10,11 @@ class PlaybleQuestion extends React.Component {
   }
   
   componentDidMount = () => {
-    document.addEventListener("keydown", this.handleSelection);
+    document.addEventListener("keydown", this.keyEventResponse);
   }
 
   componentWillUnmount = () => {
-    document.removeEventListener("keydown", this.handleSelection);
+    document.removeEventListener("keydown", this.keyEventResponse);
   }
 
   getSelection(event) {
@@ -62,6 +62,16 @@ class PlaybleQuestion extends React.Component {
             questionAnsweredCorrectly: true 
           })
         }
+      }
+    }
+  }
+
+  keyEventResponse = event => {
+    if (this.state.questionAnswered === false) {
+      this.handleSelection(event);
+    } else {
+      if (event.key === "Enter" || event.key === "ArrowRight") {
+        this.storeResult();
       }
     }
   }
