@@ -85,6 +85,7 @@ class NewQuizForm extends React.Component {
             <input name="numberOfQuestions" type="text" value={this.state.numberOfQuestions} onChange={this.handleInputChange} />
           </div>
           <input type="submit" className="btn btn-primary"/>
+          {console.log(this.state.topicsList)}
         </form>
       </div>
     )

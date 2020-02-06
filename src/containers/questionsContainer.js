@@ -12,10 +12,15 @@ class QuestionsContainer extends React.Component {
   }
 
   showQuestionsWhenLoaded() {
-    const questions = this.props.questions.questionList;
+    const questions = this.props.questions.questionList.sort((a, b) => a.id - b.id);
     if(questions) {
       return questions.map((question, key) => {
-        return (<h3 key={key} ><Link to={`/questions/${question.id}`}> {question.stem} </Link></h3>) 
+        return (
+          <h3 key={key} >
+            <Link to={`/questions/${question.id}`}> 
+              {`${question.id}: ${question.stem}`} 
+            </Link>
+          </h3>) 
       })
     }
   }
@@ -30,7 +35,11 @@ class QuestionsContainer extends React.Component {
             const id = match.params.id;
             return (<QuestionContainer questionId={id} />)
           }} />
-          <Route path="/questions">{this.showQuestionsWhenLoaded()}</Route>
+          <Route path="/questions">
+            <div className="container">
+              {this.showQuestionsWhenLoaded()}
+            </div>
+          </Route>
         </Switch>
       </div>
     );

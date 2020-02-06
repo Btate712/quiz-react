@@ -53,6 +53,18 @@ class QuestionContainer extends Component {
     }
   }
 
+  topicButtonIfLoaded = () => {
+    if ( this.props.topic !== {} ) {
+      return (
+        <Link to={`/topics/${this.props.topic.topic_info.id}`}>
+          <button className="btn btn-lg border">
+            Back to topic: {this.props.topic.topic_info.name}
+          </button>
+        </Link>
+      )
+    }
+  }
+
   showQuestionWhenLoaded() {
     const question = this.props.question.question;
     if(question) {
@@ -67,11 +79,7 @@ class QuestionContainer extends Component {
             </div>
             <Question topic={this.props.topic.topic_info} question={question} />
             <div className="container">
-              <Link to={`/topics/${this.props.topic.topic_info.id}`}>
-                <button className="btn btn-lg border">
-                  Back to topic: {this.props.topic.topic_info.name}
-                </button>
-              </Link>
+              {this.topicButtonIfLoaded()}
               {this.adminButtons()}
             </div>
           </Route>

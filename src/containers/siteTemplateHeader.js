@@ -8,9 +8,14 @@ class SiteTemplateHeader extends React.Component {
   adminLinks = () => {
     if (this.props.user.admin === true) {
       return (
-        <li className="nav-item">
-          <Link className="nav-link" to="/project-access">Assign Project Access</Link>
-        </li>
+        <>
+          <li className="nav-item">
+            <Link className="nav-link" to="/project-access">Assign Project Access</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/questions">Question List</Link>
+          </li>
+        </>
       )
     }
   } 

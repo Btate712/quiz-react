@@ -83,21 +83,14 @@ class PlaybleQuestion extends React.Component {
 
   showGradedQuestion = () => {
     if(this.state.questionAnswered) {
-      if(this.state.questionAnsweredCorrectly) {
-        return (
-          <>
-            { setTimeout(() => this.storeResult(), 1000) }
-            <h1>Correct!</h1>
-          </>
-        )
-      } else {
-        return (
-          <>
-            { setTimeout(() => this.storeResult(), 4000) }
-            <h1>Incorrect. The correct answer is {this.numberToLetter(this.props.question.correct_choice)}</h1>
-          </>
-        )
-      }
+      const correct = this.state.questionAnsweredCorrectly;
+      const message = correct === true ? "Correct!" : `Incorrect. The correct answer is ${this.numberToLetter(this.props.question.correct_choice)}`
+      return (
+        <>
+          <h1>{message}</h1>
+          <button className="btn btn-primary" onClick={this.storeResult} >Next Question</button>
+        </>
+      )
     }
   }
 
@@ -129,6 +122,7 @@ class PlaybleQuestion extends React.Component {
           dangerouslySetInnerHTML={{__html: `D. ${question.choice_4}`}} />
         <br />
         {this.showGradedQuestion()}        
+        
       </div>
     )
   }
