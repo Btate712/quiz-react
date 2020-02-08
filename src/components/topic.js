@@ -3,23 +3,12 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addTopicToProject } from '../actions/projectActions';
 import { URL } from '../appData/applicationConstants';
+import TopicAdminButtons from './topicAdminButtons';
+import QuestionList from './questionList';
 
 class Topic extends React.Component {
   state = {
     complete: false
-  }
-  
-  showQuestions = () => {
-    const questions = this.props.questions;
-    return (
-      questions.map((question, key) => {
-        return(
-          <h3 key={key} className="ml-4">
-            <Link to={`/questions/${question.id}`} dangerouslySetInnerHTML={{__html: `${question.id}: ${question.stem}`}} />
-          </h3>
-        );
-      })
-    );
   }
 
   handleDelete = () => {
@@ -42,26 +31,17 @@ class Topic extends React.Component {
     addTopicToProject(URL, this.props.topic.id, 1, this.props.user.token);
   }
 
-  adminButtons = () => {
-    if(this.props.user.admin === true) {
-      return (
-        <>
-          <Link to="/questions/new"><button className="btn btn-lg border">Create a New Question</button></Link>
-          <button className="btn btn-lg border" onClick={() => this.handleDelete()}>Delete Topic</button>
-          <button className="btn btn-lg border" onClick={() => this.handleAddToProject()}>Add Topic to Project</button>
-        </>
-      )
-    }
-  }
-
   render() {
     return (
       <div className="Topic container">
         <h1>Topic: {this.props.topic.name}</h1>
         <h2>Topic Id#: {this.props.topic.id}</h2>
         <h2>Questions: ({this.props.questions.length} in bank)</h2>
-        {this.showQuestions()}
-        {this.adminButtons()}
+        <QuestionList questions={this.props.questions} />
+        <TopicAdminButtons 
+          userIsAdmin={this.props.user.admin} 
+          handleDelete={this.handleDelete}
+          handleAddToProject={this.handleAddToProject}/>
         {this.redirectWhenComplete()}
       </div>
     )
