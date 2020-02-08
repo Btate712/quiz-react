@@ -54,11 +54,19 @@ class QuestionContainer extends Component {
   }
 
   topicButtonIfLoaded = () => {
-    if ( this.props.topic !== {} ) {
+    if ( this.props.topic.id) {
       return (
         <Link to={`/topics/${this.props.topic.topic_info.id}`}>
           <button className="btn btn-lg border">
             Back to topic: {this.props.topic.topic_info.name}
+          </button>
+        </Link>
+      )
+    } else {
+      return (
+        <Link to="/questions">
+          <button className="btn btn-lg border">
+            Back to Questions
           </button>
         </Link>
       )

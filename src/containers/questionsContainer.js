@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import QuestionContainer from './questionContainer';
 import NewQuestionContainer from './newQuestionContainer';
 import { Switch, Route, Link } from 'react-router-dom';
+import QuestionList from '../components/questionList';
 
 class QuestionsContainer extends React.Component {
   componentDidMount() {
@@ -12,16 +13,9 @@ class QuestionsContainer extends React.Component {
   }
 
   showQuestionsWhenLoaded() {
-    const questions = this.props.questions.questionList.sort((a, b) => a.id - b.id);
+    const questions = this.props.questions.questionList;
     if(questions) {
-      return questions.map((question, key) => {
-        return (
-          <h3 key={key} >
-            <Link to={`/questions/${question.id}`}> 
-              {`${question.id}: ${question.stem}`} 
-            </Link>
-          </h3>) 
-      })
+      return <QuestionList questions={this.props.questions.questionList} />
     }
   }
 
