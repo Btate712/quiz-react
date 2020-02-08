@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Question from '../components/question';
 import { Link, Switch, Route, Redirect } from 'react-router-dom';
 import NewQuestionForm from '../components/newQuestionForm';
+import ConditionalRedirect from '../components/conditionalRedirect';
 
 class QuestionContainer extends Component {
   state = {
@@ -26,9 +27,11 @@ class QuestionContainer extends Component {
           </Link>
             <button className="btn btn-lg border pull-right" onClick={() => this.deleteQuestion()} >
               Delete Question
-           </button>
+            </button>
         </>
-      )
+      );
+    } else {
+      return (<></>);
     }
   }
 
@@ -39,17 +42,6 @@ class QuestionContainer extends Component {
       this.setState({
         questionDeleted: true
       })
-    }
-  }
-
-  redirectOnDelete = () => {
-    if (this.state.questionDeleted === true) {
-      this.setState({
-        questionDeleted: false
-      })
-      return (
-        <Redirect to={`/topics/${this.props.topic.topic_info.id}`} />
-      )
     }
   }
 
@@ -82,9 +74,6 @@ class QuestionContainer extends Component {
           <NewQuestionForm mode="edit" />
           </Route>
           <Route path="/questions/:id">
-            <div className={this.state.questionDeleted.toString()} >
-              {this.redirectOnDelete()}
-            </div>
             <Question topic={this.props.topic.topic_info} question={question} />
             <div className="container">
               {this.topicButtonIfLoaded()}
@@ -98,9 +87,10 @@ class QuestionContainer extends Component {
 
   render() {
     return (
-      <div>
+      <>
+        <ConditionalRedirect to={`/topics/${this.props.topic.topic_info.id}`} condition={this.state.questionDeleted} />
         {this.showQuestionWhenLoaded()}
-      </div>  
+      </>  
     );
   }
 }
