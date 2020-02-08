@@ -6,6 +6,7 @@ import Question from '../components/question';
 import { Link, Switch, Route, Redirect } from 'react-router-dom';
 import NewQuestionForm from '../components/newQuestionForm';
 import ConditionalRedirect from '../components/conditionalRedirect';
+import QuestionAdminButtons from '../components/questionAdminButtons';
 
 class QuestionContainer extends Component {
   state = {
@@ -14,25 +15,6 @@ class QuestionContainer extends Component {
 
   componentDidMount() {
     this.props.getQuestion(this.props.questionId, this.props.user.token);
-  }
-
-  adminButtons() {
-    if(this.props.user.admin === true) {
-      return (
-        <>
-          <Link to={`/questions/${this.props.question.id}/edit`}>
-            <button className="btn btn-lg border">
-              Edit Question
-            </button>
-          </Link>
-            <button className="btn btn-lg border pull-right" onClick={() => this.deleteQuestion()} >
-              Delete Question
-            </button>
-        </>
-      );
-    } else {
-      return (<></>);
-    }
   }
 
   deleteQuestion = () => {
@@ -46,7 +28,8 @@ class QuestionContainer extends Component {
   }
 
   topicButtonIfLoaded = () => {
-    if ( this.props.topic.id) {
+    console.log(this.props)
+    if ( this.props.topic.topic_info) {
       return (
         <Link to={`/topics/${this.props.topic.topic_info.id}`}>
           <button className="btn btn-lg border">
@@ -77,7 +60,11 @@ class QuestionContainer extends Component {
             <Question topic={this.props.topic.topic_info} question={question} />
             <div className="container">
               {this.topicButtonIfLoaded()}
-              {this.adminButtons()}
+              <QuestionAdminButtons 
+                userIsAdmin={this.props.user.admin} 
+                topicId={this.props.topic.id}
+                deleteQuestion={this.deleteQuestion}
+              />
             </div>
           </Route>
         </Switch>
@@ -88,7 +75,10 @@ class QuestionContainer extends Component {
   render() {
     return (
       <>
-        <ConditionalRedirect to={`/topics/${this.props.topic.topic_info.id}`} condition={this.state.questionDeleted} />
+        <ConditionalRedirect 
+          to={this.props.topic.topic_info ? `/topics/${this.props.topic.topic_info.id}` : "/questions"} 
+          condition={this.state.questionDeleted} 
+        />
         {this.showQuestionWhenLoaded()}
       </>  
     );
