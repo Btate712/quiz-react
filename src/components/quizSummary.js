@@ -1,5 +1,6 @@
 import React from 'react';
 import Question from './question';
+import { numberToLetter } from '../actions/questionActions';
 
 export function QuizSummary(props) {
   const score = getScore(props.quiz.questions);
@@ -40,17 +41,3 @@ function getScore(questions) {
   return {numberRight: numberRight, outOf: outOf}
 }
 
-function numberToLetter(number) {
-  switch (number) {
-    case 1:
-      return "A";
-    case 2:
-      return "B";
-    case 3:
-      return "C";
-    case 4:
-      return "D";
-    default:
-      return "Not Found"
-  }  
-}
