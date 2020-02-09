@@ -20,27 +20,40 @@ class SiteTemplateHeader extends React.Component {
     }
   } 
 
+  loginOrLogout = () => {
+    if(this.props.user.loggedIn === true) {
+      return (
+        <>
+          <li className="nav-item">
+            <Link className="nav-link" to="/home">Home</Link>
+          </li>
+          {this.adminLinks()}
+          <li className="nav-item">
+            <Link className="nav-link" to="/topics">Topics</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link" to="/quiz">Quiz</Link>
+          </li>
+            <li className="nav-item">
+            <Link className="nav-link" to="/" onClick={this.props.logout}>Log Out {this.props.user.name}</Link>
+          </li>
+        </>
+      )
+    } else {
+      return (
+        <li className="nav-item">
+          <Link className="nav-link" to="/login">Log In / Register</Link>
+        </li>
+      )
+    }
+  }
+
   render() {
     return(
       <div>
         <nav className="navbar navbar-expand-sm">
           <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className="nav-link" to="/home">Home</Link>
-            </li>
-            {this.adminLinks()}
-            <li className="nav-item">
-              <Link className="nav-link" to="/topics">Topics</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/quiz">Quiz</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/login">Log In / Register</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/" onClick={this.props.logout}>Log Out {this.props.user.name}</Link>
-            </li>
+            {this.loginOrLogout()}
           </ul>
         </nav>
       </div>
