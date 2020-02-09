@@ -1,6 +1,20 @@
 import React from 'react';
+import { numberToLetter } from '../actions/questionActions';
 
-function PlayableQuestionDisplay(props) {
+const showGradedQuestion = (questionAnswered, question, selection, storeResult) => {
+  if(questionAnswered) {
+    const correct = question.correct_choice === selection ? true : false
+    const message = correct === true ? "Correct!" : `Incorrect. The correct answer is ${numberToLetter(question.correct_choice)}`
+    return (
+      <>
+        <h1>{message}</h1>
+        <button className="btn btn-primary" onClick={storeResult} >Next Question</button>
+      </>
+    )
+  }
+}
+
+export function PlayableQuestionDisplay(props) {
   const question = props.question;
   return (
     <div className="Question container" >
@@ -16,9 +30,9 @@ function PlayableQuestionDisplay(props) {
       <h1 id="4" className="ml-5 playable-question-choice" onClick={props.handleSelection}
         dangerouslySetInnerHTML={{__html: `D. ${question.choice_4}`}} />
       <br />
-      {props.showGradedQuestion()}        
+      {showGradedQuestion(props.questionAnswered, props.question, props.selection, props.storeResult)}        
     </div>
   )
 }
 
-export default PlayableQuestionDisplay;
+
