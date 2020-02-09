@@ -20,9 +20,6 @@ class Topic extends React.Component {
     }
   }
 
-  handleAddToProject = () => {
-    addTopicToProject(URL, this.props.topic.id, 1, this.props.user.token);
-  }
 
   render() {
     return (

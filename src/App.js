@@ -8,6 +8,7 @@ import TopicsContainer from './containers/topicsContainer';
 import QuestionsContainer from './containers/questionsContainer';
 import QuizContainer from './containers/quizContainer';
 import ProjectAccessContainer from './containers/projectAccessContainer';
+import ProjectTopicsContainer from './containers/projectTopicsContainer';
 import { connect } from 'react-redux';
 import { checkToken } from './actions/userActions';
 import SiteTemplateHeader from './containers/siteTemplateHeader';
@@ -38,6 +39,7 @@ class App extends Component {
 
             <PrivateRoute path="/project-access" component={ProjectAccessContainer} loginStatus={this.props.user.loggedIn} />
 
+            <PrivateRoute path="/project-topics" component={ProjectTopicsContainer} loginStatus={this.props.user.loggedIn} />
           </Switch>
         </div>
       </Router>
