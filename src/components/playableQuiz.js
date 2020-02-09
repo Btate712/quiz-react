@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PlayableQuestion from './playableQuestion';
-import Question from './question';
+import { QuizSummary } from './quizSummary';
 import { storeQuizResults } from '../actions/quizActions';
 import { URL } from '../appData/applicationConstants';
 import { Redirect } from 'react-router-dom';
@@ -23,8 +23,7 @@ class PlayableQuiz extends React.Component {
     } else {
       return (
         <>
-          {this.showSummary()}
-          <button className="btn btn-lg border" onClick={() => this.storeResults()}>Done - Store Results</button>
+          <QuizSummary quiz={this.props.quiz} storeResults={this.storeResults} />
           <br />
           <br />
         </>
@@ -41,60 +40,6 @@ class PlayableQuiz extends React.Component {
     if (this.state.complete === true) {
       return <Redirect to="/home" />
     }
-  }
-
-  numberToLetter(number) {
-    switch (number) {
-      case 1:
-        return "A";
-      case 2:
-        return "B";
-      case 3:
-        return "C";
-      case 4:
-        return "D";
-      default:
-        return "Not Found"
-    }  
-  }
-
-  getScore = () => {
-    let numberRight = 0;
-    const questions = this.props.quiz.questions;
-    const outOf = questions.length;
-    questions.forEach(question => {
-      if (question.choice === question.correct_choice) {
-        numberRight += 1;
-      }
-    })
-    return {numberRight: numberRight, outOf: outOf}
-  }
-
-  showSummary = () => {
-    const score = this.getScore();
-    const output = this.props.quiz.questions.map((question, index) => {
-      return(
-        <div key={index}>
-          <h3>Question Id: {question.id}</h3>
-          <h1>Question #{index + 1}: </h1>
-          <Question question={question} />
-          <div className="container">
-            <h2 className={question.choice === question.correct_choice ? "correct" : "incorrect"}>
-              You answered: {this.numberToLetter(question.choice)}
-            </h2>
-          </div>
-          <hr />
-        </div>
-      )
-    })
-    return(
-      <>
-        <h1>{score.numberRight} out of {score.outOf} correct:  {(score.numberRight * 100 / score.outOf).toFixed(2)}%.</h1>
-        <button className="btn btn-lg border" onClick={() => this.storeResults()}>Done - Store Results</button>
-        <hr />
-        {output}
-      </>
-    )
   }
 
   render() {
