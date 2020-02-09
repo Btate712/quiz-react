@@ -24,7 +24,7 @@ class QuestionsContainer extends React.Component {
     return(
       <div>
         <Switch>
-          <Route path={"/questions/new"}><NewQuestionContainer /></Route>
+          <Route path={"/questions/new"}><NewQuestionContainer mode="new"/></Route>
           <Route path={"/questions/:id"} render={({match}) => {
             const id = match.params.id;
             return (<QuestionContainer questionId={id} />)

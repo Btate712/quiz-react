@@ -4,7 +4,7 @@ import { getQuestion, deleteQuestion } from '../actions/questionActions';
 import { connect } from 'react-redux';
 import Question from '../components/question';
 import { Link, Switch, Route } from 'react-router-dom';
-import NewQuestionForm from '../components/questionForm';
+import NewQuestionContainer from '../containers/newQuestionContainer';
 import ConditionalRedirect from '../components/conditionalRedirect';
 import QuestionAdminButtons from '../components/questionAdminButtons';
 
@@ -53,7 +53,7 @@ class QuestionContainer extends Component {
       return (
         <Switch>
           <Route path="/questions/:id/edit">
-          <NewQuestionForm mode="edit" />
+          <NewQuestionContainer mode="edit" question={question.question} />
           </Route>
           <Route path="/questions/:id">
             <Question topic={this.props.topic.topic_info} question={question} />

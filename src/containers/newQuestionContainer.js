@@ -6,14 +6,15 @@ import { createQuestion, updateQuestion } from '../actions/questionActions';
 
 class newQuestionContainer extends React.Component {
   render() {
+    console.log(this.props)
     return(
       <div className="container">
         <QuestionForm 
-          mode="new" 
+          mode={this.props.mode }
           user={this.props.user}
           topics={this.props.topics}
           topic={this.props.topic}
-          question={this.props.quesiton}
+          question={this.props.question.question}
           createQuestion={this.props.createQuestion}
           updateQuestion={this.props.updateQuestion}
         />
