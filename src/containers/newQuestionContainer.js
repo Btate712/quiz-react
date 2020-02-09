@@ -14,7 +14,7 @@ class newQuestionContainer extends React.Component {
           user={this.props.user}
           topics={this.props.topics}
           topic={this.props.topic}
-          question={this.props.question.question}
+          question={this.props.question}
           createQuestion={this.props.createQuestion}
           updateQuestion={this.props.updateQuestion}
         />

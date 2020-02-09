@@ -8,7 +8,7 @@ const questionReducer = (state = { question: {}, inProgress: false }, action) =>
 
     case 'ADD_QUESTION':
       return {
-        question: action.question,
+        question: action.question.question,
         inProgress: false
       }
 

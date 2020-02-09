@@ -48,12 +48,13 @@ class QuestionContainer extends Component {
   }
 
   showQuestionWhenLoaded() {
-    const question = this.props.question.question;
+    console.log(this.props)
+    const question = this.props.question;
     if(question) {
       return (
         <Switch>
           <Route path="/questions/:id/edit">
-          <NewQuestionContainer mode="edit" question={question.question} />
+          <NewQuestionContainer mode="edit" question={question} />
           </Route>
           <Route path="/questions/:id">
             <Question topic={this.props.topic.topic_info} question={question} />
