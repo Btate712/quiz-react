@@ -1,4 +1,5 @@
 import React from 'react';
+import TopicList from './topicList';
 
 class NewQuizForm extends React.Component {
 
@@ -30,7 +31,7 @@ class NewQuizForm extends React.Component {
     }
   }
 
-  isChecked(id) {
+  isChecked = (id) => {
     return this.state.topicsList.find(topic => parseInt(id) === topic) ? true : false;
   }
 
@@ -50,21 +51,6 @@ class NewQuizForm extends React.Component {
     this.setState({ topicsList: [] })
   }
 
-  listTopics() {
-    return (
-      this.props.topics.map((topic, key) => {
-        return (
-          <div key={key}>
-            <label className="form-check-label">
-              <input className="" type="checkbox" id={topic.id} name={topic.name} checked={this.isChecked(topic.id)} onChange={this.handleInputChange} />
-              {topic.name}
-            </label>
-          </div>
-        )
-      })
-    )
-  }
-
   render() {
     return(
       <div className="container">
@@ -72,7 +58,11 @@ class NewQuizForm extends React.Component {
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <h3>Topics:</h3>
-            {this.listTopics()}
+            <TopicList 
+              topics={this.props.topics}
+              isChecked={this.isChecked}
+              handleInputChange={this.handleInputChange}
+            />
             <button className="btn btn-primary" onClick={this.selectAll}>
               Select All
             </button>
