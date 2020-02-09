@@ -25,16 +25,14 @@ class NewTopicForm extends React.Component {
     return(
       <div className="container" >
         <h1>New Topic:</h1>
-          <form onSubmit={this.handleSubmit}>
-            <div className="form-group">
-              <label>Topic Name:</label>
-              <input name="name" id="name" type="text" className="form-control" onChange={this.handleInputChange} value={this.state.name} />
-            </div>
-            <input type="submit" className="btn btn-primary"/>
-          </form>
-          <div className={this.state.complete}>
-            <ConditionalRedirect to="/topics" condition={this.state.complete} />
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <label>Topic Name:</label>
+            <input name="name" id="name" type="text" className="form-control" onChange={this.handleInputChange} value={this.state.name} />
           </div>
+          <input type="submit" className="btn btn-primary"/>
+        </form>
+        <ConditionalRedirect to="/topics" condition={this.state.complete} />
       </div>
     )
   }
