@@ -16,9 +16,9 @@ class ProjectAccessContainer extends Component {
     if (this.props.projects.projectList && this.props.users) {
       return (
         <ProjectAccessForm 
-          user={this.state.user}
-          projects={this.state.projects}
-          users={this.state.users}
+          user={this.props.user}
+          projects={this.props.projects}
+          users={this.props.users}
         />);
     } else {
       return (<h1>Loading...</h1>);
@@ -45,7 +45,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getProjects: token => dispatch(getProjects(URL, token)),
-    getUsers: token => dispatch(getUsers(URL, token))
+    getUsers: token => dispatch(getUsers(URL, token)),
   }
 }
 
