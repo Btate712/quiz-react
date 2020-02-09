@@ -4,7 +4,7 @@ import PlayableQuestion from './playableQuestion';
 import { QuizSummary } from './quizSummary';
 import { storeQuizResults } from '../actions/quizActions';
 import { URL } from '../appData/applicationConstants';
-import { Redirect } from 'react-router-dom';
+import ConditionalRedirect from './conditionalRedirect';
 
 
 class PlayableQuiz extends React.Component {
@@ -36,17 +36,11 @@ class PlayableQuiz extends React.Component {
     this.setState({ complete: true })
   }
 
-  redirectWhenComplete = () => {
-    if (this.state.complete === true) {
-      return <Redirect to="/home" />
-    }
-  }
-
   render() {
     return (
       <div className="container" complete={this.state.complete.toString()}>
         {this.askQuestionOrGiveSummary()}
-        {this.redirectWhenComplete()}
+        <ConditionalRedirect to="/home" condition={this.state.complete} />
       </div>
     );
   }
