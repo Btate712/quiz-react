@@ -1,8 +1,10 @@
 import React from 'react';
 
 function TopicList(props) {
+  const topics = props.topics.sort((a, b) => a.name > b.name ? 1 : -1 );    
+
   return (
-    props.topics.map((topic, key) => {
+    topics.map((topic, key) => {
       return (
         <div key={key}>
           <label className="form-check-label">
