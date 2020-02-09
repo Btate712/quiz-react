@@ -1,22 +1,8 @@
 import React from 'react';
+import { numberToLetter } from '../actions/questionActions';
 
 const Question = props => {
   const question = props.question;
-
-  const numberToLetter = number => {
-    switch(number) {
-      case 1:
-        return "A";
-      case 2:
-        return "B";
-      case 3:
-        return "C";
-      case 4:
-        return "D";
-      default:
-        return "Not Found";
-    }
-  }
 
   return (
     <div className="Question container">

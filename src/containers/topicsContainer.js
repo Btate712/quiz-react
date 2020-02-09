@@ -12,7 +12,7 @@ class TopicsContainer extends React.Component {
   }
 
   listTopics() {
-    const topics = this.props.topics.topicList;
+    const topics = this.props.topics.topicList.sort((a,b) => a.name > b.name ? 1 : -1);
     return(
       topics.map((topic, key) => {
         return (

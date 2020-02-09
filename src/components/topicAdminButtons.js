@@ -10,6 +10,8 @@ function TopicAdminButtons(props) {
         <button className="btn btn-lg border" onClick={() => props.handleAddToProject()}>Add Topic to Project</button>
       </>
     )
+  } else {
+    return <></>
   }
 }
 
