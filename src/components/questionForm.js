@@ -17,7 +17,6 @@ class QuestionForm extends Component {
   }
 
   componentDidMount = () => {
-    console.log(this.props)
     const question = this.props.question
     if(this.props.mode === "edit") {
       this.setState({
