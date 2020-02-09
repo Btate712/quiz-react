@@ -63,7 +63,8 @@ class NewQuizForm extends React.Component {
               isChecked={this.isChecked}
               handleInputChange={this.handleInputChange}
             />
-            <button className="btn btn-primary" onClick={this.selectAll}>
+            <br />
+            <button className="btn btn-primary mr-1" onClick={this.selectAll}>
               Select All
             </button>
             <button className="btn btn-primary" onClick={this.deSelectAll}>
