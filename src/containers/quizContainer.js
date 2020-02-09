@@ -3,7 +3,7 @@ import NewQuizForm from '../components/newQuizForm';
 import { connect } from 'react-redux';
 import { getTopics } from '../actions/topicActions';
 import { URL } from '../appData/applicationConstants';
-import { createQuiz } from '../actions/quizActions';
+import { createQuiz, storeQuizResults } from '../actions/quizActions';
 import PlayableQuiz from '../components/playableQuiz';
 
 
@@ -16,7 +16,11 @@ class QuizContainer extends React.Component {
     if(this.props.quiz.questions.length > 0) {
       return (
         <div>
-          <PlayableQuiz />
+          <PlayableQuiz 
+            user={this.props.user} 
+            quiz={this.props.quiz} 
+            storeQuizResults={this.props.storeQuizResults}
+          />
         </div>
       )
     } else if(this.props.topics && this.props.topics.length > 0) {
@@ -40,7 +44,8 @@ class QuizContainer extends React.Component {
 const mapDispatchToProps = dispatch => {
   return ({
     getTopics: (token) => dispatch(getTopics(URL, token)),
-    createQuiz: (numberOfQuestions, topics, token) => dispatch(createQuiz(URL, numberOfQuestions, topics, token))
+    createQuiz: (numberOfQuestions, topics, token) => dispatch(createQuiz(URL, numberOfQuestions, topics, token)),
+    storeQuizResults: (questions, token) => dispatch(storeQuizResults(URL, questions, token))
   });
 }
 

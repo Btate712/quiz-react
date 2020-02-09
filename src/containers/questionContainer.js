@@ -28,7 +28,6 @@ class QuestionContainer extends Component {
   }
 
   topicButtonIfLoaded = () => {
-    console.log(this.props)
     if ( this.props.topic.topic_info) {
       return (
         <Link to={`/topics/${this.props.topic.topic_info.id}`}>
