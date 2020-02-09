@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { createQuestion, updateQuestion } from '../actions/questionActions';
-import { URL } from '../appData/applicationConstants';
 import Question from './question';
 import SelectOptions from './selectOptions';
 import ConditionalRedirect from './conditionalRedirect';
 
-class NewQuestionForm extends Component {
+class QuestionForm extends Component {
   state = {
     topic_id: this.props.topic.id,
     stem: " ",
@@ -20,7 +17,8 @@ class NewQuestionForm extends Component {
   }
 
   componentDidMount = () => {
-    const question = this.props.question.question
+    console.log(this.props)
+    const question = this.props.question
     if(this.props.mode === "edit") {
       this.setState({
         topic_id: question.topic_id,
@@ -108,20 +106,4 @@ class NewQuestionForm extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return({
-    user: state.user,
-    topics: state.topics.topicList,
-    topic: state.topic.topic.topic_info,
-    question: state.question.question
-  })
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    createQuestion: (question, token) => dispatch(createQuestion(URL, question, token)),
-    updateQuestion: (question, id, token) => dispatch(updateQuestion(URL, question, id, token))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NewQuestionForm);
+export default QuestionForm;

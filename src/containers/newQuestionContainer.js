@@ -1,14 +1,41 @@
 import React from 'react';
-import NewQuestionForm from '../components/newQuestionForm';
+import QuestionForm from '../components/questionForm';
+import { URL } from '../appData/applicationConstants';
+import { connect } from 'react-redux';
+import { createQuestion, updateQuestion } from '../actions/questionActions';
 
 class newQuestionContainer extends React.Component {
   render() {
     return(
       <div className="container">
-        <NewQuestionForm mode="new" />
+        <QuestionForm 
+          mode="new" 
+          user={this.props.user}
+          topics={this.props.topics}
+          topic={this.props.topic}
+          question={this.props.quesiton}
+          createQuestion={this.props.createQuestion}
+          updateQuestion={this.props.updateQuestion}
+        />
       </div>
     )
   }
 }
 
-export default newQuestionContainer;
+const mapStateToProps = state => {
+  return({
+    user: state.user,
+    topics: state.topics.topicList,
+    topic: state.topic.topic.topic_info,
+    question: state.question.question
+  })
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    createQuestion: (question, token) => dispatch(createQuestion(URL, question, token)),
+    updateQuestion: (question, id, token) => dispatch(updateQuestion(URL, question, id, token))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(newQuestionContainer);
