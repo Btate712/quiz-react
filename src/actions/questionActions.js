@@ -94,3 +94,18 @@ export function updateQuestion(url, question, id, token) {
     fetch(`${url}/questions/${id}`, configurationObject)
   }
 }
+
+export function numberToLetter(number) {
+  switch (number) {
+    case 1:
+      return "A";
+    case 2:
+      return "B";
+    case 3:
+      return "C";
+    case 4:
+      return "D";
+    default:
+      return "Not Found"
+  }  
+}

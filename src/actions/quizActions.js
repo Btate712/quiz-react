@@ -47,3 +47,30 @@ export function storeQuizResults(url, questions, token) {
       .then(() => dispatch({ type: 'RESET_QUIZ' }))
   })
 }
+
+export function getSelection(event) {
+  if(event.type === "keydown") {
+    switch(event.key) {
+      case "a":
+        return 1
+      case "b":
+        return 2
+      case "c":
+        return 3
+      case "d": 
+        return 4
+      case "1":
+        return 1
+      case "2":
+        return 2
+      case "3":
+        return 3
+      case "4":
+        return 4
+      default:
+        return "invalid selection"
+    }
+  } else {
+    return parseInt(event.target.id);
+  }
+}

@@ -1,11 +1,7 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PlayableQuestion from './playableQuestion';
 import { QuizSummary } from './quizSummary';
-import { storeQuizResults } from '../actions/quizActions';
-import { URL } from '../appData/applicationConstants';
 import ConditionalRedirect from './conditionalRedirect';
-
 
 class PlayableQuiz extends React.Component {
   state = {
@@ -17,7 +13,10 @@ class PlayableQuiz extends React.Component {
       return(
         <>
           <h1>Question #{this.props.quiz.currentQuestion + 1}:</h1>
-          <PlayableQuestion question={this.props.quiz.questions[this.props.quiz.currentQuestion]} />
+          <PlayableQuestion 
+            question={this.props.quiz.questions[this.props.quiz.currentQuestion]} 
+            storeQuestionResponse={this.props.storeQuestionResponse}
+          />
         </>
       )
     } else {
@@ -46,17 +45,4 @@ class PlayableQuiz extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return ({
-    quiz: state.quiz,
-    user: state.user
-  });
-}
-
-const mapDispatchToProps = dispatch => {
-  return ({
-    storeQuizResults: (questions, token) => dispatch(storeQuizResults(URL, questions, token))
-  });
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PlayableQuiz);
+export default PlayableQuiz;

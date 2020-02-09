@@ -1,6 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { storeQuestionResponse } from '../actions/quizActions';
+import { getSelection } from '../actions/quizActions';
+import { numberToLetter } from '../actions/questionActions';
 
 class PlaybleQuestion extends React.Component {
   state = {
@@ -17,42 +17,11 @@ class PlaybleQuestion extends React.Component {
     document.removeEventListener("keydown", this.keyEventResponse);
   }
 
-  getSelection(event) {
-    if(event.type === "keydown") {
-      switch(event.key) {
-        case "a":
-          return 1
-        case "b":
-          return 2
-        case "c":
-          return 3
-        case "d": 
-          return 4
-        case "1":
-          return 1
-        case "2":
-          return 2
-        case "3":
-          return 3
-        case "4":
-          return 4
-        default:
-          return "invalid selection"
-      }
-    } else {
-      return parseInt(event.target.id);
-    }
-  }
-
-  isValidSelection(selection) {
-    return selection === "invalid selection" ? false : true;
-  }
-
   handleSelection = (event) => {
     if(this.state.questionAnswered === false)
     {
-      const selection = this.getSelection(event);
-      if (this.isValidSelection(selection) === true) {
+      const selection = getSelection(event);
+      if (selection !== "invalid selection") {
         this.setState({
           questionAnswered: true,
           selection: selection 
@@ -76,25 +45,10 @@ class PlaybleQuestion extends React.Component {
     }
   }
 
-  numberToLetter(number) {
-    switch (number) {
-      case 1:
-        return "A";
-      case 2:
-        return "B";
-      case 3:
-        return "C";
-      case 4:
-        return "D";
-      default:
-        return "Not Found"
-    }  
-  }
-
   showGradedQuestion = () => {
     if(this.state.questionAnswered) {
       const correct = this.state.questionAnsweredCorrectly;
-      const message = correct === true ? "Correct!" : `Incorrect. The correct answer is ${this.numberToLetter(this.props.question.correct_choice)}`
+      const message = correct === true ? "Correct!" : `Incorrect. The correct answer is ${numberToLetter(this.props.question.correct_choice)}`
       return (
         <>
           <h1>{message}</h1>
@@ -138,16 +92,4 @@ class PlaybleQuestion extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return({
-    quiz: state.quiz
-  })
-}
-
-const mapDispatchToProps = dispatch => {
-  return({
-    storeQuestionResponse: (question, choice) => dispatch(storeQuestionResponse(question, choice))
-  })
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PlaybleQuestion);
+export default PlaybleQuestion;
