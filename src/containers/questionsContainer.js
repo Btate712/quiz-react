@@ -4,7 +4,7 @@ import { URL } from '../appData/applicationConstants';
 import { connect } from 'react-redux';
 import QuestionContainer from './questionContainer';
 import NewQuestionContainer from './newQuestionContainer';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import QuestionList from '../components/questionList';
 
 class QuestionsContainer extends React.Component {

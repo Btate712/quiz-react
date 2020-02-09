@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { addTopicToProject } from '../actions/projectActions';
 import { URL } from '../appData/applicationConstants';
 import TopicAdminButtons from './topicAdminButtons';

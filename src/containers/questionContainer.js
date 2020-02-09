@@ -3,7 +3,7 @@ import { URL } from '../appData/applicationConstants';
 import { getQuestion, deleteQuestion } from '../actions/questionActions';
 import { connect } from 'react-redux';
 import Question from '../components/question';
-import { Link, Switch, Route, Redirect } from 'react-router-dom';
+import { Link, Switch, Route } from 'react-router-dom';
 import NewQuestionForm from '../components/newQuestionForm';
 import ConditionalRedirect from '../components/conditionalRedirect';
 import QuestionAdminButtons from '../components/questionAdminButtons';
