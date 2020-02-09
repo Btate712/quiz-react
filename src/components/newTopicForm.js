@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import ConditionalRedirect from './conditionalRedirect';
 
 class NewTopicForm extends React.Component {
 
@@ -20,12 +20,6 @@ class NewTopicForm extends React.Component {
     this.props.getTopics(this.props.token);
     this.setState({complete: true});
    }
-
-  redirectWhenComplete = () => {
-    if (this.state.complete === true) {
-      return (<Redirect to="/topics" />);
-    }
-  }
   
   render() {
     return(
@@ -39,7 +33,7 @@ class NewTopicForm extends React.Component {
             <input type="submit" className="btn btn-primary"/>
           </form>
           <div className={this.state.complete}>
-            {this.redirectWhenComplete()}
+            <ConditionalRedirect to="/topics" condition={this.state.complete} />
           </div>
       </div>
     )
