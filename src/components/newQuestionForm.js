@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createQuestion, updateQuestion } from '../actions/questionActions';
 import { URL } from '../appData/applicationConstants';
-import { Redirect } from 'react-router-dom';
 import Question from './question';
 import SelectOptions from './selectOptions';
+import ConditionalRedirect from './conditionalRedirect';
 
 class NewQuestionForm extends Component {
   state = {
@@ -57,12 +57,6 @@ class NewQuestionForm extends Component {
     this.setState({ complete: true })
   }
 
-  redirectWhenComplete = () => {
-    if (this.state.complete === true) {
-      return (<Redirect to={`/topics/${this.props.topic.id}`} />)
-    }
-  }
-
   render() {
     return (
       <div className={`${this.state.complete}`}>
@@ -108,7 +102,7 @@ class NewQuestionForm extends Component {
         <h1 className="container"><u>Question Preview:</u></h1>
         <br />
         <Question question={this.state} />
-        {this.redirectWhenComplete()}
+        <ConditionalRedirect to={`/topics/${this.props.topic.id}`} condition={this.state.complete} />
       </div>
     );
   }
