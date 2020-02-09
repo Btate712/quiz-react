@@ -25,8 +25,8 @@ class NewTopicForm extends React.Component {
     if (this.state.complete === true) {
       return (<Redirect to="/topics" />);
     }
-    // need to update topics list in store
   }
+  
   render() {
     return(
       <div className="container" >

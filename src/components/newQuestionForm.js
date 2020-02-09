@@ -4,6 +4,7 @@ import { createQuestion, updateQuestion } from '../actions/questionActions';
 import { URL } from '../appData/applicationConstants';
 import { Redirect } from 'react-router-dom';
 import Question from './question';
+import SelectOptions from './selectOptions';
 
 class NewQuestionForm extends Component {
   state = {
@@ -56,16 +57,6 @@ class NewQuestionForm extends Component {
     this.setState({ complete: true })
   }
 
-  topicOptions = () => {
-    return(
-      this.props.topics.map(topic => {
-        return(
-          <option key={topic.id} value={topic.id}>{topic.name}</option>
-        )
-      })
-    )
-  }
-
   redirectWhenComplete = () => {
     if (this.state.complete === true) {
       return (<Redirect to={`/topics/${this.props.topic.id}`} />)
@@ -79,7 +70,7 @@ class NewQuestionForm extends Component {
           <div className="form-group">
             <label>Topic: </label>
             <select name="topic_id" onChange={this.handleInputChange} value={this.state.topic_id} >
-              {this.topicOptions()}
+              <SelectOptions objects={this.props.topics} />
             </select>
           </div>
           <div className="form-group">
