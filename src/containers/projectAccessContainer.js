@@ -14,7 +14,12 @@ class ProjectAccessContainer extends Component {
 
   renderWhenLoaded = () => {
     if (this.props.projects.projectList && this.props.users) {
-      return (<ProjectAccessForm />);
+      return (
+        <ProjectAccessForm 
+          user={this.state.user}
+          projects={this.state.projects}
+          users={this.state.users}
+        />);
     } else {
       return (<h1>Loading...</h1>);
     }

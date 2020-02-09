@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { assignProject } from '../actions/projectActions';
 import { URL } from '../appData/applicationConstants';
 
@@ -54,12 +53,4 @@ class projectAccessForm extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return ({
-    user: state.user,
-    projects: state.projects,
-    users: state.users
-  })
-}
-
-export default connect(mapStateToProps)(projectAccessForm);
+export default projectAccessForm;
