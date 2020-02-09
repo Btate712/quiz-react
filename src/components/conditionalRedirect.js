@@ -1,12 +1,13 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+
 
 function ConditionalRedirect(props) {
+  let history = useHistory();
   if (props.condition === true) {
-    return ( <Redirect to={props.to} /> );
-  } else {
-    return (<></>);
-  }
+    history.push(props.to);
+  } 
+  return (<></>); 
 } 
 
 export default ConditionalRedirect;

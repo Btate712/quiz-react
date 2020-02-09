@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addTopicToProject } from '../actions/projectActions';
 import { URL } from '../appData/applicationConstants';
 import TopicAdminButtons from './topicAdminButtons';
 import QuestionList from './questionList';
+import ConditionalRedirect from './conditionalRedirect';
 
 class Topic extends React.Component {
   state = {
@@ -18,12 +18,6 @@ class Topic extends React.Component {
       this.setState ({
         complete: true
       })  
-    }
-  }
-
-  redirectWhenComplete = () => {
-    if (this.state.complete === true) {
-      return (<Redirect to="/topics" />);
     }
   }
 
@@ -42,16 +36,10 @@ class Topic extends React.Component {
           userIsAdmin={this.props.user.admin} 
           handleDelete={this.handleDelete}
           handleAddToProject={this.handleAddToProject}/>
-        {this.redirectWhenComplete()}
+        <ConditionalRedirect to="/topics" condition={this.state.complete} />
       </div>
     )
   }
 }
 
-const mapStateToProps = state => {
-  return({
-    user: state.user
-  })
-}
-
-export default connect(mapStateToProps)(Topic)
+export default Topic;
