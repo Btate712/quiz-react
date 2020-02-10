@@ -1,6 +1,4 @@
 import React from 'react';
-import { addTopicToProject } from '../actions/projectActions';
-import { URL } from '../appData/applicationConstants';
 import TopicAdminButtons from './topicAdminButtons';
 import QuestionList from './questionList';
 import ConditionalRedirect from './conditionalRedirect';

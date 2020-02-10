@@ -43,7 +43,7 @@ class QuestionForm extends Component {
     if (this.state.mode === "new") {
       this.props.createQuestion(question, this.props.user.token);
     } else {
-      this.props.updateQuestion(question, this.props.question.question.id, this.props.user.token);
+      this.props.updateQuestion(question, this.props.question.id, this.props.user.token);
     }
   } 
   
