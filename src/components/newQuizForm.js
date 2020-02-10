@@ -2,7 +2,6 @@ import React from 'react';
 import TopicList from './topicList';
 
 class NewQuizForm extends React.Component {
-
   state = {
     numberOfQuestions: "",
     topicsList: [],
@@ -64,10 +63,10 @@ class NewQuizForm extends React.Component {
               handleInputChange={this.handleInputChange}
             />
             <br />
-            <button className="btn btn-primary mr-1" onClick={this.selectAll}>
+            <button className="btn btn-primary mr-1" onClick={this.selectAll} type="button">
               Select All
             </button>
-            <button className="btn btn-primary" onClick={this.deSelectAll}>
+            <button className="btn btn-primary" onClick={this.deSelectAll} type="button">
               De-Select All
             </button>
           </div>
