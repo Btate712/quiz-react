@@ -47,6 +47,11 @@ class QuestionContainer extends Component {
     }
   }
 
+  showComments = event => {
+    event.preventDefault();
+    return(<h1>Comments...</h1>);
+  }
+
   showQuestionWhenLoaded() {
     console.log(this.props)
     const question = this.props.question;
@@ -59,6 +64,9 @@ class QuestionContainer extends Component {
           <Route path="/questions/:id">
             <Question topic={this.props.topic.topic_info} question={question} />
             <div className="container">
+              <button className="btn btn-lg border" onClick={this.showComments}>
+                Show Comments
+              </button>
               {this.topicButtonIfLoaded()}
               <QuestionAdminButtons 
                 userIsAdmin={this.props.user.admin} 

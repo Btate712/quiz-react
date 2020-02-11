@@ -5,9 +5,9 @@ import SelectOptions from './selectOptions';
 
 class projectAccessForm extends React.Component {
   state = {
-    projectId: 1,
-    userId: 1
-  }
+    projectId: this.props.projects.projectList[0].id.toString(),
+    userId: this.props.users.userList[0].id.toString()
+  };
 
   handleInputChange = event => {
     this.setState({
@@ -16,7 +16,7 @@ class projectAccessForm extends React.Component {
   }
 
   assign = () => {
-    assignProject(URL, parseInt(this.state.userId), this.state.projectId, this.props.user.token);
+    assignProject(URL, parseInt(this.state.userId), parseInt(this.state.projectId), this.props.user.token);
   }
 
   render() {
@@ -36,7 +36,7 @@ class projectAccessForm extends React.Component {
         </label>
         <br />
         <br />
-        <button className="btn btn-primary"onClick={this.assign}>Assign</button>
+        <button className="btn btn-primary" onClick={this.assign}>Assign</button>
       </div>
     );
   }
