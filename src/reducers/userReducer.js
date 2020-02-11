@@ -1,4 +1,12 @@
-const userReducer = (state = { name: "", admin: false, inProgress: false, loggedIn: false, token: "" }, action) => {
+const userReducer = (
+  state = { 
+    name: "", 
+    admin: false, 
+    inProgress: false, 
+    loggedIn: false, 
+    token: "", 
+    loginFail: false 
+  }, action) => {
   switch(action.type) {
     case 'LOGGING_IN':
       return {
@@ -13,14 +21,16 @@ const userReducer = (state = { name: "", admin: false, inProgress: false, logged
         inProgress: false,
         loggedIn: true,
         token: action.token,
-        admin: action.admin
+        admin: action.admin,
+        loginFail: false
       }
 
     case 'LOGIN_FAILED':
       return {
         ...state,
         inProgress: false,
-        loggedIn: false
+        loggedIn: false,
+        loginFail: true
       }
 
     case 'CHECKING_TOKEN':
