@@ -53,7 +53,7 @@ class QuestionContainer extends Component {
 
   showComments = event => {
     event.preventDefault();
-    this.setState({ showComments: true });
+    this.setState({ showComments: this.state.showComments === true ? false : true });
   }
 
   showQuestionWhenLoaded() {
@@ -69,7 +69,7 @@ class QuestionContainer extends Component {
             <div className="container">
               <Comments show={this.state.showComments} comments={this.props.comments} />
               <button className="btn btn-lg border" onClick={this.showComments}>
-                Show Comments
+                { this.state.showComments === true ? "Hide Comments" : "Show Comments" }
               </button>
               <QuestionAdminButtons 
                 userIsAdmin={this.props.user.admin} 
@@ -101,7 +101,7 @@ const mapStateToProps = state => {
     question: state.question.question,
     user: state.user,
     topic: state.topic.topic,
-    comments: state.comments
+    comments: state.comments.comments
   })
 }
 
