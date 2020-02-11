@@ -2,23 +2,16 @@ import React from 'react';
 import LoginForm from '../components/loginForm';
 import { connect } from 'react-redux';
 import { login } from '../actions/userActions';
-import { Redirect } from 'react-router-dom';
 import { URL } from '../appData/applicationConstants';
+import ConditionalRedirect from '../components/conditionalRedirect';
 
 class LoginContainer extends React.Component {
-
-  homeOrLogin() {
-    if (this.props.user.loggedIn) {
-      return(<Redirect to="/home" />);
-    } else {
-      return(<LoginForm login={ this.props.login } />);
-    }
-  }
 
   render() {
     return (
       <div>
-        { this.homeOrLogin() }
+        <ConditionalRedirect to="/home" condition={this.props.user.loggedIn === true} />
+        <LoginForm login={ this.props.login } />
       </div>
     );
   }
