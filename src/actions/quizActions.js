@@ -16,7 +16,7 @@ export function createQuiz(url, numberOfQuestions, topics, token) {
       }
       fetch(`${url}/quiz`, configurationObject)
         .then(response => response.json())
-        .then(json => {       
+        .then(json => {  
           dispatch({ type: 'ADD_QUIZ', quiz: json.quiz });
         });
   }

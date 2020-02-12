@@ -9,25 +9,7 @@ class PlayableQuiz extends React.Component {
   }
 
   askQuestionOrGiveSummary = () => {
-    if(this.props.quiz.currentQuestion <= this.props.quiz.questions.length - 1) {
-      return(
-        <>
-          <h1>Question #{this.props.quiz.currentQuestion + 1}:</h1>
-          <PlayableQuestion 
-            question={this.props.quiz.questions[this.props.quiz.currentQuestion]} 
-            storeQuestionResponse={this.props.storeQuestionResponse}
-          />
-        </>
-      )
-    } else {
-      return (
-        <>
-          <QuizSummary quiz={this.props.quiz} storeResults={this.storeResults} />
-          <br />
-          <br />
-        </>
-      )
-    }
+    
   }
 
   storeResults = () => {
@@ -36,9 +18,30 @@ class PlayableQuiz extends React.Component {
   }
 
   render() {
+    let questionOrSummary = null;
+    if(this.props.quiz.currentQuestion <= this.props.quiz.questions.length - 1) {
+      questionOrSummary = (
+        <>
+          <h1>Question #{this.props.quiz.currentQuestion + 1}:</h1>
+          <PlayableQuestion 
+            question={this.props.quiz.questions[this.props.quiz.currentQuestion].question} 
+            storeQuestionResponse={this.props.storeQuestionResponse}
+          />
+        </>
+      )
+    } else {
+      questionOrSummary = (
+        <>
+          <QuizSummary quiz={this.props.quiz} storeResults={this.storeResults} />
+          <br />
+          <br />
+        </>
+      )
+    }
+
     return (
-      <div className="container" complete={this.state.complete.toString()}>
-        {this.askQuestionOrGiveSummary()}
+      <div className="container" >
+        {questionOrSummary}
         <ConditionalRedirect to="/home" condition={this.state.complete} />
       </div>
     );
