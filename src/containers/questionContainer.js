@@ -52,6 +52,7 @@ class QuestionContainer extends Component {
   }
 
   showComments = event => {
+    console.log(this.props.comments);
     event.preventDefault();
     this.setState({ showComments: this.state.showComments === true ? false : true });
   }
@@ -59,20 +60,19 @@ class QuestionContainer extends Component {
   showQuestionWhenLoaded() {
     const question = this.props.question;
     if(question) {
+      console.log(question)
       return (
         <Switch>
           <Route path="/questions/:id/edit">
-          <NewQuestionContainer mode="edit" question={question} />
+          <NewQuestionContainer mode="edit" question={question.question} />
           </Route>
           <Route path="/questions/:id">
-            <Question topic={this.props.topic.topic_info} question={question} />
+            <Question topic={this.props.topic.topic_info} question={question.question} />
             <div className="container">
-              {
-              // <Comments show={this.state.showComments} comments={this.props.comments} />
-              // <button className="btn btn-lg border" onClick={this.showComments}>
-              //   { this.state.showComments === true ? "Hide Comments" : "Show Comments" }
-              // </button>
-              }     
+              <Comments show={this.state.showComments} comments={question.comments} />
+              <button className="btn btn-lg border" onClick={this.showComments}>
+                { this.state.showComments === true ? "Hide Comments" : "Show Comments" }
+              </button>
               {this.topicButtonIfLoaded()}
               <QuestionAdminButtons 
                 userIsAdmin={this.props.user.admin} 
@@ -101,10 +101,9 @@ class QuestionContainer extends Component {
 
 const mapStateToProps = state => {
   return({
-    question: state.question.question,
+    question: state.question,
     user: state.user,
-    topic: state.topic.topic,
-    comments: state.comments.comments
+    topic: state.topic.topic
   })
 }
 
