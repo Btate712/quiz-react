@@ -8,7 +8,10 @@ const topicsReducer = (state = { topicList: [], inProgress: false }, action) => 
 
     case 'ADD_TOPICS':
       return {
-        topicList: action.topics,
+        topicList: action.topics.map(topicArrayElement => {
+          topicArrayElement.topic.questionCount = topicArrayElement.questionCount
+          return topicArrayElement.topic
+        }),
         inProgress: false
       }
 
