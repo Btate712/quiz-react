@@ -3,7 +3,6 @@ import React from 'react';
 function TopicList(props) {
   const topics = props.topics.sort((a, b) => a.name > b.name ? 1 : -1 );    
 
-  console.log(props)
   return (
     topics.map((topic, key) => {
       return (
@@ -17,7 +16,7 @@ function TopicList(props) {
               checked={props.isChecked(topic.id)} 
               onChange={props.handleInputChange} 
             />
-            {` ${topic.name} (${topic.questionCount} questions)`}
+            {` ${topic.name} (${topic.questionCount})`}
           </label>
         </div>
       )
