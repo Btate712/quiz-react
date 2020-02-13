@@ -7,7 +7,7 @@ class Comments extends React.Component {
     if(this.props.comments.length > 0) {
       return (
         <>
-          { this.props.comments.map(comment => <Comment comment={comment.comment} user={comment.user_name} key={`comment#${comment.id}`}/> ) }
+          { this.props.comments.map(comment => <Comment comment={comment.comment} user={comment.user_name} key={`comment#${comment.comment.id}`}/> ) }
         </>
       )
     } else {
