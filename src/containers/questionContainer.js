@@ -9,11 +9,13 @@ import NewQuestionContainer from '../containers/newQuestionContainer';
 import Comments from '../components/comments';
 import ConditionalRedirect from '../components/conditionalRedirect';
 import QuestionAdminButtons from '../components/questionAdminButtons';
+import NewCommentForm from '../components/newCommentForm';
 
 class QuestionContainer extends Component {
   state = {
     questionDeleted: false,
-    showComments: false
+    showComments: false,
+    showNewCommentForm: false
   }
 
   componentDidMount() {
@@ -57,6 +59,11 @@ class QuestionContainer extends Component {
     this.setState({ showComments: this.state.showComments === true ? false : true });
   }
 
+  showNewCommentForm = event => {
+    event.preventDefault();
+    this.setState({ showNewCommentForm: true })
+  }
+
   showQuestionWhenLoaded() {
     const question = this.props.question;
     if(question) {
@@ -69,6 +76,15 @@ class QuestionContainer extends Component {
           <Route path="/questions/:id">
             <Question topic={this.props.topic.topic_info} question={question.question} />
             <div className="container">
+              {console.log(this.props)}
+              <NewCommentForm 
+                show={this.state.showNewCommentForm}
+                userName={this.props.user.name}
+                questionId={this.props.questionId}
+              />
+              <button className="btn btn-lg border" onClick={this.showNewCommentForm}>
+                Add Explanation
+              </button>
               <Comments show={this.state.showComments} comments={question.comments} />
               <button className="btn btn-lg border" onClick={this.showComments}>
                 { this.state.showComments === true ? "Hide Comments" : "Show Comments" }
