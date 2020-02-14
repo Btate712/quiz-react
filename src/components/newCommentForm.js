@@ -9,13 +9,13 @@ class NewCommentForm extends React.Component {
   handleSubmit = event => {
     event.preventDefault();
     const newComment = {
-      userName: this.props.userName,
+      userName: this.props.user.name,
       questionId: this.props.questionId,
       text: this.state.commentText,
       resolved: true,
       commentType: this.state.commentType
     }
-    console.log("Creating comment...", newComment);
+    this.props.createComment(newComment);
   }
 
   handleChange = event => {

@@ -22,7 +22,6 @@ class Comments extends React.Component {
     if (this.props.show === true) {
       return (
         <>
-          {console.log(this.props)}
           <hr />
           <h1><u>Comments:</u></h1>
           { this.renderWhenAvailable() }

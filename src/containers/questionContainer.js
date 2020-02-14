@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { URL } from '../appData/applicationConstants';
 import { getQuestion, deleteQuestion } from '../actions/questionActions';
-import { getComments } from '../actions/commentActions';
+import { getComments, createComment } from '../actions/commentActions';
 import { connect } from 'react-redux';
 import Question from '../components/question';
 import { Link, Switch, Route } from 'react-router-dom';
@@ -64,10 +64,14 @@ class QuestionContainer extends Component {
     this.setState({ showNewCommentForm: true })
   }
 
+  createComment = comment => {
+    createComment(URL, comment, this.props.user.token);
+    this.setState({showNewCommentForm: false})
+  }
+
   showQuestionWhenLoaded() {
     const question = this.props.question;
     if(question) {
-      console.log(question)
       return (
         <Switch>
           <Route path="/questions/:id/edit">
@@ -76,11 +80,11 @@ class QuestionContainer extends Component {
           <Route path="/questions/:id">
             <Question topic={this.props.topic.topic_info} question={question.question} />
             <div className="container">
-              {console.log(this.props)}
               <NewCommentForm 
                 show={this.state.showNewCommentForm}
-                userName={this.props.user.name}
+                user={this.props.user}
                 questionId={this.props.questionId}
+                createComment={this.createComment}
               />
               <Comments show={this.state.showComments} comments={question.comments} />
               <button className="btn btn-lg border" onClick={this.showComments}>
