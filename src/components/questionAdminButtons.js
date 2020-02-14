@@ -10,9 +10,12 @@ function QuestionAdminButtons(props) {
             Edit Question
           </button>
         </Link>
-          <button className="btn btn-lg border pull-right" onClick={() => props.deleteQuestion()} >
-            Delete Question
-          </button>
+        <button className="btn btn-lg border pull-right" onClick={props.deleteQuestion} >
+          Delete Question
+        </button>
+        <button className="btn btn-lg border" onClick={props.showNewCommentForm}>
+          Add Explanation
+        </button>
       </>
     );
   } else {

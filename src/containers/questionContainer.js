@@ -82,9 +82,6 @@ class QuestionContainer extends Component {
                 userName={this.props.user.name}
                 questionId={this.props.questionId}
               />
-              <button className="btn btn-lg border" onClick={this.showNewCommentForm}>
-                Add Explanation
-              </button>
               <Comments show={this.state.showComments} comments={question.comments} />
               <button className="btn btn-lg border" onClick={this.showComments}>
                 { this.state.showComments === true ? "Hide Comments" : "Show Comments" }
@@ -94,6 +91,7 @@ class QuestionContainer extends Component {
                 userIsAdmin={this.props.user.admin} 
                 topicId={this.props.topic.id}
                 deleteQuestion={this.deleteQuestion}
+                showNewCommentForm={this.showNewCommentForm}
               />
             </div>
           </Route>
