@@ -42,6 +42,7 @@ class PlayableQuiz extends React.Component {
     return (
       <div className="container" >
         {questionOrSummary}
+        <button className="btn btn-primary pull-right" onClick={this.props.resetQuiz}>Reset Quiz</button>
         <ConditionalRedirect to="/home" condition={this.state.complete} />
       </div>
     );

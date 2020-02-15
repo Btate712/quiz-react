@@ -48,6 +48,12 @@ export function storeQuizResults(url, questions, token) {
   })
 }
 
+export function resetQuiz() {
+  return (dispatch => {
+    dispatch({ type: 'RESET_QUIZ' })
+  });
+}
+
 export function getSelection(event) {
   if(event.type === "keydown") {
     switch(event.key) {
