@@ -3,7 +3,7 @@ import TopicList from './topicList';
 
 class NewQuizForm extends React.Component {
   state = {
-    numberOfQuestions: "",
+    numberOfQuestions: "10",
     topicsList: [],
   }
 
