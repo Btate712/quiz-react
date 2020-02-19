@@ -53,7 +53,6 @@ class QuestionContainer extends Component {
   }
 
   showComments = event => {
-    console.log(this.props.comments);
     event.preventDefault();
     this.setState({ showComments: this.state.showComments === true ? false : true });
   }

@@ -11,8 +11,8 @@ class NewCommentForm extends React.Component {
     const newComment = {
       userName: this.props.user.name,
       questionId: this.props.questionId,
-      text: this.state.commentText,
-      resolved: this.state.commentType === "problem" ? false : true,
+      text: this.state.text,
+      resolved: (this.state.commentType === "problem" ? false : true),
       commentType: this.state.commentType
     }
     this.props.createComment(newComment);
