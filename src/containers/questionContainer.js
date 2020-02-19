@@ -67,6 +67,22 @@ class QuestionContainer extends Component {
     this.setState({showNewCommentForm: false})
   }
 
+  dontAsk = comments => {
+    if(comments.length > 0) {
+      let blacklisted = false;
+      const userComments = comments.filter(comment => comment.user_name.name === this.props.user.name);
+      if(userComments.length > 0) {
+        userComments.forEach(comment => {
+          console.log(comment);
+          if(comment.comment.comment_type === "stop-asking") {
+            blacklisted = true;
+          }
+        })
+      }
+      return blacklisted;
+    }
+  } 
+
   showQuestionWhenLoaded() {
     const question = this.props.question;
     if(question) {
@@ -76,7 +92,7 @@ class QuestionContainer extends Component {
           <NewQuestionContainer mode="edit" question={question.question} />
           </Route>
           <Route path="/questions/:id">
-            <Question topic={this.props.topic.topic_info} question={question.question} />
+            <Question topic={this.props.topic.topic_info} question={question.question} dontAsk={this.dontAsk(this.props.question.comments)} />
             <div className="container">
               <NewCommentForm 
                 user={this.props.user}

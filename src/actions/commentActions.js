@@ -15,7 +15,6 @@ export function getComments(url, questionId, token) {
 }
 
 export function createComment(url, comment, token) {
-  console.log(comment);
   const configurationObject = {
     method: "POST",
     mode: "cors",

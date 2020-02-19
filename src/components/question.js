@@ -3,7 +3,9 @@ import { numberToLetter } from '../actions/questionActions';
 import SanitizedHTML from 'react-sanitized-html';
 
 const Question = props => {
+  console.log(props);
   const question = props.question;
+  const dontAsk = props.dontAsk ? "TRUE" : "FALSE"
 
   return (
     <div className="Question container">
@@ -16,6 +18,7 @@ const Question = props => {
         <h1 id="4" className="ml-5 question-choice"><SanitizedHTML html={`D. ${question.choice_4}`} /></h1> 
       <br />
       <h2>Correct Choice: {numberToLetter(parseInt(question.correct_choice))}</h2>
+      <h2>Don't Ask? - {dontAsk}</h2>
       <br />
     </div>
   )
