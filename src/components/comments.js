@@ -1,5 +1,6 @@
 import React from 'react';
 import Comment from './comment';
+import CommentForm from './commentForm';
 
 class Comments extends React.Component {
 
@@ -7,6 +8,7 @@ class Comments extends React.Component {
     if(this.props.comments.length > 0) {
       return (
         <>
+          <CommentForm />
           { this.props.comments.map(comment => <Comment comment={comment.comment} user={comment.user_name} key={`comment#${comment.comment.id}`}/> ) }
         </>
       )
