@@ -36,7 +36,6 @@ class QuizContainer extends React.Component {
 
   resetQuiz = event => {
     event.preventDefault();
-    console.log("resetting...")
     this.props.resetQuiz();
   }
 

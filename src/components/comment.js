@@ -6,7 +6,17 @@ const Comment = props => {
 
   const show = () => {
     if(props.comment.comment_type === "stop-asking") {
-      return (<></>)
+      if(props.comment.user_id === props.user.id) {
+        return (
+        <>
+          <h3>Don't Ask</h3>
+          <button className="btn btn-danger" onClick={() => props.deleteComment(props.comment.id)}>Delete Comment</button>
+          <hr />
+        </>
+        )
+      } else {
+        return (<></>)
+      }
     }
     else {
       return(

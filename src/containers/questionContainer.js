@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { URL } from '../appData/applicationConstants';
 import { getQuestion, deleteQuestion } from '../actions/questionActions';
-import { getComments, createComment } from '../actions/commentActions';
+import { getComments, createComment, deleteComment } from '../actions/commentActions';
 import { connect } from 'react-redux';
 import Question from '../components/question';
 import { Link, Switch, Route } from 'react-router-dom';
@@ -67,13 +67,16 @@ class QuestionContainer extends Component {
     this.setState({showNewCommentForm: false})
   }
 
+  deleteComment = commentId => {
+    deleteComment(URL, commentId, this.props.user.token);
+  }
+
   dontAsk = comments => {
     if(comments.length > 0) {
       let blacklisted = false;
       const userComments = comments.filter(comment => comment.user_name.name === this.props.user.name);
       if(userComments.length > 0) {
         userComments.forEach(comment => {
-          console.log(comment);
           if(comment.comment.comment_type === "stop-asking") {
             blacklisted = true;
           }
@@ -99,7 +102,11 @@ class QuestionContainer extends Component {
                 questionId={this.props.questionId}
                 createComment={this.createComment}
               />
-              <Comments show={this.state.showComments} comments={question.comments} />
+              <Comments 
+                show={this.state.showComments} 
+                comments={question.comments} 
+                deleteComment={this.deleteComment}
+              />
               <button className="btn btn-lg border" onClick={this.showComments}>
                 { this.state.showComments === true ? "Hide Comments" : "Show Comments" }
               </button>

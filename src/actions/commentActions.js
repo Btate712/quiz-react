@@ -35,3 +35,18 @@ export function createComment(url, comment, token) {
     .then(response => response.json())
     .then(json => alert(json.message))
 }
+
+export function deleteComment(url, commentId, token) {
+  const configurationObject = {
+    method: "DELETE",
+    mode: "cors",
+    headers: { 
+      "Content-type": "application/json",
+      "Accept": "application/json",
+      authorization: token
+    }
+  }
+  fetch(`${url}/comments/${commentId}`, configurationObject)
+    .then(response => response.json())
+    .then(json => alert(json.message))
+}

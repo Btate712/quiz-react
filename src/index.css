@@ -24,3 +24,7 @@ code {
 .error {
   color: red;
 }
+
+.dontAsk {
+  background-color: #ffebe6;
+}
