@@ -22,7 +22,7 @@ class PlayableQuiz extends React.Component {
     if(this.props.quiz.currentQuestion <= this.props.quiz.questions.length - 1) {
       questionOrSummary = (
         <>
-          <h1>Question #{this.props.quiz.currentQuestion + 1}:</h1>
+          <h1>Question #{this.props.quiz.currentQuestion + 1} of {this.props.quiz.questions.length}:</h1>
           <PlayableQuestion 
             question={this.props.quiz.questions[this.props.quiz.currentQuestion].question} 
             storeQuestionResponse={this.props.storeQuestionResponse}
