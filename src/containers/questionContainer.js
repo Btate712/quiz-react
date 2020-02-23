@@ -19,7 +19,6 @@ class QuestionContainer extends Component {
 
   componentDidMount() {
     this.props.getQuestion(this.props.questionId, this.props.user.token);
-    // this.props.getComments(this.props.questionId, this.props.user.token);
   }
 
   deleteQuestion = () => {
@@ -108,7 +107,7 @@ class QuestionContainer extends Component {
                 deleteComment={this.deleteComment}
               />
               <button className="btn btn-lg border" onClick={this.showComments}>
-                { this.state.showComments === true ? "Hide Comments" : "Show Comments" }
+                { this.state.showComments ? "Hide Comments" : "Show Comments" }
               </button>
               {this.topicButtonIfLoaded()}
               <QuestionAdminButtons 
