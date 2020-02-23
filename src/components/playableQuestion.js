@@ -87,7 +87,7 @@ class PlaybleQuestion extends React.Component {
           </button>
         </div>
         <br />
-        <h1>Question #{this.props.questionNumber + 1}:</h1>
+        <h1>Question #{this.props.questionNumber + 1} of {this.props.quizLength}:</h1>
         <PlayableQuestionDisplay
           question={this.props.question} 
           handleSelection={this.handleSelection}
