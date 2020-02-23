@@ -59,7 +59,7 @@ class QuestionContainer extends Component {
 
   showNewCommentForm = event => {
     event.preventDefault();
-    this.setState({ showNewCommentForm: true })
+    this.setState({ showNewCommentForm: !this.state.showNewCommentForm })
   }
 
   createComment = comment => {
@@ -111,12 +111,14 @@ class QuestionContainer extends Component {
               <button className="btn btn-lg border" onClick={this.showComments}>
                 { this.state.showComments ? "Hide Comments" : "Show Comments" }
               </button>
+              <button className="btn btn-lg border" onClick={this.showNewCommentForm}>
+                { this.state.showNewCommentForm ? "Hide New Comment Form" : "Show New Comment Form" }
+              </button>
               {this.topicButtonIfLoaded()}
               <QuestionAdminButtons 
                 userIsAdmin={this.props.user.admin} 
                 topicId={this.props.topic.id}
                 deleteQuestion={this.deleteQuestion}
-                showNewCommentForm={this.showNewCommentForm}
               />
             </div>
           </Route>
