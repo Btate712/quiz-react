@@ -14,7 +14,7 @@ function QuestionAdminButtons(props) {
           Delete Question
         </button>
         <button className="btn btn-lg border" onClick={props.showNewCommentForm}>
-          Add Explanation
+          Add A Comment
         </button>
       </>
     );

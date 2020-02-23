@@ -15,6 +15,7 @@ class QuestionContainer extends Component {
   state = {
     questionDeleted: false,
     showComments: false,
+    showNewCommentForm: false
   }
 
   componentDidMount() {
@@ -97,6 +98,7 @@ class QuestionContainer extends Component {
             <Question topic={this.props.topic.topic_info} question={question.question} dontAsk={this.dontAsk(this.props.question.comments)} />
             <div className="container">
               <NewCommentForm 
+                show={this.state.showNewCommentForm}
                 user={this.props.user}
                 questionId={this.props.questionId}
                 createComment={this.createComment}
