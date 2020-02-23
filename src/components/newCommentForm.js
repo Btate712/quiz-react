@@ -51,26 +51,30 @@ class NewCommentForm extends React.Component {
   }
   
   render() {
-    return (
-      <>
-        <hr />
-        <form onSubmit={this.handleSubmit} >
-          <h1>Add a comment:</h1>
-          <label>
-            Comment Type:
-            <select name="commentType" value={this.state.commentType} onChange={this.handleChange}>
-              <option value="problem">Problem With Question</option>
-              <option value="stop-asking">Stop Asking Me This Question</option>
-              {this.adminOption()}
-            </select>
-          </label>
-          <br />
-          {this.commentTextIfRequired()}
-          <button className="btn btn-large border" type="submit">Save Comment</button>
-        </form>
-        <h1><SanitizedHTML html={this.state.text} /></h1>
-      </>
-    );
+    if(this.props.show) {
+      return (
+        <>
+          <hr />
+          <form onSubmit={this.handleSubmit} >
+            <h1>Add a comment:</h1>
+            <label>
+              Comment Type:
+              <select name="commentType" value={this.state.commentType} onChange={this.handleChange}>
+                <option value="problem">Problem With Question</option>
+                <option value="stop-asking">Stop Asking Me This Question</option>
+                {this.adminOption()}
+              </select>
+            </label>
+            <br />
+            {this.commentTextIfRequired()}
+            <button className="btn btn-large border" type="submit">Save Comment</button>
+          </form>
+          <h1><SanitizedHTML html={this.state.text} /></h1>
+        </>
+      );
+    } else {
+      return (<></>);
+    }
   }
 }
 
