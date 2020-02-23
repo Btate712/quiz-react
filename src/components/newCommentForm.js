@@ -28,7 +28,7 @@ class NewCommentForm extends React.Component {
   }
 
   adminOption = () => {
-    if(this.props.user.admin === true) {
+    if(this.props.user.admin) {
       return (<option value="explanation">Explanation</option>)
     }
   }

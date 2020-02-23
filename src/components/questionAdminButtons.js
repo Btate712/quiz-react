@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function QuestionAdminButtons(props) {
-  if(props.userIsAdmin === true) {
+  if(props.userIsAdmin) {
     return (
       <>
         <Link to={`/questions/${props.questionId}/edit`}>

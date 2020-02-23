@@ -27,7 +27,7 @@ class Comments extends React.Component {
   }
 
   showIfRequested = () => {
-    if (this.props.show === true) {
+    if (this.props.show ) {
       return (
         <>
           <hr />

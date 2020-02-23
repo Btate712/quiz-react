@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 class SiteTemplateHeader extends React.Component {
 
   adminLinks = () => {
-    if (this.props.user.admin === true) {
+    if (this.props.user.admin) {
       return (
         <>
           <li className="nav-item">
@@ -21,7 +21,7 @@ class SiteTemplateHeader extends React.Component {
   } 
 
   loginOrLogout = () => {
-    if(this.props.user.loggedIn === true) {
+    if(this.props.user.loggedIn) {
       return (
         <>
           <li className="nav-item">

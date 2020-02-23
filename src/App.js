@@ -50,7 +50,7 @@ class App extends Component {
 const PrivateRoute = ({ component: Component, loginStatus, ...rest }) => {
   return (
     <Route {...rest} 
-    render={ props => ( loginStatus === true ? <Component { ...props } /> : <Redirect to="/login"  />)} />
+    render={ props => ( loginStatus ? <Component { ...props } /> : <Redirect to="/login"  />)} />
   )
 }
 

@@ -5,7 +5,7 @@ import SanitizedHTML from 'react-sanitized-html';
 const showGradedQuestion = (questionAnswered, question, selection, storeResult) => {
   if(questionAnswered) {
     const correct = question.correct_choice === selection ? true : false
-    const message = correct === true ? "Correct!" : `Incorrect. The correct answer is ${numberToLetter(question.correct_choice)}`
+    const message = correct ? "Correct!" : `Incorrect. The correct answer is ${numberToLetter(question.correct_choice)}`
     return (
       <>
         <h1>{message}</h1>

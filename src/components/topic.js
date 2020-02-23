@@ -10,7 +10,7 @@ class Topic extends React.Component {
 
   handleDelete = () => {
     const confirmation = window.confirm("Delete this topic?");
-    if (confirmation === true) {
+    if (confirmation) {
       this.props.deleteTopic(this.props.topic.id, this.props.user.token); 
       this.setState ({
         complete: true

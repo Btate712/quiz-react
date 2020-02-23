@@ -38,7 +38,7 @@ class TopicsContainer extends React.Component {
   }
   
   adminButtons = () => {
-    if (this.props.user.admin === true) {
+    if (this.props.user.admin) {
       return (
         <Link to="/topics/new"><button className="btn btn-lg border">Create a New Topic</button></Link>
       )

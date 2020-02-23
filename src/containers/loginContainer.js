@@ -18,7 +18,7 @@ class LoginContainer extends React.Component {
             className="error"  
           />
         </div>
-        <ConditionalRedirect to="/home" condition={this.props.user.loggedIn === true} />
+        <ConditionalRedirect to="/home" condition={this.props.user.loggedIn} />
         <LoginForm login={ this.props.login } />
       </div>
     );

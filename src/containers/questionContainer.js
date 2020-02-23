@@ -23,7 +23,7 @@ class QuestionContainer extends Component {
 
   deleteQuestion = () => {
     const confirmation = window.confirm("Delete this question?");
-    if (confirmation === true) {
+    if (confirmation) {
       this.props.deleteQuestion(this.props.questionId, this.props.user.token);
       this.setState({
         questionDeleted: true
@@ -53,7 +53,7 @@ class QuestionContainer extends Component {
 
   showComments = event => {
     event.preventDefault();
-    this.setState({ showComments: this.state.showComments === true ? false : true });
+    this.setState({ showComments: this.state.showComments ? false : true });
   }
 
   showNewCommentForm = event => {

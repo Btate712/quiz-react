@@ -33,10 +33,10 @@ class RegisterForm extends React.Component {
   }
 
   errorMessage = () => {
-    if (this.state.password !== this.state.passwordConfirmation && this.state.fail === true) {
+    if (this.state.password !== this.state.passwordConfirmation && this.state.fail) {
       return <h1>Password and Confirmation Must Match!</h1>
     } else {
-      if (this.state.fail === true) {
+      if (this.state.fail) {
         this.setState({fail: false})
       }
     }
