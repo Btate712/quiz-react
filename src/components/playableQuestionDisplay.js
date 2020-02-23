@@ -10,6 +10,7 @@ const showGradedQuestion = (questionAnswered, question, selection, storeResult) 
       <>
         <h1>{message}</h1>
         <button className="btn btn-primary" onClick={storeResult} >Next Question</button>
+        <br />
       </>
     )
   }

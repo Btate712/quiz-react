@@ -1,11 +1,13 @@
 import React from 'react';
 import { getSelection } from '../actions/quizActions';
 import { PlayableQuestionDisplay } from './playableQuestionDisplay';
+import Comments from './comments';
 
 class PlaybleQuestion extends React.Component {
   state = {
     questionAnswered: false,
-    selection: ""
+    selection: "",
+    showComments: false
   }
   
   componentDidMount = () => {
@@ -44,20 +46,39 @@ class PlaybleQuestion extends React.Component {
       this.props.storeQuestionResponse(this.props.question, parseInt(this.state.selection));
       this.setState({
         questionAnswered: false,
-        selection: ""
+        selection: "",
+        showComments: false
       })
     }
   }
 
+  toggleComments = () => {
+    this.setState({
+      showComments: !this.state.showComments
+    })
+  }
+
   render() {
     return (
-      <PlayableQuestionDisplay
-        question={this.props.question} 
-        handleSelection={this.handleSelection}
-        questionAnswered={this.state.questionAnswered}
-        selection={this.state.selection}
-        storeResult={this.storeResult}
-      />
+      <>
+        <PlayableQuestionDisplay
+          question={this.props.question} 
+          handleSelection={this.handleSelection}
+          questionAnswered={this.state.questionAnswered}
+          selection={this.state.selection}
+          storeResult={this.storeResult}
+        />
+        <Comments 
+          comments={this.props.comments}
+          show={this.state.showComments}
+        />
+        <div className="containter">
+          <br />
+          <button onClick={this.toggleComments} className="btn btn-primary">
+            {this.state.showComments ? "Hide Comments" : "Show Comments"}
+          </button>
+        </div>
+      </>
     )
   }
 }
