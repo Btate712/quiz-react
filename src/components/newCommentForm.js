@@ -1,4 +1,5 @@
 import React from 'react';
+import SanitizedHTML from 'react-sanitized-html';
 
 class NewCommentForm extends React.Component {
   state = {
@@ -34,7 +35,7 @@ class NewCommentForm extends React.Component {
   }
 
   commentTextIfRequired = () => {
-    if(this.state.commentType === "problem") {
+    if(this.state.commentType === "problem" || this.state.commentType === "explanation") {
       return (
         <>
           <label>
@@ -67,7 +68,7 @@ class NewCommentForm extends React.Component {
           {this.commentTextIfRequired()}
           <button className="btn btn-large border" type="submit">Save Comment</button>
         </form>
-        <h1>{this.state.text}</h1>
+        <h1><SanitizedHTML html={this.state.text} /></h1>
       </>
     );
   }
