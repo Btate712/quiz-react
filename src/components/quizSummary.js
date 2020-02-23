@@ -1,6 +1,7 @@
 import React from 'react';
 import Question from './question';
 import { numberToLetter } from '../actions/questionActions';
+import DoneWithQuizButton from './doneWithQuizButton';
 
 export class QuizSummary extends React.Component {
   
@@ -36,10 +37,10 @@ export class QuizSummary extends React.Component {
     return(
       <>
         <h1>{score.numberRight} out of {score.outOf} correct:  {(score.numberRight * 100 / score.outOf).toFixed(2)}%.</h1>
-        <button className="btn btn-lg border" onClick={this.props.storeResults}>Done - Store Results</button>
+        <DoneWithQuizButton storeResults={this.props.storeResults} />
         <hr />
         {this.output}
-        <button className="btn btn-lg border" onClick={this.props.storeResults}>Done - Store Results</button>
+        <DoneWithQuizButton storeResults={this.props.storeResults} />
       </>
     )
   }
