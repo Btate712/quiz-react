@@ -8,10 +8,6 @@ class PlayableQuiz extends React.Component {
     complete: false
   }
 
-  askQuestionOrGiveSummary = () => {
-    
-  }
-
   storeResults = () => {
     this.props.storeQuizResults(this.props.quiz.questions, this.props.user.token);
     this.setState({ complete: true })
