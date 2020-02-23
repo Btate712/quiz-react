@@ -77,6 +77,17 @@ class PlaybleQuestion extends React.Component {
   render() {
     return (
       <>
+        <div className="containter pull-right">
+          <br />
+          <button onClick={this.toggleNewCommentForm} className="btn btn-primary mr-1">
+            {this.state.showNewCommentForm ? "Hide New Comment Form" : "Show New Comment Form"}
+          </button>
+          <button onClick={this.toggleComments} className="btn btn-primary mr -1">
+            {this.state.showComments ? "Hide Comments" : "Show Comments"}
+          </button>
+        </div>
+        <br />
+        <h1>Question #{this.props.questionNumber + 1}:</h1>
         <PlayableQuestionDisplay
           question={this.props.question} 
           handleSelection={this.handleSelection}
@@ -94,15 +105,6 @@ class PlaybleQuestion extends React.Component {
           comments={this.props.comments}
           show={this.state.showComments}
         />
-        <div className="containter">
-          <br />
-          <button onClick={this.toggleNewCommentForm} className="btn btn-primary mr-1">
-            {this.state.showNewCommentForm ? "Hide New Comment Form" : "Show New Comment Form"}
-          </button>
-          <button onClick={this.toggleComments} className="btn btn-primary">
-            {this.state.showComments ? "Hide Comments" : "Show Comments"}
-          </button>
-        </div>
       </>
     )
   }
