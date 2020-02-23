@@ -13,7 +13,8 @@ class Comments extends React.Component {
                 comment={comment.comment} 
                 user={comment.user_name} 
                 key={`comment#${comment.comment.id}`}
-                deleteComment={this.props.deleteComment}/> 
+                deleteComment={this.props.deleteComment}
+              /> 
             ) 
           })} 
         </>
@@ -27,7 +28,7 @@ class Comments extends React.Component {
   }
 
   showIfRequested = () => {
-    if (this.props.show === true) {
+    if (this.props.show ) {
       return (
         <>
           <hr />

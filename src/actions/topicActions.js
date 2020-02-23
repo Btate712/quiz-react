@@ -1,4 +1,4 @@
-export function createTopic(url, topicName, token) {
+export function createTopic(url, topicName, projectId, token) {
   return dispatch => {
     dispatch({ type: 'CREATING_TOPIC' });
     const configurationObject = {
@@ -10,7 +10,8 @@ export function createTopic(url, topicName, token) {
           authorization: token
         },
         body: JSON.stringify({
-          name: topicName
+          name: topicName,
+          project_id: projectId
         })
       }
       fetch(`${url}/topics`, configurationObject)

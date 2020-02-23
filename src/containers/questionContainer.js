@@ -15,16 +15,16 @@ class QuestionContainer extends Component {
   state = {
     questionDeleted: false,
     showComments: false,
+    showNewCommentForm: false
   }
 
   componentDidMount() {
     this.props.getQuestion(this.props.questionId, this.props.user.token);
-    // this.props.getComments(this.props.questionId, this.props.user.token);
   }
 
   deleteQuestion = () => {
     const confirmation = window.confirm("Delete this question?");
-    if (confirmation === true) {
+    if (confirmation) {
       this.props.deleteQuestion(this.props.questionId, this.props.user.token);
       this.setState({
         questionDeleted: true
@@ -54,12 +54,12 @@ class QuestionContainer extends Component {
 
   showComments = event => {
     event.preventDefault();
-    this.setState({ showComments: this.state.showComments === true ? false : true });
+    this.setState({ showComments: this.state.showComments ? false : true });
   }
 
   showNewCommentForm = event => {
     event.preventDefault();
-    this.setState({ showNewCommentForm: true })
+    this.setState({ showNewCommentForm: !this.state.showNewCommentForm })
   }
 
   createComment = comment => {
@@ -98,6 +98,7 @@ class QuestionContainer extends Component {
             <Question topic={this.props.topic.topic_info} question={question.question} dontAsk={this.dontAsk(this.props.question.comments)} />
             <div className="container">
               <NewCommentForm 
+                show={this.state.showNewCommentForm}
                 user={this.props.user}
                 questionId={this.props.questionId}
                 createComment={this.createComment}
@@ -108,14 +109,16 @@ class QuestionContainer extends Component {
                 deleteComment={this.deleteComment}
               />
               <button className="btn btn-lg border" onClick={this.showComments}>
-                { this.state.showComments === true ? "Hide Comments" : "Show Comments" }
+                { this.state.showComments ? "Hide Comments" : "Show Comments" }
+              </button>
+              <button className="btn btn-lg border" onClick={this.showNewCommentForm}>
+                { this.state.showNewCommentForm ? "Hide New Comment Form" : "Show New Comment Form" }
               </button>
               {this.topicButtonIfLoaded()}
               <QuestionAdminButtons 
                 userIsAdmin={this.props.user.admin} 
                 topicId={this.props.topic.id}
                 deleteQuestion={this.deleteQuestion}
-                showNewCommentForm={this.showNewCommentForm}
               />
             </div>
           </Route>

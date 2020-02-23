@@ -1,4 +1,5 @@
 import React from 'react';
+import SanitizedHTML from 'react-sanitized-html';
 
 class NewCommentForm extends React.Component {
   state = {
@@ -28,13 +29,13 @@ class NewCommentForm extends React.Component {
   }
 
   adminOption = () => {
-    if(this.props.user.admin === true) {
+    if(this.props.user.admin) {
       return (<option value="explanation">Explanation</option>)
     }
   }
 
   commentTextIfRequired = () => {
-    if(this.state.commentType === "problem") {
+    if(this.state.commentType === "problem" || this.state.commentType === "explanation") {
       return (
         <>
           <label>
@@ -50,26 +51,30 @@ class NewCommentForm extends React.Component {
   }
   
   render() {
-    return (
-      <>
-        <hr />
-        <form onSubmit={this.handleSubmit} >
-          <h1>Add a comment:</h1>
-          <label>
-            Comment Type:
-            <select name="commentType" value={this.state.commentType} onChange={this.handleChange}>
-              <option value="problem">Problem With Question</option>
-              <option value="stop-asking">Stop Asking Me This Question</option>
-              {this.adminOption()}
-            </select>
-          </label>
-          <br />
-          {this.commentTextIfRequired()}
-          <button className="btn btn-large border" type="submit">Save Comment</button>
-        </form>
-        <h1>{this.state.text}</h1>
-      </>
-    );
+    if(this.props.show) {
+      return (
+        <>
+          <hr />
+          <form onSubmit={this.handleSubmit} >
+            <h1>Add a comment:</h1>
+            <label>
+              Comment Type:
+              <select name="commentType" value={this.state.commentType} onChange={this.handleChange}>
+                <option value="problem">Problem With Question</option>
+                <option value="stop-asking">Stop Asking Me This Question</option>
+                {this.adminOption()}
+              </select>
+            </label>
+            <br />
+            {this.commentTextIfRequired()}
+            <button className="btn btn-large border" type="submit">Save Comment</button>
+          </form>
+          <h1><SanitizedHTML html={this.state.text} /></h1>
+        </>
+      );
+    } else {
+      return (<></>);
+    }
   }
 }
 

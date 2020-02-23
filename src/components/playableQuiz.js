@@ -8,10 +8,6 @@ class PlayableQuiz extends React.Component {
     complete: false
   }
 
-  askQuestionOrGiveSummary = () => {
-    
-  }
-
   storeResults = () => {
     this.props.storeQuizResults(this.props.quiz.questions, this.props.user.token);
     this.setState({ complete: true })
@@ -22,9 +18,11 @@ class PlayableQuiz extends React.Component {
     if(this.props.quiz.currentQuestion <= this.props.quiz.questions.length - 1) {
       questionOrSummary = (
         <>
-          <h1>Question #{this.props.quiz.currentQuestion + 1} of {this.props.quiz.questions.length}:</h1>
           <PlayableQuestion 
+            questionNumber={this.props.quiz.currentQuestion + 1}
+            quizLength={this.props.quiz.questions.length}
             question={this.props.quiz.questions[this.props.quiz.currentQuestion].question} 
+            comments={this.props.quiz.questions[this.props.quiz.currentQuestion].comments}
             storeQuestionResponse={this.props.storeQuestionResponse}
           />
         </>

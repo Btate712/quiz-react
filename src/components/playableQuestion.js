@@ -1,11 +1,18 @@
 import React from 'react';
 import { getSelection } from '../actions/quizActions';
 import { PlayableQuestionDisplay } from './playableQuestionDisplay';
+import Comments from './comments';
+import NewCommentForm from './newCommentForm';
+import { connect } from 'react-redux';
+import { URL } from '../appData/applicationConstants';
+import { createComment } from '../actions/commentActions';
 
 class PlaybleQuestion extends React.Component {
   state = {
     questionAnswered: false,
-    selection: ""
+    selection: "",
+    showComments: false,
+    showNewCommentForm: false
   }
   
   componentDidMount = () => {
@@ -44,22 +51,69 @@ class PlaybleQuestion extends React.Component {
       this.props.storeQuestionResponse(this.props.question, parseInt(this.state.selection));
       this.setState({
         questionAnswered: false,
-        selection: ""
+        selection: "",
+        showComments: false
       })
     }
   }
 
+  toggleComments = () => {
+    this.setState({
+      showComments: !this.state.showComments
+    })
+  }
+
+  toggleNewCommentForm = () => {
+    this.setState({
+      showNewCommentForm: !this.state.showNewCommentForm
+    })
+  }
+
+  createComment = comment => {
+    createComment(URL, comment, this.props.user.token);
+    this.setState({showNewCommentForm: false})
+  }
+
   render() {
     return (
-      <PlayableQuestionDisplay
-        question={this.props.question} 
-        handleSelection={this.handleSelection}
-        questionAnswered={this.state.questionAnswered}
-        selection={this.state.selection}
-        storeResult={this.storeResult}
-      />
+      <>
+        <div className="containter pull-right">
+          <br />
+          <button onClick={this.toggleNewCommentForm} className="btn btn-primary mr-1">
+            {this.state.showNewCommentForm ? "Hide New Comment Form" : "Show New Comment Form"}
+          </button>
+          <button onClick={this.toggleComments} className="btn btn-primary mr -1">
+            {this.state.showComments ? "Hide Comments" : "Show Comments"}
+          </button>
+        </div>
+        <br />
+        <h1>Question #{this.props.questionNumber} of {this.props.quizLength}:</h1>
+        <PlayableQuestionDisplay
+          question={this.props.question} 
+          handleSelection={this.handleSelection}
+          questionAnswered={this.state.questionAnswered}
+          selection={this.state.selection}
+          storeResult={this.storeResult}
+        />
+        <NewCommentForm 
+          user={this.props.user}
+          questionId={this.props.question.id}
+          createComment={this.createComment}
+          show={this.state.showNewCommentForm}
+        />
+        <Comments 
+          comments={this.props.comments}
+          show={this.state.showComments}
+        />
+      </>
     )
   }
 }
 
-export default PlaybleQuestion;
+const mapStateToProps = state => {
+  return ({
+    user: state.user
+  })
+}
+
+export default connect(mapStateToProps)(PlaybleQuestion);
