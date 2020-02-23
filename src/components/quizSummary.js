@@ -3,9 +3,9 @@ import Question from './question';
 import { numberToLetter } from '../actions/questionActions';
 import DoneWithQuizButton from './doneWithQuizButton';
 
-export class QuizSummary extends React.Component {
+export const QuizSummary = props => {
   
-  getScore(questions) {
+  function getScore(questions) {
     let numberRight = 0;
     const outOf = questions.length;
     questions.forEach(question => {
@@ -16,7 +16,7 @@ export class QuizSummary extends React.Component {
     return {numberRight: numberRight, outOf: outOf}
   }
 
-  output = this.props.quiz.questions.map((question, index) => {
+  const output = props.quiz.questions.map((question, index) => {
     return(
       <div key={index}>
         <h3>Question Id: {question.id}</h3>
@@ -32,18 +32,16 @@ export class QuizSummary extends React.Component {
     )
   })
 
-  render = () => {
-    const score = this.getScore(this.props.quiz.questions);
-    return(
-      <>
-        <h1>{score.numberRight} out of {score.outOf} correct:  {(score.numberRight * 100 / score.outOf).toFixed(2)}%.</h1>
-        <DoneWithQuizButton storeResults={this.props.storeResults} />
-        <hr />
-        {this.output}
-        <DoneWithQuizButton storeResults={this.props.storeResults} />
-      </>
-    )
-  }
+  const score = getScore(props.quiz.questions);
+  return(
+    <>
+      <h1>{score.numberRight} out of {score.outOf} correct:  {(score.numberRight * 100 / score.outOf).toFixed(2)}%.</h1>
+      <DoneWithQuizButton storeResults={props.storeResults} />
+      <hr />
+      {output}
+      <DoneWithQuizButton storeResults={props.storeResults} />
+    </>
+  )
 }
 
 
