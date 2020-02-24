@@ -11,7 +11,8 @@ class Comments extends React.Component {
             return (
               <Comment 
                 comment={comment.comment} 
-                user={comment.user_name} 
+                commentUser={comment.user_name}
+                user={this.props.user}
                 key={`comment#${comment.comment.id}`}
                 deleteComment={this.props.deleteComment}
               /> 

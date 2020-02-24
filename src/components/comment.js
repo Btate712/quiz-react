@@ -6,7 +6,7 @@ const Comment = props => {
 
   const show = () => {
     if(props.comment.comment_type === "stop-asking") {
-      if(props.comment.user_id === props.user.id) {
+      if(props.user.name === props.commentUser.name) {
         return (
         <>
           <h3>Don't Ask</h3>
