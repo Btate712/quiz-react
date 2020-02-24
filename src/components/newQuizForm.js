@@ -1,5 +1,6 @@
 import React from 'react';
 import TopicList from './topicList';
+import SelectAndDeselectAllButtons from './selectAndDeselectAllButtons';
 
 class NewQuizForm extends React.Component {
   state = {
@@ -63,12 +64,7 @@ class NewQuizForm extends React.Component {
               handleInputChange={this.handleInputChange}
             />
             <br />
-            <button className="btn btn-primary mr-1" onClick={this.selectAll} type="button">
-              Select All
-            </button>
-            <button className="btn btn-primary" onClick={this.deSelectAll} type="button">
-              De-Select All
-            </button>
+            <SelectAndDeselectAllButtons selectAll={this.selectAll} deSelectAll={this.deSelectAll} />
           </div>
           <div className="form-group">
             <label >Number of Questions:</label>
