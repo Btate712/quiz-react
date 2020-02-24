@@ -47,7 +47,7 @@ export function getQuestions(url, token) {
 }
 
 export function createQuestion(url, question, token) {
-  return () => {
+  return dispatch => {
     const configurationObject = {
       method: "POST",
         mode: "cors",
@@ -67,12 +67,13 @@ export function createQuestion(url, question, token) {
         })
     }
     fetch(`${url}/questions`, configurationObject)
-    .then(response => response.json)
+    .then(response => response.json())
+    .then(json => dispatch({ type: 'ADD_QUESTION_TO_TOPIC', question: json.body }))
   }
 }
 
 export function updateQuestion(url, question, id, token) {
-  return () => {
+  return dispatch => {
     const configurationObject = {
       method: "PATCH",
       mode: "cors",
@@ -92,6 +93,8 @@ export function updateQuestion(url, question, id, token) {
       })
     }
     fetch(`${url}/questions/${id}`, configurationObject)
+    .then(response => response.json())
+    .then(json => dispatch({ type: 'UPDATE_QUESTION_IN_TOPIC', question: json.body }))
   }
 }
 
