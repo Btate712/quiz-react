@@ -9,7 +9,6 @@ class NewTopicContainer extends Component {
 
   componentDidMount = () => {
     this.props.getProjects(this.props.token);
-    console.log(this.props)
   }
 
   render() {

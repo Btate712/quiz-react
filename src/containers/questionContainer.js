@@ -104,6 +104,7 @@ class QuestionContainer extends Component {
                 createComment={this.createComment}
               />
               <Comments 
+                user={this.props.user}
                 show={this.state.showComments} 
                 comments={question.comments} 
                 deleteComment={this.deleteComment}

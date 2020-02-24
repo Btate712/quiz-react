@@ -5,7 +5,7 @@ import Comments from './comments';
 import NewCommentForm from './newCommentForm';
 import { connect } from 'react-redux';
 import { URL } from '../appData/applicationConstants';
-import { createComment } from '../actions/commentActions';
+import { createComment, deleteComment } from '../actions/commentActions';
 
 class PlaybleQuestion extends React.Component {
   state = {
@@ -74,6 +74,10 @@ class PlaybleQuestion extends React.Component {
     this.setState({showNewCommentForm: false})
   }
 
+  deleteComment = commentId => {
+    deleteComment(URL, commentId, this.props.user.token);
+  }
+  
   render() {
     return (
       <>
@@ -102,8 +106,10 @@ class PlaybleQuestion extends React.Component {
           show={this.state.showNewCommentForm}
         />
         <Comments 
+          user={this.props.user}
           comments={this.props.comments}
           show={this.state.showComments}
+          deleteComment={this.deleteComment}
         />
       </>
     )
