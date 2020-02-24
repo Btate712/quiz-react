@@ -2,11 +2,13 @@ import React from 'react';
 import { assignProject } from '../actions/projectActions';
 import { URL } from '../appData/applicationConstants';
 import SelectOptions from './selectOptions';
+import ConditionalRedirect from './conditionalRedirect';
 
 class projectAccessForm extends React.Component {
   state = {
     projectId: this.props.projects.projectList[0].id.toString(),
-    userId: this.props.users.userList[0].id.toString()
+    userId: this.props.users.userList[0].id.toString(),
+    done: false
   };
 
   handleInputChange = event => {
@@ -17,11 +19,14 @@ class projectAccessForm extends React.Component {
 
   assign = () => {
     assignProject(URL, parseInt(this.state.userId), parseInt(this.state.projectId), this.props.user.token);
+    this.setState({ done: true });
   }
 
   render() {
+    const { done } = this.state;
     return (
       <div>
+        <ConditionalRedirect condition={done} to={"/home"} />
         <label>
           Project: <select name="projectId" onChange={this.handleInputChange} value={this.state.projectId} >
             <SelectOptions objects={this.props.projects.projectList} />
