@@ -55,7 +55,6 @@ export function deleteComment(url, commentId, token) {
   fetch(`${url}/comments/${commentId}`, configurationObject)
     .then(response => response.json())
     .then(json => {
-      console.log(json)
       dispatch({ type: 'DELETE_COMMENT_FROM_QUESTION', commentId: commentId })
       alert(json.message)
       })
