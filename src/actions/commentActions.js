@@ -15,6 +15,7 @@ export function getComments(url, questionId, token) {
 }
 
 export function createComment(url, comment, token) {
+  return dispatch => {
   const configurationObject = {
     method: "POST",
     mode: "cors",
@@ -33,10 +34,15 @@ export function createComment(url, comment, token) {
   }
   fetch(`${url}/questions/${comment.questionId}/comments`, configurationObject)
     .then(response => response.json())
-    .then(json => alert(json.message))
+    .then(json => {
+      dispatch({ type: 'ADD_COMMENT_TO_QUESTION', comment: json.body })
+      alert(json.message);
+    })
+  }
 }
 
 export function deleteComment(url, commentId, token) {
+  return dispatch => {
   const configurationObject = {
     method: "DELETE",
     mode: "cors",
@@ -48,5 +54,10 @@ export function deleteComment(url, commentId, token) {
   }
   fetch(`${url}/comments/${commentId}`, configurationObject)
     .then(response => response.json())
-    .then(json => alert(json.message))
+    .then(json => {
+      console.log(json)
+      dispatch({ type: 'DELETE_COMMENT_FROM_QUESTION', commentId: commentId })
+      alert(json.message)
+      })
+  }
 }

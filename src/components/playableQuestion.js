@@ -70,12 +70,12 @@ class PlaybleQuestion extends React.Component {
   }
 
   createComment = comment => {
-    createComment(URL, comment, this.props.user.token);
+    this.props.createComment(comment, this.props.user.token);
     this.setState({showNewCommentForm: false})
   }
 
   deleteComment = commentId => {
-    deleteComment(URL, commentId, this.props.user.token);
+    this.props.deleteComment(commentId, this.props.user.token);
   }
   
   render() {
@@ -122,4 +122,11 @@ const mapStateToProps = state => {
   })
 }
 
-export default connect(mapStateToProps)(PlaybleQuestion);
+const mapDispatchToProps = dispatch => {
+  return ({
+    createComment: (comment, token) => dispatch(createComment(URL, comment, token)),
+    deleteComment: (commentId, token) => dispatch(deleteComment(URL, commentId, token))
+  })
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlaybleQuestion);

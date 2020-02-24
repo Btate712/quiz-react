@@ -63,12 +63,12 @@ class QuestionContainer extends Component {
   }
 
   createComment = comment => {
-    createComment(URL, comment, this.props.user.token);
+    this.props.createComment(comment, this.props.user.token);
     this.setState({showNewCommentForm: false})
   }
 
   deleteComment = commentId => {
-    deleteComment(URL, commentId, this.props.user.token);
+    this.props.deleteComment(commentId, this.props.user.token);
   }
 
   dontAsk = comments => {
@@ -153,7 +153,9 @@ const mapDispatchToProps = dispatch => {
   return({
     getQuestion: (questionId, token) => dispatch(getQuestion(URL, questionId, token)),
     deleteQuestion: (questionId, token) => dispatch(deleteQuestion(URL, questionId, token)),
-    getComments: (questionId, token) => dispatch(getComments(URL, questionId, token))
+    getComments: (questionId, token) => dispatch(getComments(URL, questionId, token)),
+    createComment: (comment, token) => dispatch(createComment(URL, comment, token)),
+    deleteComment: (commentId, token) => dispatch(deleteComment(URL, commentId, token))
   })
 }
 
