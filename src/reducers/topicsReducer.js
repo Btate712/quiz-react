@@ -31,6 +31,12 @@ const topicsReducer = (state = { topicList: [], inProgress: false }, action) => 
           topicList: []
         }
 
+      case 'ADD_TOPIC_TO_TOPICS':
+        return {
+          ...state,
+          topicList: [...state.topicList, action.topic]
+        }
+
     default:
       return state;
   }
