@@ -18,8 +18,12 @@ class NewTopicForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.createTopic(this.state.name, this.state.projectId, this.props.token);
-    this.props.getTopics(this.props.token);
+    console.log('A') // Fires first because no async calls have been made yet
+    this.props.createTopic(this.state.name, this.state.projectId, this.props.token); 
+    console.log('B') // Fires after 'F' but before 'D'. If there were more code between 'F' 
+                     // and 'B', it's possible that 'D' would fire before 'B' if the fetch and response
+                     // functions resolved before the code between 'F' and 'B' could execute. Since 'B' 
+                     // comes immediately after 'F', it should always fire first.
     this.setState({complete: true});
    }
   

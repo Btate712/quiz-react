@@ -1,4 +1,5 @@
 export function createTopic(url, topicName, projectId, token) {
+  console.log('C') // Fires second because it is called before async function
   return dispatch => {
     dispatch({ type: 'CREATING_TOPIC' });
     const configurationObject = {
@@ -14,13 +15,18 @@ export function createTopic(url, topicName, projectId, token) {
           project_id: projectId
         })
       }
-      fetch(`${url}/topics`, configurationObject)
-        .then(response => response.json())
-        .then(json => {       
-          dispatch({ type: 'ADD_TOPIC', topic: json.body });
-          dispatch({ type: 'ADD_TOPIC_TO_TOPICS', topic: json.body });
-        });
+    fetch(`${url}/topics`, configurationObject)
+      .then(response => response.json())
+      .then(json => {    
+        
+        console.log('D') // Fires last because it requires fetch's return and response (both async) functions to resolve
+        dispatch({ type: 'ADD_TOPIC', topic: json.body });
+        dispatch({ type: 'ADD_TOPIC_TO_TOPICS', topic: json.body });
+      });
+    console.log('F') // I added this one to validate my understanding that it would fire before 'B' or 'D'
+                     // It fires immediately after the fetch request initiates and before the async functions resolve 
   }
+  console.log('E')  // Never fires because function has already returned
 }
 
 export function deleteTopic(url, topicId, token) {
