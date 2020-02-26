@@ -18,8 +18,6 @@ export function createTopic(url, topicName, projectId, token) {
     fetch(`${url}/topics`, configurationObject)
       .then(response => response.json())
       .then(json => {    
-        
-        dispatch({ type: 'ADD_TOPIC', topic: json.body });
         dispatch({ type: 'ADD_TOPIC_TO_TOPICS', topic: json.body });
       });
   }
