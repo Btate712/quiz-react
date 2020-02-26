@@ -50,7 +50,7 @@ class QuestionForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const question = this.state;
-    this.newOrEdit(question)
+    this.newOrEdit(question);
     this.setState({ complete: true })
   }
 
