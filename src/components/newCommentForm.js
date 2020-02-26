@@ -17,6 +17,10 @@ class NewCommentForm extends React.Component {
       commentType: this.state.commentType
     }
     this.props.createComment(newComment);
+    this.setState({
+      commentType: "stop-asking",
+      text: ""
+    })
   }
 
   handleChange = event => {
