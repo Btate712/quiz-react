@@ -5,6 +5,7 @@ import { getTopics } from '../actions/topicActions';
 import { URL } from '../appData/applicationConstants';
 import { createQuiz, storeQuizResults, storeQuestionResponse, resetQuiz } from '../actions/quizActions';
 import PlayableQuiz from '../components/playableQuiz';
+import LoadingMessage from '../components/loadingMessage';
 
 
 class QuizContainer extends React.Component {
@@ -25,7 +26,9 @@ class QuizContainer extends React.Component {
           />
         </div>
       )
-    } else if(this.props.topics && this.props.topics.length > 0) {
+    } else if(this.props.loadingTopics) {
+      return(<LoadingMessage />);
+    } else if(this.props.topics.length > 0) {
       return(
         <div>
           <NewQuizForm createQuiz={this.props.createQuiz} token={this.props.user.token} topics={this.props.topics} />
@@ -62,7 +65,8 @@ const mapStateToProps = state => {
   return ({
     topics: state.topics.topicList,
     quiz: state.quiz,
-    user: state.user
+    user: state.user,
+    loadingTopics: state.topics.inProgress
   })
 }
 
