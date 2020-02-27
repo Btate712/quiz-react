@@ -5,6 +5,7 @@ import { URL } from '../appData/applicationConstants';
 import TopicContainer from './topicContainer';
 import NewTopicContainer from './newTopicContainer';
 import { Switch, Route, Link } from 'react-router-dom';
+import LoadingMessage from '../components/loadingMessage';
 
 class TopicsContainer extends React.Component {
   componentDidMount() {
@@ -25,8 +26,11 @@ class TopicsContainer extends React.Component {
   }
   
   showTopicsWhenLoaded() {
-    const topics = this.props.topics.topicList;
-    if(topics) {
+    if(this.props.topics.inProgress) {
+      return (
+        <LoadingMessage />
+      )
+    } else {
       return (
         <div className="container">
           <h1><u>Topics:</u></h1>
