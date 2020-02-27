@@ -71,7 +71,7 @@ class NewCommentForm extends React.Component {
             </label>
             <br />
             {this.commentTextIfRequired()}
-            <button className="btn btn-large border" type="submit">Save Comment</button>
+            <button className="btn btn-primary" type="submit">Save Comment</button>
           </form>
           <h1><SanitizedHTML html={this.state.text} /></h1>
         </>

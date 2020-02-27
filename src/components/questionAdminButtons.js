@@ -6,11 +6,11 @@ function QuestionAdminButtons(props) {
     return (
       <>
         <Link to={`/questions/${props.questionId}/edit`}>
-          <button className="btn btn-lg border">
+          <button className="btn btn-primary">
             Edit Question
           </button>
         </Link>
-        <button className="btn btn-lg border pull-right" onClick={props.deleteQuestion} >
+        <button className="btn btn-primary pull-right" onClick={props.deleteQuestion} >
           Delete Question
         </button>
       </>

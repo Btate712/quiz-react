@@ -2,7 +2,7 @@ import React from 'react';
 
 const DoneWithQuizButton = props => {
   return(
-    <button className="btn btn-lg border" onClick={props.storeResults}>Done - Store Results</button>
+    <button className="btn btn-primary" onClick={props.storeResults}>Done - Store Results</button>
   )
 }
 

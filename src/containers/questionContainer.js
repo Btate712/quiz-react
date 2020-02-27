@@ -33,7 +33,7 @@ class QuestionContainer extends Component {
     if ( this.props.topic.topic_info) {
       return (
         <Link to={`/topics/${this.props.topic.topic_info.id}`}>
-          <button className="btn btn-lg border">
+          <button className="btn btn-primary">
             Back to topic: {this.props.topic.topic_info.name}
           </button>
         </Link>
@@ -41,7 +41,7 @@ class QuestionContainer extends Component {
     } else {
       return (
         <Link to="/questions">
-          <button className="btn btn-lg border">
+          <button className="btn btn-primary">
             Back to Questions
           </button>
         </Link>

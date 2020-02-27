@@ -32,7 +32,8 @@ class TopicContainer extends Component {
               getTopics={this.props.getTopics}
             />
             <div className="container">
-              <Link to="/topics"><button className="btn btn-lg border">Back to Topics</button></Link>
+              <br />
+              <Link to="/topics"><button className="btn btn-primary">Back to Topics</button></Link>
             </div>
           </>
         )
