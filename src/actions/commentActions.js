@@ -7,10 +7,10 @@ export function getComments(url, questionId, token) {
       }
     }
     fetch(`${url}/questions/${questionId}/comments`, configurationObject)
-      .then(response => response.json())
-      .then(json => {
-        dispatch({ type: 'ADD_COMMENTS', comments: json.body })
-      });
+    .then(response => response.json())
+    .then(json => {
+      dispatch({ type: 'ADD_COMMENTS', comments: json.body })
+    });
   }
 }
 
@@ -33,30 +33,30 @@ export function createComment(url, comment, token) {
     })
   }
   fetch(`${url}/questions/${comment.questionId}/comments`, configurationObject)
-    .then(response => response.json())
-    .then(json => {
-      dispatch({ type: 'ADD_COMMENT_TO_QUESTION', comment: json.body })
-      alert(json.message);
-    })
+  .then(response => response.json())
+  .then(json => {
+    dispatch({ type: 'ADD_COMMENT_TO_QUESTION', comment: json.body })
+    alert(json.message);
+  })
   }
 }
 
 export function deleteComment(url, commentId, token) {
   return dispatch => {
-  const configurationObject = {
-    method: "DELETE",
-    mode: "cors",
-    headers: { 
-      "Content-type": "application/json",
-      "Accept": "application/json",
-      authorization: token
+    const configurationObject = {
+      method: "DELETE",
+      mode: "cors",
+      headers: { 
+        "Content-type": "application/json",
+        "Accept": "application/json",
+        authorization: token
+      }
     }
-  }
-  fetch(`${url}/comments/${commentId}`, configurationObject)
+    fetch(`${url}/comments/${commentId}`, configurationObject)
     .then(response => response.json())
     .then(json => {
       dispatch({ type: 'DELETE_COMMENT_FROM_QUESTION', commentId: commentId })
       alert(json.message)
-      })
+    })
   }
 }
