@@ -1,24 +1,24 @@
 export function createQuiz(url, numberOfQuestions, topics, token) {
   return dispatch => {
-    dispatch({ type: 'CREATING_QUIZ' });
+    dispatch({ type: 'LOADING_QUIZ' });
     const configurationObject = {
-        method: "POST",
-        mode: "cors",
-        headers: { 
-          "Content-type": "application/json",
-          "Accept": "application/json",
-          authorization: token
-        },
-        body: JSON.stringify({
-          'topicIds': topics.toString(),
-          'numberOfQuestions': numberOfQuestions
-        })
-      }
-      fetch(`${url}/quiz`, configurationObject)
-        .then(response => response.json())
-        .then(json => {  
-          dispatch({ type: 'ADD_QUIZ', quiz: json.quiz });
-        });
+      method: "POST",
+      mode: "cors",
+      headers: { 
+        "Content-type": "application/json",
+        "Accept": "application/json",
+        authorization: token
+      },
+      body: JSON.stringify({
+        'topicIds': topics.toString(),
+        'numberOfQuestions': numberOfQuestions
+      })
+    }
+    fetch(`${url}/quiz`, configurationObject)
+    .then(response => response.json())
+    .then(json => {  
+      dispatch({ type: 'ADD_QUIZ', quiz: json.quiz });
+    });
   }
 }
 
@@ -44,7 +44,7 @@ export function storeQuizResults(url, questions, token) {
         })
       }
     fetch(`${url}/encounters`, configurationObject)
-      .then(() => dispatch({ type: 'RESET_QUIZ' }))
+    .then(() => dispatch({ type: 'RESET_QUIZ' }))
   })
 }
 

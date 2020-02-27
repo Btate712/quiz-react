@@ -14,7 +14,10 @@ class QuizContainer extends React.Component {
   }
 
   renderWhenLoaded() {
-    if(this.props.quiz.questions.length > 0) {
+    if(this.props.quiz.inProgress) {
+      return (<LoadingMessage />)
+    }
+    else if(this.props.quiz.questions.length > 0) {
       return (
         <div>
           <PlayableQuiz 
@@ -31,7 +34,11 @@ class QuizContainer extends React.Component {
     } else if(this.props.topics.length > 0) {
       return(
         <div>
-          <NewQuizForm createQuiz={this.props.createQuiz} token={this.props.user.token} topics={this.props.topics} />
+          <NewQuizForm 
+            createQuiz={this.props.createQuiz} 
+            token={this.props.user.token} 
+            topics={this.props.topics} 
+          />
         </div>
       )
     }
