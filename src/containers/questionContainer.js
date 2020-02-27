@@ -6,16 +6,13 @@ import { connect } from 'react-redux';
 import Question from '../components/question';
 import { Link, Switch, Route } from 'react-router-dom';
 import NewQuestionContainer from '../containers/newQuestionContainer';
-import Comments from '../components/comments';
 import ConditionalRedirect from '../components/conditionalRedirect';
 import QuestionAdminButtons from '../components/questionAdminButtons';
-import NewCommentForm from '../components/newCommentForm';
+import CommentsContainer from '../containers/commentsContainer';
 
 class QuestionContainer extends Component {
   state = {
-    questionDeleted: false,
-    showComments: false,
-    showNewCommentForm: false
+    questionDeleted: false
   }
 
   componentDidMount() {
@@ -52,25 +49,6 @@ class QuestionContainer extends Component {
     }
   }
 
-  showComments = event => {
-    event.preventDefault();
-    this.setState({ showComments: this.state.showComments ? false : true });
-  }
-
-  showNewCommentForm = event => {
-    event.preventDefault();
-    this.setState({ showNewCommentForm: !this.state.showNewCommentForm })
-  }
-
-  createComment = comment => {
-    this.props.createComment(comment, this.props.user.token);
-    this.setState({showNewCommentForm: false})
-  }
-
-  deleteComment = commentId => {
-    this.props.deleteComment(commentId, this.props.user.token);
-  }
-
   dontAsk = comments => {
     if(comments.length > 0) {
       let blacklisted = false;
@@ -97,24 +75,11 @@ class QuestionContainer extends Component {
           <Route path="/questions/:id">
             <Question topic={this.props.topic.topic_info} question={question.question} dontAsk={this.dontAsk(this.props.question.comments)} />
             <div className="container">
-              <NewCommentForm 
-                show={this.state.showNewCommentForm}
-                user={this.props.user}
+              <CommentsContainer 
+                comments={question.comments}
+                show={this.state.showComments}
                 questionId={this.props.questionId}
-                createComment={this.createComment}
               />
-              <Comments 
-                user={this.props.user}
-                show={this.state.showComments} 
-                comments={question.comments} 
-                deleteComment={this.deleteComment}
-              />
-              <button className="btn btn-lg border" onClick={this.showComments}>
-                { this.state.showComments ? "Hide Comments" : "Show Comments" }
-              </button>
-              <button className="btn btn-lg border" onClick={this.showNewCommentForm}>
-                { this.state.showNewCommentForm ? "Hide New Comment Form" : "Show New Comment Form" }
-              </button>
               {this.topicButtonIfLoaded()}
               <QuestionAdminButtons 
                 userIsAdmin={this.props.user.admin} 
@@ -152,10 +117,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return({
     getQuestion: (questionId, token) => dispatch(getQuestion(URL, questionId, token)),
-    deleteQuestion: (questionId, token) => dispatch(deleteQuestion(URL, questionId, token)),
-    getComments: (questionId, token) => dispatch(getComments(URL, questionId, token)),
-    createComment: (comment, token) => dispatch(createComment(URL, comment, token)),
-    deleteComment: (commentId, token) => dispatch(deleteComment(URL, commentId, token))
+    deleteQuestion: (questionId, token) => dispatch(deleteQuestion(URL, questionId, token))
   })
 }
 
