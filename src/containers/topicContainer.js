@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { URL } from '../appData/applicationConstants';
 import Topic from '../components/topic';
 import { Link } from 'react-router-dom';
+import LoadingMessage from '../components/loadingMessage';
 
 class TopicContainer extends Component {
 
@@ -12,7 +13,12 @@ class TopicContainer extends Component {
   }
 
   showTopicWhenLoaded() {
-    if(this.props.topic) {
+    if(this.props.inProgress) {
+      return(
+        <LoadingMessage />
+      )
+    }
+    else {
       const topic = this.props.topic.topic_info;
       const questions = this.props.topic.questions;
       if(topic) {
@@ -46,7 +52,8 @@ class TopicContainer extends Component {
 const mapStateToProps = state => {
   return({
     topic: state.topic.topic,
-    user: state.user
+    user: state.user,
+    inProgress: state.topic.inProgress
   })
 }
 

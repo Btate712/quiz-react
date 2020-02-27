@@ -16,10 +16,10 @@ export function createTopic(url, topicName, projectId, token) {
         })
       }
     fetch(`${url}/topics`, configurationObject)
-      .then(response => response.json())
-      .then(json => {    
-        dispatch({ type: 'ADD_TOPIC_TO_TOPICS', topic: json.body });
-      });
+    .then(response => response.json())
+    .then(json => {    
+      dispatch({ type: 'ADD_TOPIC_TO_TOPICS', topic: json.body });
+    });
   }
 }
 
@@ -52,10 +52,10 @@ export function getTopic(url, topicId, token) {
       }
     }
     fetch(`${url}/topics/${topicId}`, configurationObject)
-      .then(response => response.json())
-      .then(json => {
-        dispatch({ type: 'ADD_TOPIC', topic: json.body })
-      });
+    .then(response => response.json())
+    .then(json => {
+      dispatch({ type: 'ADD_TOPIC', topic: json.body })
+    });
   }
 }
 
@@ -68,9 +68,9 @@ export function getTopics(url, token) {
       }
     }
     fetch(`${url}/topics`, configurationObject)
-      .then(response => response.json())
-      .then(json => {
-        dispatch({ type: 'ADD_TOPICS', topics: json.body })
-      });
+    .then(response => response.json())
+    .then(json => {
+      dispatch({ type: 'ADD_TOPICS', topics: json.body })
+    });
   }
 }
