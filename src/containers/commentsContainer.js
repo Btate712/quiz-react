@@ -12,6 +12,10 @@ class commentsContainer extends Component {
     showNewCommentForm: false
   }
 
+  componentWillReceiveProps = () => {
+    this.setState({ showComments: false })
+  }
+
   deleteComment = commentId => {
     this.props.deleteComment(commentId, this.props.user.token);
   }
@@ -46,10 +50,10 @@ class commentsContainer extends Component {
           comments={this.props.comments} 
           deleteComment={this.deleteComment}
         />
-        <button className="btn btn-lg border" onClick={this.showComments}>
+        <button className="btn btn-primary pull-right" onClick={this.showComments}>
           { this.state.showComments ? "Hide Comments" : "Show Comments" }
         </button>
-        <button className="btn btn-lg border" onClick={this.showNewCommentForm}>
+        <button className="btn btn-primary pull-right mr-1" onClick={this.showNewCommentForm}>
           { this.state.showNewCommentForm ? "Hide New Comment Form" : "Show New Comment Form" }
         </button>
       </>

@@ -77,7 +77,6 @@ class QuestionContainer extends Component {
             <div className="container">
               <CommentsContainer 
                 comments={question.comments}
-                show={this.state.showComments}
                 questionId={this.props.questionId}
               />
               {this.topicButtonIfLoaded()}
