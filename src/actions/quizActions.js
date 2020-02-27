@@ -55,26 +55,16 @@ export function resetQuiz() {
 }
 
 export function getSelection(event) {
+  const decoder = { 
+    "a": 1, "b": 2, "c": 3, "d": 4,
+    "1": 1, "2": 2, "3": 3, "4": 4 
+  } 
   if(event.type === "keydown") {
-    switch(event.key) {
-      case "a":
-        return 1
-      case "b":
-        return 2
-      case "c":
-        return 3
-      case "d": 
-        return 4
-      case "1":
-        return 1
-      case "2":
-        return 2
-      case "3":
-        return 3
-      case "4":
-        return 4
-      default:
-        return "invalid selection"
+    const key = decoder[event.key];
+    if(key) {
+      return key;
+    } else {
+      return "invalid selection"
     }
   } else {
     return parseInt(event.target.id);
