@@ -1,5 +1,4 @@
 export function createTopic(url, topicName, projectId, token) {
-  console.log('C') // Fires second because it is called before async function
   return dispatch => {
     dispatch({ type: 'CREATING_TOPIC' });
     const configurationObject = {
