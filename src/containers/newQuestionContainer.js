@@ -3,16 +3,22 @@ import QuestionForm from '../components/questionForm';
 import { URL } from '../appData/applicationConstants';
 import { connect } from 'react-redux';
 import { createQuestion, updateQuestion } from '../actions/questionActions';
+import { getTopics } from '../actions/topicActions';
 
 class newQuestionContainer extends React.Component {
+  
+  componentDidMount() {
+    this.props.topics.length > 0 || this.props.getTopics(this.props.user.token);
+  }
+
   render() {
     return(
       <div className="container">
         <QuestionForm 
-          mode={this.props.mode }
+          mode={this.props.mode}
           user={this.props.user}
           topics={this.props.topics}
-          topic={this.props.topic}
+          topic={this.props.topicForEdit || this.props.topic}
           question={this.props.question}
           createQuestion={this.props.createQuestion}
           updateQuestion={this.props.updateQuestion}
@@ -34,7 +40,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     createQuestion: (question, token) => dispatch(createQuestion(URL, question, token)),
-    updateQuestion: (question, id, token) => dispatch(updateQuestion(URL, question, id, token))
+    updateQuestion: (question, id, token) => dispatch(updateQuestion(URL, question, id, token)),
+    getTopics: (token) => dispatch(getTopics(URL, token))
   }
 }
 

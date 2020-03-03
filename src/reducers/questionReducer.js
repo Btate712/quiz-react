@@ -10,6 +10,7 @@ const questionReducer = (state = { question: {}, comments: [], inProgress: false
       return {
         question: action.question.question,
         comments: action.question.comments,
+        topic: action.question.topic,
         inProgress: false
       }
 

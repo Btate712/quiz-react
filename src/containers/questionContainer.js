@@ -33,7 +33,7 @@ class QuestionContainer extends Component {
     if ( this.props.topic.topic_info) {
       return (
         <Link to={`/topics/${this.props.topic.topic_info.id}`}>
-          <button className="btn btn-primary">
+          <button className="btn btn-primary mr-1">
             Back to topic: {this.props.topic.topic_info.name}
           </button>
         </Link>
@@ -70,7 +70,7 @@ class QuestionContainer extends Component {
       return (
         <Switch>
           <Route path="/questions/:id/edit">
-          <NewQuestionContainer mode="edit" question={question.question} />
+          <NewQuestionContainer mode="edit" question={question.question} topicForEdit={question.topic}/>
           </Route>
           <Route path="/questions/:id">
             <Question topic={this.props.topic.topic_info} question={question.question} dontAsk={this.dontAsk(this.props.question.comments)} />
@@ -81,8 +81,9 @@ class QuestionContainer extends Component {
               />
               {this.topicButtonIfLoaded()}
               <QuestionAdminButtons 
+                questionId={question.question.id}
                 userIsAdmin={this.props.user.admin} 
-                topicId={this.props.topic.id}
+                topic={this.props.topic}
                 deleteQuestion={this.deleteQuestion}
               />
             </div>

@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteComment } from '../actions/commentActions';
 import Comments from '../components/comments';
-import NewCommentForm from '../components/newCommentForm';
+import CommentForm from '../components/commentForm';
 import { createComment } from '../actions/commentActions';
 import { URL } from '../appData/applicationConstants';
 
 class commentsContainer extends Component {
   state = {
     showComments: false,
-    showNewCommentForm: false
+    showCommentForm: false
   }
 
   componentWillReceiveProps = () => {
@@ -25,21 +25,21 @@ class commentsContainer extends Component {
     this.setState({ showComments: this.state.showComments ? false : true });
   }
 
-  showNewCommentForm = event => {
+  showCommentForm = event => {
     event.preventDefault();
-    this.setState({ showNewCommentForm: !this.state.showNewCommentForm })
+    this.setState({ showCommentForm: !this.state.showCommentForm })
   }
 
   createComment = comment => {
     this.props.createComment(comment, this.props.user.token);
-    this.setState({showNewCommentForm: false})
+    this.setState({showCommentForm: false})
   }
   
   render() {
     return (
       <>
-        <NewCommentForm 
-          show={this.state.showNewCommentForm}
+        <CommentForm 
+          show={this.state.showCommentForm}
           user={this.props.user}
           questionId={this.props.questionId}
           createComment={this.createComment}
@@ -53,8 +53,8 @@ class commentsContainer extends Component {
         <button className="btn btn-primary pull-right" onClick={this.showComments}>
           { this.state.showComments ? "Hide Comments" : "Show Comments" }
         </button>
-        <button className="btn btn-primary pull-right mr-1" onClick={this.showNewCommentForm}>
-          { this.state.showNewCommentForm ? "Hide New Comment Form" : "Show New Comment Form" }
+        <button className="btn btn-primary pull-right mr-1" onClick={this.showCommentForm}>
+          { this.state.showCommentForm ? "Hide New Comment Form" : "Show New Comment Form" }
         </button>
       </>
     );
