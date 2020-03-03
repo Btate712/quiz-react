@@ -1,7 +1,7 @@
 import React from 'react';
 import SanitizedHTML from 'react-sanitized-html';
 
-class NewCommentForm extends React.Component {
+class CommentForm extends React.Component {
   state = {
     commentType: "stop-asking",
     text: ""
@@ -82,4 +82,4 @@ class NewCommentForm extends React.Component {
   }
 }
 
-export default NewCommentForm;
+export default CommentForm;

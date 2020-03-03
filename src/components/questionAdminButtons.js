@@ -10,7 +10,7 @@ function QuestionAdminButtons(props) {
             Edit Question
           </button>
         </Link>
-        <button className="btn btn-primary pull-right" onClick={props.deleteQuestion} >
+        <button className="btn btn-primary pull-right mr-1" onClick={props.deleteQuestion} >
           Delete Question
         </button>
       </>

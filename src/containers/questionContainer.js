@@ -33,7 +33,7 @@ class QuestionContainer extends Component {
     if ( this.props.topic.topic_info) {
       return (
         <Link to={`/topics/${this.props.topic.topic_info.id}`}>
-          <button className="btn btn-primary">
+          <button className="btn btn-primary mr-1">
             Back to topic: {this.props.topic.topic_info.name}
           </button>
         </Link>
