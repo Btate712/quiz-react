@@ -14,7 +14,6 @@ class TopicsContainer extends React.Component {
 
   listTopics() {
     const topics = this.props.topics.topicList.sort((a,b) => a.name > b.name ? 1 : -1);
-    console.log(topics);
     return(
       topics.map((topic, key) => {
         const lastQuestionDate = new Date(topic.dateLastQuestionAdded)
