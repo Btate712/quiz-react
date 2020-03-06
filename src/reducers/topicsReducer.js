@@ -7,10 +7,12 @@ const topicsReducer = (state = { topicList: [], inProgress: false }, action) => 
       }
 
     case 'ADD_TOPICS':
+      console.log(action.topics);
       return {
         topicList: action.topics.map(topicArrayElement => {
-          topicArrayElement.topic.questionCount = topicArrayElement.questionCount
-          return topicArrayElement.topic
+          topicArrayElement.topic.questionCount = topicArrayElement.questionCount;
+          topicArrayElement.topic.dateLastQuestionAdded = topicArrayElement.dateLastQuestionAdded;
+          return topicArrayElement.topic;
         }),
         inProgress: false
       }
