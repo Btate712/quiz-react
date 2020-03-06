@@ -7,12 +7,20 @@ import NewTopicContainer from './newTopicContainer';
 import { Switch, Route, Link } from 'react-router-dom';
 
 class TopicsContainer extends React.Component {
+  state = {
+    sorted: false
+  }
+
   componentDidMount() {
     this.props.getTopics(this.props.user.token);
   }
 
   listTopics() {
-    const topics = this.props.topics.topicList.sort((a,b) => a.name > b.name ? 1 : -1);
+    const topics = [...this.props.topics.topicList];
+    // .sort((a,b) => a.name > b.name ? 1 : -1);
+    if(this.state.sorted) {
+      topics.sort((a,b) => a.name > b.name ? 1 : -1);
+    } 
     return(
       topics.map((topic, key) => {
         return (
@@ -24,6 +32,12 @@ class TopicsContainer extends React.Component {
     )
   }
   
+  sortTopics = () => {
+    this.setState({
+      sorted: true
+    })
+  }
+
   showTopicsWhenLoaded() {
     const topics = this.props.topics.topicList;
     if(topics) {
@@ -32,6 +46,7 @@ class TopicsContainer extends React.Component {
           <h1><u>Topics:</u></h1>
           {this.listTopics()}
           {this.adminButtons()}
+          <button onClick={this.sortTopics}>Sort Topics</button>
         </div>
       )
     }
@@ -46,7 +61,7 @@ class TopicsContainer extends React.Component {
   }
 
   render() {
-
+    console.log(this.props.topics.topicList);
     return(
       <div>
         <Switch>

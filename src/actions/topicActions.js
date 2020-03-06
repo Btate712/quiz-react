@@ -1,4 +1,5 @@
 export function createTopic(url, topicName, projectId, token) {
+  // Flatiron assessment
   console.log('C') // Fires second because it is called before async function
   return dispatch => {
     dispatch({ type: 'CREATING_TOPIC' });
@@ -76,6 +77,7 @@ export function getTopics(url, token) {
     fetch(`${url}/topics`, configurationObject)
       .then(response => response.json())
       .then(json => {
+        console.log(json);
         dispatch({ type: 'ADD_TOPICS', topics: json.body })
       });
   }

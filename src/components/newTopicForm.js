@@ -15,7 +15,7 @@ class NewTopicForm extends React.Component {
     [event.target.name]: event.target.value
     });
   }
-
+  // Flatiron Assessment
   handleSubmit = event => {
     event.preventDefault();
     console.log('A') // Fires first because no async calls have been made yet
