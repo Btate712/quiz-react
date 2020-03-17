@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { URL } from '../appData/applicationConstants';
 import { getQuestion, deleteQuestion } from '../actions/questionActions';
-import { getComments, createComment, deleteComment } from '../actions/commentActions';
 import { connect } from 'react-redux';
 import Question from '../components/question';
 import { Link, Switch, Route } from 'react-router-dom';

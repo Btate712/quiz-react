@@ -16,9 +16,12 @@ class TopicsContainer extends React.Component {
     const topics = this.props.topics.topicList.sort((a,b) => a.name > b.name ? 1 : -1);
     return(
       topics.map((topic, key) => {
+        const lastQuestionDate = new Date(topic.dateLastQuestionAdded)
         return (
           <h3 key={key} >
-            <Link to={`/topics/${topic.id}`}> {topic.name} </Link>
+            <Link to={`/topics/${topic.id}`}> 
+            {topic.name} - 
+            {` ${lastQuestionDate.getMonth() + 1}/${lastQuestionDate.getDate()}/${lastQuestionDate.getFullYear()}`} </Link>
           </h3>
         ) 
       })
@@ -33,7 +36,7 @@ class TopicsContainer extends React.Component {
     } else {
       return (
         <div className="container">
-          <h1><u>Topics:</u></h1>
+          <h1><u>Topics: (date last question added)</u></h1>
           {this.listTopics()}
           {this.adminButtons()}
         </div>
