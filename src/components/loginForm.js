@@ -1,19 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { useInputChange } from '../helperFunctions';
 
 function LoginForm(props) {
 
-  const [input, setInput] = useState({
+  const [input, handleInputChange, setInput] = useInputChange({
     username: "",
     password: ""
-  });
-
-  const handleInputChange = event => {
-    setInput({
-      ...input,
-    [event.target.name]: event.target.value
-    });
-  }
+  })
 
   const handleSubmit = event => {
     event.preventDefault();
