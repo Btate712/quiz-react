@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useInputChange } from '../helperFunctions';
+import { useInputHooks } from '../helperFunctions';
 
 function LoginForm(props) {
 
-  const [input, handleInputChange, setInput] = useInputChange({
+  const [input, handleInputChange, setInput] = useInputHooks({
     username: "",
     password: ""
   })
