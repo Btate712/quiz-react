@@ -1,7 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getProjects } from '../actions/projectActions';
+import { URL } from '../appData/applicationConstants';
 
 class HomeContainer extends React.Component {
+
+  componentDidMount = () => {
+    this.props.getProjects(this.props.user.token);
+  }
 
   render() {
     return (
@@ -17,4 +24,17 @@ class HomeContainer extends React.Component {
   }
 }
 
-export default HomeContainer;
+const mapStateToProps = state => {
+  return({
+    selectedProjects: state.projects.selectedProjects,
+    user: state.user
+  })  
+}
+
+const mapDispatchToProps = dispatch => {
+  return({
+    getProjects: (token) => dispatch(getProjects(URL, token))
+  })
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);

@@ -9,7 +9,7 @@ export function getProjects(url, token) {
     fetch(`${url}/projects`, configurationObject)
       .then(response => response.json())
       .then(json => {
-        dispatch({ type: 'ADD_PROJECTS', projects: json.projects })
+        dispatch({ type: 'ADD_PROJECTS', projects: json.projects });
       });
   }
 }
