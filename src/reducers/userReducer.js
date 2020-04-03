@@ -5,7 +5,8 @@ const userReducer = (
     inProgress: false, 
     loggedIn: false, 
     token: "", 
-    loginFail: false 
+    loginFail: false,
+    projects: {}
   }, action) => {
   switch(action.type) {
     case 'LOGGING_IN':
@@ -22,7 +23,8 @@ const userReducer = (
         loggedIn: true,
         token: action.token,
         admin: action.admin,
-        loginFail: false
+        loginFail: false,
+        projects: action.projects
       }
 
     case 'LOGIN_FAILED':

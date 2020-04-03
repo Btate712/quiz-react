@@ -51,7 +51,13 @@ export function login(url, username, password) {
         fetch(`${url}/users/me`, configurationObject)
         .then(response => response.json())
         .then(user => {
-          dispatch({ type: 'LOGGED_IN', token: token, admin: user.user.is_admin });
+          console.log(user);
+          dispatch({ 
+            type: 'LOGGED_IN', 
+            token: token, 
+            admin: user.user.is_admin,
+            projects: user.projects
+          });
         })
       } else {
         dispatch({ type: 'LOGIN_FAILED' });
