@@ -1,4 +1,8 @@
-const projectsReducer = (state = { projectList: [], inProgress: false }, action) => {
+const projectsReducer = (state = { 
+  projectList: [], 
+  inProgress: false,
+  selectedProjects: []
+}, action) => {
   switch(action.type) {
     case 'LOADING_PROJECTS':
       return {
@@ -8,7 +12,9 @@ const projectsReducer = (state = { projectList: [], inProgress: false }, action)
 
     case 'ADD_PROJECTS':
       return {
+        ...state,
         projectList: action.projects,
+        selectedProjects: this.selectedProjects.length > 0 ? this.selectedProjects : action.projects,
         inProgress: false
       }
 
