@@ -14,7 +14,7 @@ const projectsReducer = (state = {
       return {
         ...state,
         projectList: action.projects,
-        selectedProjects: this.selectedProjects.length > 0 ? this.selectedProjects : action.projects,
+        selectedProjects: state.selectedProjects.length > 0 ? state.selectedProjects : action.projects,
         inProgress: false
       }
 
