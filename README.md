@@ -1,3 +1,11 @@
+# Study-With-Quizzes - React Frontend
+
+Built by Bob Tate using React.
+
+This repository contains the frontend half of my Flatiron School final project. See https://github.com/Btate712/quiz-api for the backend. 
+
+I deployed this project for a specific group of users who use the product to study for licensing at a nuclear power plant. Since the information stored in the quiz bank for those users is proprietary and confidential, the app is not accessible to the general public at this time.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
